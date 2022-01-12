@@ -1,4 +1,6 @@
-# Personal Frontend Template
+# Estimate
+
+powered by: 
 - Vue
 - Vite
 - Tailwind
