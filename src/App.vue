@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import data from './assets/myMockedUserData.json'
-import Controls from './components/Controls.vue'
+
 const numbers = [0, 1, 2, 3, 5, 8, 13, 21]
 const allUsers = reactive(data)
-
 const users = reactive(allUsers.filter(user => !user.isObserver))
 const observers = reactive(allUsers.filter(user => user.isObserver))
 </script>
 
 <template>
   <NavBar />
+  <UserNameInput />
   <div class="overflow-x-auto max-w-xl">
     <NumberSelector :numbers="numbers"></NumberSelector>
     <Controls />

@@ -8,6 +8,7 @@ declare module 'vue' {
     EstimateTable: typeof import('./components/EstimateTable.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
     NumberSelector: typeof import('./components/NumberSelector.vue')['default']
+    UserNameInput: typeof import('./components/UserNameInput.vue')['default']
   }
 }
 
