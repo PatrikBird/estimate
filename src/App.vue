@@ -10,6 +10,7 @@ const observers = reactive(allUsers.filter(user => user.isObserver))
 <template>
   <NavBar />
   <InputModal />
+  <div class="overflow-x-auto max-w-xl m-5">
     <NumberSelector :numbers="numbers"></NumberSelector>
     <Controls />
     <EstimateTable :data="users">
