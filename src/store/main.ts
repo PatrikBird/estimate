@@ -4,7 +4,7 @@ export const useMainStore = defineStore('main', () => {
   /**
    * Current name of the user.
    */
-  const userName = ref('John Doe')
+  const userName = ref('')
   /**
    * Changes the current name of the user
    *
