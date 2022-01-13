@@ -14,14 +14,10 @@ const observers = reactive(allUsers.filter(user => user.isObserver))
     <NumberSelector :numbers="numbers"></NumberSelector>
     <Controls />
     <EstimateTable :data="users">
-      <template #header>
-        <h1 class="my-4">Users</h1>
-      </template>
+      <h1 class="my-4 prose lg:prose-xl">Users</h1>
     </EstimateTable>
     <EstimateTable :data="observers">
-      <template #header>
-        <h1 class="my-4">Observers</h1>
-      </template>
+      <h1 class="my-4 prose lg:prose-xl">Observers</h1>
     </EstimateTable>
   </div>
 </template>
