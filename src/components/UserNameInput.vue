@@ -5,25 +5,36 @@ const main = useMainStore()
 
 const enteredName = ref('')
 function setUserName() {
-  // eslint-disable-next-line no-console
-  console.log(enteredName.value);
   main.setUserName(enteredName.value)
+}
+
+const formIsInvalid = ref(true)
+function validateForm() {
+  if (enteredName.value === '') {
+    formIsInvalid.value = true
+  } else {
+    setUserName()
+    formIsInvalid.value = false
+  }
+  // eslint-disable-next-line no-console
+  console.log(formIsInvalid.value)
 }
 </script>
 
 <template>
-  <input id="my-modal-2" type="checkbox" checked class="modal-toggle" />
+  <input id="my-modal" type="checkbox" :checked="formIsInvalid" class="modal-toggle" />
   <div class="modal">
     <div class="modal-box">
       <p>Enter a name</p>
       <div class="modal-action justify-center">
-        <input
-          v-model="enteredName"
-          type="text"
-          placeholder="username"
-          class="text-center input input-primary input-bordered" />
-        <label for="my-modal-2" class="btn btn-primary" @click="setUserName">Accept</label>
-        <!-- <label for="my-modal-2" class="btn">Close</label> -->
+        <form @submit.prevent="validateForm">
+          <input
+            v-model="enteredName"
+            type="text"
+            placeholder="username"
+            class="text-center input input-primary input-bordered" />
+          <button class="btn btn-primary ml-3" :disabled="enteredName == ''">Accept</button>
+        </form>
       </div>
     </div>
   </div>
