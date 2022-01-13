@@ -1,0 +1,18 @@
+[
+  {
+    "userId": 1,
+    "username": "Patrik",
+    "voted": false
+  },
+  {
+    "userId": 2,
+    "username": "Luis",
+    "voted": false
+  },
+  {
+    "userId": 3,
+    "username": "Alex",
+    "voted": false,
+    "isObserver": true
+  }
+]
