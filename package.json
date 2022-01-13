@@ -12,6 +12,7 @@
     "@vueuse/core": "^7.5.3",
     "@vueuse/head": "^0.7.4",
     "daisyui": "^1.22.1",
+    "pinia": "^2.0.9",
     "vue": "^3.2.25",
     "vue-router": "^3.5.3"
   },
