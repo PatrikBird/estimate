@@ -6,9 +6,9 @@ declare module 'vue' {
   export interface GlobalComponents {
     Controls: typeof import('./components/Controls.vue')['default']
     EstimateTable: typeof import('./components/EstimateTable.vue')['default']
+    InputModal: typeof import('./components/InputModal.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
     NumberSelector: typeof import('./components/NumberSelector.vue')['default']
-    UserNameInput: typeof import('./components/UserNameInput.vue')['default']
   }
 }
 

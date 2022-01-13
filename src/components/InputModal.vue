@@ -16,8 +16,6 @@ function validateForm() {
     setUserName()
     formIsInvalid.value = false
   }
-  // eslint-disable-next-line no-console
-  console.log(formIsInvalid.value)
 }
 </script>
 
