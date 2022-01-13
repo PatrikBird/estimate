@@ -1,17 +1,27 @@
+<script setup lang="ts">
+import { useMainStore } from '~/store/main'
+
+const main = useMainStore()
+const userName = ref(main.userName)
+</script>
+
 <template>
   <div class="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
     <div class="px-2 mx-2 navbar-start">
-      <span class="text-lg font-bold"> Estimate </span>
+      <span class="text-lg font-bold">Estimate</span>
     </div>
-    <div class="hidden px-2 mx-2 navbar-center lg:flex">
-      <div class="flex items-stretch">
-        <!-- <a class="btn btn-ghost btn-sm rounded-btn"> Home </a>
+    <div class="navbar-end mr-5">
+      <p>{{ userName }}</p>
+    </div>
+    <!-- <div class="hidden px-2 mx-2 navbar-center lg:flex">
+      <div class="flex items-stretch justify-end">
+        <a class="btn btn-ghost btn-sm rounded-btn"> Home </a>
         <a class="btn btn-ghost btn-sm rounded-btn"> Portfolio </a>
-        <a class="btn btn-ghost btn-sm rounded-btn"> About </a>
-        <a class="btn btn-ghost btn-sm rounded-btn"> Contact </a> -->
+        <a class="btn btn-ghost btn-sm rounded-btn"> About </a> 
+        <a class="btn btn-ghost btn-sm rounded-btn"> Contact </a>
       </div>
     </div>
-    <!-- <div class="navbar-end">
+     <div class="navbar-end">
       <button class="btn btn-square btn-ghost">
         <svg
           xmlns="http://www.w3.org/2000/svg"
