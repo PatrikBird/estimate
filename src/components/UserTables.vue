@@ -1,25 +1,21 @@
 <script setup lang="ts">
-import { collection, doc, getDocs, onSnapshot } from 'firebase/firestore'
-import type { Ref } from 'vue'
-// import getCollection from '~/composables/getCollection'
-import { db } from '~/firebase/config'
+import getCollection from '~/composables/getCollection'
+import type { User } from '~/types/User'
 
-// const allUsers = reactive(data)
-// const observers = reactive(allUsers.filter(user => user.isObserver))
+const { documents } = getCollection('users')
 
-// const { documents } = getCollection('users')
+// map documents to User
 
-const allUsers: Ref<string[]> = ref([])
-const colRef = collection(db, 'users')
-getDocs(colRef).then(onSnapshot => {
-  const docs: any[] = []
-  onSnapshot.docs.forEach(doc => {
-    docs.push({ ...doc.data() })
-  })
-  allUsers.value = docs
-})
 
-// map json to obect user
+
+// const users = documents.value.map(
+//   (document: any): User => ({
+//     id: document.id,
+//     username: document.username,
+//     hasVoted: document.hasVoted,
+//     isObserver: document.isObserver,
+//   })
+// )
 
 // filter arrays and pass to table components
 // const users: User[] = reactive(allUsers.value.filter(user => !user.isObserver))
@@ -33,7 +29,7 @@ getDocs(colRef).then(onSnapshot => {
   <EstimateTable :data="users">
     <h1 class="my-4 prose lg:prose-xl">Users</h1>
   </EstimateTable>
-  <EstimateTable :data="observers">
+  <EstimateTable :data="users">
     <h1 class="my-4 prose lg:prose-xl">Observers</h1>
   </EstimateTable>
   <!-- </div> -->
