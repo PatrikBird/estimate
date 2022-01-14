@@ -14,6 +14,7 @@ const props = defineProps<{ data: User[] }>()
       </tr>
     </thead>
     <tbody>
+      <!-- todo: slot here -->
       <tr v-for="user in props.data" :key="user.id">
         <th>{{ user.id }}</th>
         <th>{{ user.username }}</th>
