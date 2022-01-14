@@ -1,5 +1,6 @@
 export interface User {
-  userId: number
+  id: string
   username: string
-  voted: boolean
+  hasVoted: boolean
+  isObserver: boolean
 }
