@@ -1,25 +1,11 @@
 <script setup lang="ts">
 import getCollection from '~/composables/getCollection'
-import type { User } from '~/types/User'
 
 const { documents } = getCollection('users')
 
-// map documents to User
-
-
-
-// const users = documents.value.map(
-//   (document: any): User => ({
-//     id: document.id,
-//     username: document.username,
-//     hasVoted: document.hasVoted,
-//     isObserver: document.isObserver,
-//   })
-// )
-
-// filter arrays and pass to table components
-// const users: User[] = reactive(allUsers.value.filter(user => !user.isObserver))
-// const observers: User[] = reactive(allUsers.value.filter(user => user.isObserver))
+// todo: arrays are empty. why?
+const users = documents.value.filter(u => u.isObserver === false)
+const observers = documents.value.filter(u => u.isObserver === true)
 </script>
 
 <template>
@@ -29,7 +15,7 @@ const { documents } = getCollection('users')
   <EstimateTable :data="users">
     <h1 class="my-4 prose lg:prose-xl">Users</h1>
   </EstimateTable>
-  <EstimateTable :data="users">
+  <EstimateTable :data="observers">
     <h1 class="my-4 prose lg:prose-xl">Observers</h1>
   </EstimateTable>
   <!-- </div> -->
