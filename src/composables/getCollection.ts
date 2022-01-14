@@ -3,9 +3,10 @@ import { ref, watchEffect } from 'vue'
 import type { DocumentData } from 'firebase/firestore'
 import { collection, onSnapshot } from 'firebase/firestore'
 import { db } from '~/firebase/config'
+import type { User } from '~/types/User'
 
 const getCollection = (c: string) => {
-  const documents: Ref<DocumentData[]> = ref([])
+  const documents: Ref<User[]> = ref([])
 
   // collection reference
   const colRef = collection(db, c)
@@ -16,8 +17,17 @@ const getCollection = (c: string) => {
       results.push({ ...doc.data(), id: doc.id })
     })
 
+    const users: User[] = results.map(doc => {
+      return {
+        id: doc.id,
+        username: doc.username,
+        hasVoted: doc.hasVoted,
+        isObserver: doc.isObserver,
+      }
+    })
+
     // update values
-    documents.value = results
+    documents.value = users
   })
 
   watchEffect(onInvalidate => {
