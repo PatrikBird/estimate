@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { useMainStore } from '~/store/main'
 
-const main = useMainStore()
+const mainStore = useMainStore()
 
 const enteredName = ref('')
 
 const formIsInvalid = ref(true)
 function validateForm() {
   if (enteredName.value !== '') {
-    main.setUserName(enteredName.value)
+    mainStore.setUserName(enteredName.value)
     formIsInvalid.value = false
   }
 }
