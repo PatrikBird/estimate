@@ -4,16 +4,11 @@ import { useMainStore } from '~/store/main'
 const main = useMainStore()
 
 const enteredName = ref('')
-function setUserName() {
-  main.setUserName(enteredName.value)
-}
 
 const formIsInvalid = ref(true)
 function validateForm() {
-  if (enteredName.value === '') {
-    formIsInvalid.value = true
-  } else {
-    setUserName()
+  if (enteredName.value !== '') {
+    main.setUserName(enteredName.value)
     formIsInvalid.value = false
   }
 }
