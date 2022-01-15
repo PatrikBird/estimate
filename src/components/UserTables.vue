@@ -3,10 +3,12 @@ import getCollection from '~/composables/getCollection'
 
 const { document } = getCollection('users')
 
+// TODO: next line logs ref to console, which looks fine.
+// ----- the very next however, is empty! why is that ??
 // console.log(document)
 // console.log(document.value)
-
-// const test = document.
+// ------
+// Therefore I can't filter the array :(
 // const users = document.value.filter(d => d.isObserver === false)
 </script>
 
