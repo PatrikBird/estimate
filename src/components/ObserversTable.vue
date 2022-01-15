@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { User } from '../types/User'
+import { handleDelete } from '~/composables/deleteUser'
+
 const props = defineProps<{ users: User[] }>()
 </script>
 
@@ -8,12 +10,28 @@ const props = defineProps<{ users: User[] }>()
   <table class="table w-full">
     <thead>
       <tr>
+        <th>Del</th>
         <th>Name</th>
         <th>Is Observer</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="{ id, username, isObserver } in props.users" :key="id">
+        <th v-if="isObserver">
+          <button class="btn btn-outline btn-square btn-xs" @click="handleDelete(id)">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="inline-block w-4 h-4 stroke-current">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </th>
         <th v-if="isObserver">{{ username }}</th>
         <th v-if="isObserver">{{ isObserver }}</th>
       </tr>
