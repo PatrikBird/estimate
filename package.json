@@ -42,6 +42,9 @@
     "extends": [
       "@antfu/eslint-config-vue",
       "prettier"
-    ]
+    ],
+    "rules": {
+      "no-console":"off"
+    }
   }
 }
