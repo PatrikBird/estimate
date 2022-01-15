@@ -18,6 +18,8 @@ const numbers = [0, 1, 2, 3, 5, 8, 13, 21]
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #fff;
+  color: #000;
+  padding-bottom: 5%;
+  /* background-color: #aaa; */
 }
 </style>
