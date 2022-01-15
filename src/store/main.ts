@@ -1,10 +1,11 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import { useStorage } from '@vueuse/core'
 
 export const useMainStore = defineStore('main', () => {
   /**
    * Current name of the user.
    */
-  const userName = ref('')
+  const userName = useStorage('username', 'noName')
   /**
    * Changes the current name of the user
    *
