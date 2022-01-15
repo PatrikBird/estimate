@@ -19,17 +19,7 @@ const props = defineProps<{ users: User[] }>()
       <tr v-for="{ id, username, hasVoted, isObserver } in props.users" :key="id">
         <th v-if="!isObserver">
           <button class="btn btn-outline btn-square btn-xs" @click="handleDelete(id)">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              class="inline-block w-4 h-4 stroke-current">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
+            <DeleteButton />
           </button>
         </th>
         <th v-if="!isObserver">{{ username }}</th>

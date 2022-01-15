@@ -5,6 +5,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     Controls: typeof import('./components/Controls.vue')['default']
+    DeleteButton: typeof import('./components/base/DeleteButton.vue')['default']
     EstimateTable: typeof import('./components/EstimateTable.vue')['default']
     InputModal: typeof import('./components/InputModal.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
