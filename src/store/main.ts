@@ -5,7 +5,7 @@ import { db } from '~/firebase/config'
 
 export const useMainStore = defineStore('main', () => {
   /**
-   * Current name of the user.
+   * Current name of the user
    */
   const userName = useStorage('username', 'noName')
   /**
@@ -19,7 +19,7 @@ export const useMainStore = defineStore('main', () => {
   /**
    * Adds the user to the database
    *
-   * @param username - name of the user
+   * @param username - name of the user to be added
    * @param isObserver - determines if user can vote or not
    */
   async function addUserToDb(username: string, isObserver: boolean) {
@@ -33,7 +33,7 @@ export const useMainStore = defineStore('main', () => {
   /**
    * Deletes the user from the database
    *
-   * @param id - users' identifier to be deleted
+   * @param id - identifier of user to be deleted
    */
   function deleteUserFromDb(id: string) {
     const docRef = doc(db, 'users', id)
