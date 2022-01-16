@@ -66,7 +66,7 @@ export const useMainStore = defineStore('main', () => {
     user.vote = vote
   }
   /**
-   * Deletes the user from the database FIXME: delete another user breaks the app
+   * Deletes the user from the database
    *
    * @param id - identifier of user to be deleted
    */
