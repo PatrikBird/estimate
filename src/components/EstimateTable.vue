@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import type { User } from '../types/User'
 const props = defineProps<{ data: User[] }>()
 </script>
@@ -15,11 +15,11 @@ const props = defineProps<{ data: User[] }>()
     </thead>
     <tbody>
       <!-- todo: slot here -->
-      <tr v-for="user in props.data" :key="user.id">
-        <th>{{ user.id }}</th>
-        <th>{{ user.username }}</th>
-        <th>{{ user.hasVoted }}</th>
+      <tr v-for="{ id, username, vote } in props.data" :key="id">
+        <th>{{ id }}</th>
+        <th>{{ username }}</th>
+        <th>{{ vote }}</th>
       </tr>
     </tbody>
   </table>
-</template>
+</template> -->
