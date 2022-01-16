@@ -8,6 +8,7 @@ const mainStore = useMainStore()
 
 <template>
   <NavBar />
+  <!-- TODO: update/activate input modal if user was deleted in db -->
   <InputModal v-if="!mainStore.user.id" />
   <div class="overflow-x-auto max-w-xl m-5">
     <NumberSelector :available-votes="availableVotes"></NumberSelector>
