@@ -32,20 +32,24 @@ export const useMainStore = defineStore('main', () => {
     user.username = name
   }
   /**
-   * Adds the user to the database
+   * Adds the user to the database and updates the local state
    *
    * @param username - name of the user to be added
    * @param isObserver - determines if user can vote or not
    */
   async function addUserToDb(username: string, isObserver: boolean) {
     const colRef = collection(db, 'users')
-    await addDoc(colRef, {
+    const userRef = await addDoc(colRef, {
       username,
       vote: null,
       isObserver,
     })
-  }
 
+    // update local user state
+    user.id = userRef.id
+    user.username = username
+    user.isObserver = isObserver
+  }
   /**
    * Updates the vote to the database document
    *
@@ -57,8 +61,10 @@ export const useMainStore = defineStore('main', () => {
     updateDoc(docRef, {
       vote,
     })
-  }
 
+    // update local state
+    user.vote = vote
+  }
   /**
    * Deletes the user from the database
    *
@@ -68,7 +74,6 @@ export const useMainStore = defineStore('main', () => {
     const docRef = doc(db, 'users', id)
     deleteDoc(docRef)
   }
-
   /**
    * Gets all users from the database collection
    *
