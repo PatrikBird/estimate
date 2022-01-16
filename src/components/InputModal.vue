@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { addDoc, collection } from 'firebase/firestore'
-import { db } from '~/firebase/config'
 import { useMainStore } from '~/store/main'
 
 const mainStore = useMainStore()
@@ -18,12 +16,7 @@ const isObserver = ref(false)
 async function handleSubmit() {
   validateForm()
 
-  const colRef = collection(db, 'users')
-  await addDoc(colRef, {
-    username: enteredName.value,
-    isObserver: isObserver.value,
-    hasVoted: false,
-  })
+  mainStore.addUserToDb(enteredName.value, isObserver.value)
 }
 </script>
 

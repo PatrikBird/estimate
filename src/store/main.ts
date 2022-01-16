@@ -1,6 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import { addDoc, collection , deleteDoc, doc } from 'firebase/firestore'
 import { useStorage } from '@vueuse/core'
-import { deleteDoc, doc } from 'firebase/firestore'
 import { db } from '~/firebase/config'
 
 export const useMainStore = defineStore('main', () => {
@@ -17,6 +17,20 @@ export const useMainStore = defineStore('main', () => {
     userName.value = name
   }
   /**
+   * Adds the user to the database
+   *
+   * @param username - name of the user
+   * @param isObserver - determines if user can vote or not
+   */
+  async function addUserToDb(username: string, isObserver: boolean) {
+    const colRef = collection(db, 'users')
+    await addDoc(colRef, {
+      username,
+      isObserver,
+      hasVoted: false,
+    })
+  }
+  /**
    * Deletes the user from the database
    *
    * @param id - users' identifier to be deleted
@@ -25,7 +39,8 @@ export const useMainStore = defineStore('main', () => {
     const docRef = doc(db, 'users', id)
     deleteDoc(docRef)
   }
-  return { setUserName, userName, deleteUserFromDb }
+  return { setUserName, userName, addUserToDb, deleteUserFromDb }
 })
 
-if (import.meta.hot) import.meta.hot.accept(acceptHMRUpdate(useMainStore, import.meta.hot))
+if (import.meta.hot)
+  import.meta.hot.accept(acceptHMRUpdate(useMainStore, import.meta.hot))
