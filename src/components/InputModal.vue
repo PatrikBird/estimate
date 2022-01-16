@@ -16,7 +16,6 @@ const isObserver = ref(false)
 async function handleSubmit() {
   validateForm()
   mainStore.addUserToDb(enteredName.value, isObserver.value)
-  // TODO: add user to localStorage
 }
 </script>
 
