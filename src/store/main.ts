@@ -1,5 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { addDoc, collection , deleteDoc, doc } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import { useStorage } from '@vueuse/core'
 import { db } from '~/firebase/config'
 
@@ -29,6 +29,17 @@ export const useMainStore = defineStore('main', () => {
       vote: null,
       isObserver,
     })
+  }
+  /**
+   * Updates the vote to the database document
+   *
+   * @param id - identifier of user to be updated
+   * @param vote - entered vote by user
+   */
+  function updateVote(id: string, vote: number) {
+    const docRef = doc(db, 'users', id)
+    updateDoc(docRef, {
+      vote,
     })
   }
   /**
@@ -40,7 +51,7 @@ export const useMainStore = defineStore('main', () => {
     const docRef = doc(db, 'users', id)
     deleteDoc(docRef)
   }
-  return { setUserName, userName, addUserToDb, deleteUserFromDb }
+  return { setUserName, userName, addUserToDb, updateVote, deleteUserFromDb }
 })
 
 if (import.meta.hot)
