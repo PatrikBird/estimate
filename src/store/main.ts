@@ -1,5 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
+import { deleteDoc, doc } from 'firebase/firestore'
+import { db } from '~/firebase/config'
 
 export const useMainStore = defineStore('main', () => {
   /**
@@ -14,7 +16,16 @@ export const useMainStore = defineStore('main', () => {
   function setUserName(name: string) {
     userName.value = name
   }
-  return { setUserName, userName }
+  /**
+   * Deletes the user from the database
+   *
+   * @param id - users' identifier to be deleted
+   */
+  function deleteUserFromDb(id: string) {
+    const docRef = doc(db, 'users', id)
+    deleteDoc(docRef)
+  }
+  return { setUserName, userName, deleteUserFromDb }
 })
 
 if (import.meta.hot) import.meta.hot.accept(acceptHMRUpdate(useMainStore, import.meta.hot))

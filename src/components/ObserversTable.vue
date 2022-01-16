@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { User } from '../types/User'
-import { handleDelete } from '~/composables/deleteUser'
+import { useMainStore } from '~/store/main'
+
+const mainStore = useMainStore()
 
 const props = defineProps<{ users: User[] }>()
 </script>
@@ -18,7 +20,9 @@ const props = defineProps<{ users: User[] }>()
     <tbody>
       <tr v-for="{ id, username, isObserver } in props.users" :key="id">
         <th v-if="isObserver">
-          <button class="btn btn-outline btn-square btn-xs" @click="handleDelete(id)">
+          <button
+            class="btn btn-outline btn-square btn-xs"
+            @click="mainStore.deleteUserFromDb(id)">
             <DeleteButton />
           </button>
         </th>
