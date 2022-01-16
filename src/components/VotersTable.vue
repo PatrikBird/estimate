@@ -19,8 +19,7 @@ const props = defineProps<{ users: User[] }>()
     </thead>
     <tbody>
       <tr v-for="{ id, username, vote, isObserver } in props.users" :key="id">
-        <th v-if="!isObserver">
-          <!-- TODO: only show own button to prevent deleting other people?-->
+        <th v-if="!isObserver && id == mainStore.user.id">
           <button
             class="btn btn-outline btn-square btn-xs"
             @click="mainStore.deleteUserFromDb(id)">

@@ -19,7 +19,7 @@ const props = defineProps<{ users: User[] }>()
     </thead>
     <tbody>
       <tr v-for="{ id, username, isObserver } in props.users" :key="id">
-        <th v-if="isObserver">
+        <th v-if="isObserver && id == mainStore.user.id">
           <button
             class="btn btn-outline btn-square btn-xs"
             @click="mainStore.deleteUserFromDb(id)">
