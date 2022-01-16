@@ -27,6 +27,7 @@ export const useMainStore = defineStore('main', () => {
   function setUserName(name: string) {
     userName.value = name
   }
+
   /**
    * Adds the user to the database
    *
@@ -41,6 +42,7 @@ export const useMainStore = defineStore('main', () => {
       isObserver,
     })
   }
+
   /**
    * Updates the vote to the database document
    *
@@ -53,6 +55,7 @@ export const useMainStore = defineStore('main', () => {
       vote,
     })
   }
+
   /**
    * Deletes the user from the database
    *
@@ -62,6 +65,7 @@ export const useMainStore = defineStore('main', () => {
     const docRef = doc(db, 'users', id)
     deleteDoc(docRef)
   }
+
   /**
    * Gets all users from the database collection
    *

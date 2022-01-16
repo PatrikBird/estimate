@@ -1,19 +1,24 @@
 <script setup lang="ts">
-const props = defineProps<{ numbers: number[] }>()
+import { useMainStore } from '~/store/main'
+
+const props = defineProps<{ availableVotes: number[] }>()
 
 const activeItem = ref()
-function selectItem(idx: number) {
+
+const mainStore = useMainStore()
+function handleChosenVote(idx: number, vote: number) {
   activeItem.value = idx
+  mainStore.updateVote() // TODO: need users ID here in order to update the vote
 }
 </script>
 
 <template>
   <button
-    v-for="number, idx in props.numbers"
-    :key="number"
+    v-for="(num, idx) in props.availableVotes"
+    :key="num"
     class="btn btn-primary m-2"
     :class="{ 'btn-accent': idx === activeItem }"
-    @click="selectItem(idx)">
-    {{ number }}
+    @click="handleChosenVote(idx, num)">
+    {{ num }}
   </button>
 </template>

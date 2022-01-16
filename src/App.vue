@@ -1,12 +1,16 @@
 <script setup lang="ts">
-const numbers = [0, 1, 2, 3, 5, 8, 13, 21]
+import { useMainStore } from '~/store/main'
+
+const availableVotes = [0, 1, 2, 3, 5, 8, 13, 21]
+
+const mainStore = useMainStore()
 </script>
 
 <template>
   <NavBar />
   <InputModal />
   <div class="overflow-x-auto max-w-xl m-5">
-    <NumberSelector :numbers="numbers"></NumberSelector>
+    <NumberSelector :available-votes="availableVotes"></NumberSelector>
     <Controls />
     <UserTables />
   </div>
