@@ -1,7 +1,18 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { addDoc, collection, deleteDoc, doc, updateDoc } from 'firebase/firestore'
+import type { DocumentData } from 'firebase/firestore'
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  updateDoc,
+} from 'firebase/firestore'
 import { useStorage } from '@vueuse/core'
+import type { Ref } from 'vue'
 import { db } from '~/firebase/config'
+import type { User } from '~/types/User'
+import { mapDocumentToUser } from '~/types/User'
 
 export const useMainStore = defineStore('main', () => {
   /**
@@ -51,7 +62,35 @@ export const useMainStore = defineStore('main', () => {
     const docRef = doc(db, 'users', id)
     deleteDoc(docRef)
   }
-  return { setUserName, userName, addUserToDb, updateVote, deleteUserFromDb }
+  /**
+   * Gets all users from the database collection
+   *
+   * @param collect - identifier of collection to be returned
+   */
+  function getAllUsers(collect: string) {
+    const document: Ref<User[]> = ref([])
+
+    // collection reference
+    const colRef = collection(db, collect)
+
+    const unsub = onSnapshot(colRef, snapshot => {
+      const results: DocumentData[] = []
+
+      snapshot.docs.forEach(doc => {
+        results.push({ ...doc.data(), id: doc.id })
+      })
+
+      // update values
+      document.value = mapDocumentToUser(results)
+    })
+
+    watchEffect(onInvalidate => {
+      onInvalidate(() => unsub())
+    })
+
+    return document
+  }
+  return { setUserName, userName, addUserToDb, updateVote, deleteUserFromDb, getAllUsers }
 })
 
 if (import.meta.hot)

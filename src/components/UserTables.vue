@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import getCollection from '~/composables/getCollection'
+import { useMainStore } from '~/store/main';
 
-const { document } = getCollection('users')
+const mainStore = useMainStore()
+const document = mainStore.getAllUsers('users')
 
-// TODO: next line logs ref to console, which looks fine.
+// FIXME: next line logs ref to console, which looks fine.
 // ----- the very next however, is empty! why is that ??
 // console.log(document)
 // console.log(document.value)
