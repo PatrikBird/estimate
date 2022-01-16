@@ -73,6 +73,11 @@ export const useMainStore = defineStore('main', () => {
   function deleteUserFromDb(id: string) {
     const docRef = doc(db, 'users', id)
     deleteDoc(docRef)
+
+    // clean up local state/storage
+    if (id === user.id) {
+      user.id = ''
+    }
   }
   /**
    * Gets all users from the database collection
