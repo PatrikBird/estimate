@@ -8,7 +8,7 @@ const activeItem = ref()
 const mainStore = useMainStore()
 function handleChosenVote(idx: number, vote: number) {
   activeItem.value = idx
-  mainStore.updateVote() // TODO: need users ID here in order to update the vote
+  mainStore.updateVote(mainStore.user.id, vote)
 }
 </script>
 
