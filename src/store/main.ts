@@ -8,7 +8,6 @@ import {
   onSnapshot,
   updateDoc,
 } from 'firebase/firestore'
-import { useStorage } from '@vueuse/core'
 import type { Ref } from 'vue'
 import { db } from '~/firebase/config'
 import type { User } from '~/types/User'
@@ -16,18 +15,22 @@ import { mapDocumentToUser } from '~/types/User'
 
 export const useMainStore = defineStore('main', () => {
   /**
-   * Current name of the user
+   * Current local user
    */
-  const userName = useStorage('username', 'noName')
+  const user: User = reactive({
+    id: '',
+    username: '',
+    vote: null,
+    isObserver: false,
+  })
   /**
    * Changes the current name of the user
    *
    * @param name - new name to set
    */
   function setUserName(name: string) {
-    userName.value = name
+    user.username = name
   }
-
   /**
    * Adds the user to the database
    *
@@ -94,7 +97,14 @@ export const useMainStore = defineStore('main', () => {
 
     return document
   }
-  return { setUserName, userName, addUserToDb, updateVote, deleteUserFromDb, getAllUsers }
+  return {
+    user,
+    setUserName,
+    addUserToDb,
+    updateVote,
+    deleteUserFromDb,
+    getAllUsers,
+  }
 })
 
 if (import.meta.hot)

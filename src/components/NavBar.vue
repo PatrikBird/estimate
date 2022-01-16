@@ -9,7 +9,7 @@ const mainStore = useMainStore()
       <span class="text-lg font-bold">Estimate</span>
     </div>
     <div class="navbar-end mr-5">
-      <p>You: {{ mainStore.userName }}</p>
+      <p>You: {{ mainStore.user.username }}</p>
     </div>
     <!-- <div class="hidden px-2 mx-2 navbar-center lg:flex">
       <div class="flex items-stretch justify-end">
