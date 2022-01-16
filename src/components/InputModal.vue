@@ -15,7 +15,6 @@ function validateForm() {
 const isObserver = ref(false)
 async function handleSubmit() {
   validateForm()
-
   mainStore.addUserToDb(enteredName.value, isObserver.value)
 }
 </script>
@@ -24,7 +23,6 @@ async function handleSubmit() {
   <input id="my-modal" type="checkbox" :checked="formIsInvalid" class="modal-toggle" />
   <div class="modal">
     <div class="modal-box">
-      <!-- <p>Enter a name</p> -->
       <div class="modal-action justify-center">
         <form @submit.prevent="handleSubmit">
           <input
