@@ -14,11 +14,11 @@ const props = defineProps<{ users: User[] }>()
       <tr>
         <th>Del</th>
         <th>Name</th>
-        <th>Has Voted</th>
+        <th>Vote</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="{ id, username, hasVoted, isObserver } in props.users" :key="id">
+      <tr v-for="{ id, username, vote, isObserver } in props.users" :key="id">
         <th v-if="!isObserver">
           <button
             class="btn btn-outline btn-square btn-xs"
@@ -27,7 +27,7 @@ const props = defineProps<{ users: User[] }>()
           </button>
         </th>
         <th v-if="!isObserver">{{ username }}</th>
-        <th v-if="!isObserver">{{ hasVoted }}</th>
+        <th v-if="!isObserver">{{ vote }}</th>
       </tr>
     </tbody>
   </table>

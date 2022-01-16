@@ -10,7 +10,7 @@ function mapArray(arr: DocumentData[]): User[] {
     return {
       id: doc.id,
       username: doc.username,
-      hasVoted: doc.hasVoted,
+      vote: doc.vote,
       isObserver: doc.isObserver,
     }
   })

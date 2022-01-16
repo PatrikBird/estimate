@@ -26,8 +26,9 @@ export const useMainStore = defineStore('main', () => {
     const colRef = collection(db, 'users')
     await addDoc(colRef, {
       username,
+      vote: null,
       isObserver,
-      hasVoted: false,
+    })
     })
   }
   /**
