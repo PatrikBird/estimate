@@ -14,10 +14,7 @@ const document = mainStore.getAllUsers('users')
 </script>
 
 <template>
-  <!-- <h2 v-if="error" class="error">Oops, something went wrong! Please try one more time</h2>
-  <h2 v-if="loading">Loading...</h2>
-  <div v-if="result"> -->
+  <!-- Very ugly duplication! -->
   <VotersTable :users="document"></VotersTable>
   <ObserversTable :users="document"></ObserversTable>
-  <!-- </div> -->
 </template>
