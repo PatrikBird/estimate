@@ -19,7 +19,7 @@ export const useMainStore = defineStore('main', () => {
    */
   const user: User = reactive({
     id: useLocalStorage('id', ''), // TODO: maybe use sessionStorage instead?
-    username: '',
+    username: '', // FIXME: username not shown after F5
     vote: null,
     isObserver: false,
   })
