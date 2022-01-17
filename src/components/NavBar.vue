@@ -9,6 +9,7 @@ const mainStore = useMainStore()
       <span class="text-lg font-bold">Estimate</span>
     </div>
     <div class="navbar-end mr-5">
+      <p class="mr-5">Press 'o' to toggle</p>
       <p>You: {{ mainStore.user.username }}</p>
     </div>
     <!-- <div class="hidden px-2 mx-2 navbar-center lg:flex">
