@@ -7,7 +7,7 @@ const enteredName = ref('')
 const formIsInvalid = ref(true)
 function validateForm() {
   if (enteredName.value !== '') {
-    mainStore.setUserName(enteredName.value)
+    mainStore.user.username = enteredName.value
     formIsInvalid.value = false
   }
 }

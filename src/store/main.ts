@@ -24,14 +24,6 @@ export const useMainStore = defineStore('main', () => {
     isObserver: false,
   })
   /**
-   * Changes the current name of the user
-   *
-   * @param name - new name to set
-   */
-  function setUserName(name: string) {
-    user.username = name
-  }
-  /**
    * Adds the user to the database and updates the local state
    *
    * @param username - name of the user to be added
@@ -124,7 +116,6 @@ export const useMainStore = defineStore('main', () => {
   }
   return {
     user,
-    setUserName,
     addUserToDb,
     updateVote,
     deleteUserFromDb,
