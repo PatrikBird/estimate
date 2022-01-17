@@ -30,7 +30,7 @@ async function handleSubmit() {
             type="text"
             placeholder="Your name"
             class="text-center input input-primary input-bordered" />
-          <div class="p-6 card bordered">
+          <div class="p-6 my-2 card bordered">
             <div class="form-control">
               <label class="cursor-pointer label">
                 <span class="label-text">Voter</span>
