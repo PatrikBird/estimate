@@ -66,6 +66,21 @@ export const useMainStore = defineStore('main', () => {
     user.vote = vote
   }
   /**
+   * Toggle user to observer/voter
+   *
+   * @param id - identifier of user to be updated
+   */
+  function toggleObserver() {
+    const docRef = doc(db, 'users', user.id)
+    const isObserver = !user.isObserver
+    updateDoc(docRef, {
+      isObserver,
+    })
+
+    // update local state
+    user.isObserver = isObserver
+  }
+  /**
    * Deletes the user from the database
    *
    * @param id - identifier of user to be deleted
@@ -114,6 +129,7 @@ export const useMainStore = defineStore('main', () => {
     updateVote,
     deleteUserFromDb,
     getAllUsers,
+    toggleObserver,
   }
 })
 

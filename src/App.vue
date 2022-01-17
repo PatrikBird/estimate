@@ -9,7 +9,7 @@ const mainStore = useMainStore()
 <template>
   <NavBar />
   <InputModal v-if="!mainStore.user.id" />
-  <div class="overflow-x-auto max-w-xl m-5">
+  <div v-else class="overflow-x-auto max-w-xl m-5">
     <NumberSelector :available-votes="availableVotes"></NumberSelector>
     <Controls />
     <UserTables />
