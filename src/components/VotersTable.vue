@@ -12,13 +12,15 @@ const props = defineProps<{ users: User[] }>()
   <table class="table w-full">
     <thead>
       <tr>
-        <th>Del</th>
         <th>Name</th>
         <th>Vote</th>
+        <th>Del</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="{ id, username, vote, isObserver } in props.users" :key="id">
+        <th v-if="!isObserver">{{ username }}</th>
+        <th v-if="!isObserver">{{ vote }}</th>
         <th v-if="!isObserver && id == mainStore.user.id">
           <button
             class="btn btn-outline btn-square btn-xs"
@@ -26,8 +28,6 @@ const props = defineProps<{ users: User[] }>()
             <DeleteButton />
           </button>
         </th>
-        <th v-if="!isObserver">{{ username }}</th>
-        <th v-if="!isObserver">{{ vote }}</th>
       </tr>
     </tbody>
   </table>
