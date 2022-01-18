@@ -11,7 +11,6 @@
   "dependencies": {
     "@vueuse/core": "^7.5.3",
     "@vueuse/head": "^0.7.4",
-    "axios": "^0.24.0",
     "daisyui": "^1.22.1",
     "firebase": "^9.6.3",
     "pinia": "^2.0.9",
