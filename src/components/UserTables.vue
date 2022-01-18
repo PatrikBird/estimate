@@ -2,19 +2,12 @@
 import { useMainStore } from '~/store/main';
 
 const mainStore = useMainStore()
-const document = mainStore.getAllUsers('users')
-
-// FIXME: next line logs ref to console, which looks fine.
-// ----- the very next however, is empty! why is that ??
-// console.log(document)
-// console.log(document.value)
-// ------
-// Therefore I can't filter the array :(
-// const users = document.value.filter(d => d.isObserver === false)
+const voter = mainStore.getAllVoters()
+const observer = mainStore.getAllObervers()
 </script>
 
 <template>
-  <!-- Very ugly duplication! -->
-  <VotersTable :users="document"></VotersTable>
-  <ObserversTable :users="document"></ObserversTable>
+  <!-- TODO: I can finally refactor this :) -->
+  <VotersTable :users="voter"></VotersTable>
+  <ObserversTable :users="observer"></ObserversTable>
 </template>
