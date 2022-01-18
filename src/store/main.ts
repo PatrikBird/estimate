@@ -89,7 +89,6 @@ export const useMainStore = defineStore('main', () => {
   /**
    * Gets all obervers from the database collection
    *
-   * @param collect - identifier of collection to be returned
    */
   function getAllObervers() {
     const document: Ref<User[]> = ref([])
@@ -118,7 +117,6 @@ export const useMainStore = defineStore('main', () => {
   /**
    * Gets all voters from the database collection
    *
-   * @param collect - identifier of collection to be returned
    */
   function getAllVoters() {
     const document: Ref<User[]> = ref([])
@@ -146,9 +144,9 @@ export const useMainStore = defineStore('main', () => {
   }
   /**
    * Gets all users from the database collection
+   * 
    * TODO: find out why I can't access the return parameters value of the function.
    *  this issue causes code duplication in the store: getAllObervers, getAllUsers.
-   * @param collect - identifier of collection to be returned
    */
   function getAllUsers() {
     const document: Ref<User[]> = ref([])
