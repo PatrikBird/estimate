@@ -67,6 +67,7 @@ export const useMainStore = defineStore('main', () => {
     const isObserver = !user.isObserver
     updateDoc(docRef, {
       isObserver,
+      vote: null,
     })
 
     // update local state
