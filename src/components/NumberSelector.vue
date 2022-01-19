@@ -15,6 +15,8 @@ function handleChosenVote(idx: number, vote: number) {
 onKeyStroke('o', e => {
   e.preventDefault()
   mainStore.toggleObserver()
+  // reset visuals
+  activeItem.value = null
 })
 
 </script>
