@@ -1,15 +1,5 @@
 <script setup lang="ts">
-import { onKeyStroke } from '@vueuse/core'
-import { useMainStore } from '~/store/main'
-
-const mainStore = useMainStore()
-
 const availableVotes = [0, 1, 2, 3, 5, 8, 13, 21]
-
-onKeyStroke('o', e => {
-  e.preventDefault()
-  mainStore.toggleObserver()
-})
 </script>
 
 <template>
