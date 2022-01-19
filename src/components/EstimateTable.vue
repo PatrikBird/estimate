@@ -7,9 +7,7 @@ const props = defineProps<{ users: User[] }>()
 </script>
 
 <template>
-  <h1 class="my-4 prose lg:prose-xl">
-    <slot></slot>
-  </h1>
+  <slot></slot>
   <slot name="header"></slot>
   <table class="table w-full">
     <thead>
