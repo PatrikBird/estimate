@@ -18,8 +18,8 @@ export const useMainStore = defineStore('main', () => {
    * Current local user
    */
   const user: User = reactive({
-    id: useLocalStorage('id', ''), // TODO: maybe use sessionStorage instead?
-    username: useLocalStorage('username', ''),
+    id: useSessionStorage('id', ''),
+    username: useSessionStorage('username', ''),
     vote: null,
     isObserver: false,
   })
@@ -145,7 +145,7 @@ export const useMainStore = defineStore('main', () => {
   }
   /**
    * Gets all users from the database collection
-   * 
+   *
    * TODO: find out why I can't access the return parameters value of the function.
    *  this issue causes code duplication in the store: getAllObervers, getAllUsers.
    */
