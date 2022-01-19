@@ -10,9 +10,7 @@ declare module 'vue' {
     InputModal: typeof import('./components/InputModal.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
     NumberSelector: typeof import('./components/NumberSelector.vue')['default']
-    ObserversTable: typeof import('./components/ObserversTable.vue')['default']
     UserTables: typeof import('./components/UserTables.vue')['default']
-    VotersTable: typeof import('./components/VotersTable.vue')['default']
   }
 }
 

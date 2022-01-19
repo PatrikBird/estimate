@@ -1,24 +1,36 @@
-<!-- <script setup lang="ts">
+<script setup lang="ts">
 import type { User } from '../types/User'
-const props = defineProps<{ data: User[] }>()
+import { useMainStore } from '~/store/main'
+
+const mainStore = useMainStore()
+const props = defineProps<{ users: User[] }>()
 </script>
 
 <template>
-  <slot></slot>
+  <h1 class="my-4 prose lg:prose-xl">
+    <slot></slot>
+  </h1>
+  <slot name="header"></slot>
   <table class="table w-full">
     <thead>
       <tr>
-        <th>No.</th>
         <th>Name</th>
-        <th>Status</th>
+        <th>Vote</th>
+        <th>Del</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="{ id, username, vote } in props.data" :key="id">
-        <th>{{ id }}</th>
+      <tr v-for="{ id, username, vote } in props.users" :key="id">
         <th>{{ username }}</th>
         <th>{{ vote }}</th>
+        <th>
+          <button
+            class="btn btn-outline btn-square btn-xs"
+            @click="mainStore.deleteUserFromDb(id)">
+            <DeleteButton />
+          </button>
+        </th>
       </tr>
     </tbody>
   </table>
-</template> -->
+</template>
