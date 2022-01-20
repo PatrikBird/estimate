@@ -18,10 +18,11 @@ onKeyStroke('o', e => {
   // reset visuals
   activeItem.value = null
 })
+
+mainStore.getVoteState().then(v => console.log(v)) // TODO:
 </script>
 
 <template>
-  <!-- <NumberSelector :available-votes="availableVotes"> </NumberSelector> -->
   <button
     v-for="(num, idx) in availableVotes"
     :key="num"

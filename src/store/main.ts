@@ -101,7 +101,7 @@ export const useMainStore = defineStore('main', () => {
    */
   async function getVoteState() {
     const docRef = doc(db, 'state', 'voting')
-    const state = await getDoc(docRef)
+    const state = await getDoc(docRef) // TODO: not reactive
     const obj = state.data()
     if (obj === undefined) {
       console.error('could not fetch vote state from db')
