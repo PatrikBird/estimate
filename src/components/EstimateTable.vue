@@ -9,7 +9,7 @@ const mainStore = useMainStore()
 </script>
 
 <template>
-  <slot name="header"></slot>
+  <slot></slot>
   <table class="table w-full">
     <thead>
       <tr>
