@@ -74,6 +74,26 @@ export const useMainStore = defineStore('main', () => {
     user.isObserver = isObserver
   }
   /**
+   * Reveals the votes of all voters
+   *
+   */
+  function revealVotes() {
+    const docRef = doc(db, 'state', 'voting')
+    updateDoc(docRef, {
+      revealed: true,
+    })
+  }
+  /**
+   * Resets the votes of all voters
+   *
+   */
+  function resetVotes() {
+    const docRef = doc(db, 'state', 'voting')
+    updateDoc(docRef, {
+      revealed: false,
+    })
+  }
+  /**
    * Deletes the user from the database
    *
    * @param id - identifier of user to be deleted
@@ -181,6 +201,8 @@ export const useMainStore = defineStore('main', () => {
     getAllObervers,
     getAllVoters,
     toggleObserver,
+    revealVotes,
+    resetVotes,
   }
 })
 
