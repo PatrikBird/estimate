@@ -13,7 +13,7 @@ powered by:
 - [ ] vote for a break
 
 ## Improvements
-- find ways to improve session management
-  - [x] use sessionStorage instead of localStorage 
-  - [ ] if user deletes other user, show input modal
-  - [ ] if user toggles with 'o', reset visuals
+find ways to improve session management
+- [x] use sessionStorage instead of localStorage 
+- [x] if user toggles with 'o', reset visuals
+- [ ] if user deletes other user, show input modal
