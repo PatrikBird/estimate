@@ -7,7 +7,6 @@ const props = defineProps<{ users: User[] }>()
 </script>
 
 <template>
-  <slot></slot>
   <slot name="header"></slot>
   <table class="table w-full">
     <thead>
