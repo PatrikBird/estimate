@@ -5,9 +5,11 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   onSnapshot,
   updateDoc,
 } from 'firebase/firestore'
+
 import type { Ref } from 'vue'
 import { db } from '~/firebase/config'
 import type { User } from '~/types/User'
@@ -92,6 +94,21 @@ export const useMainStore = defineStore('main', () => {
     updateDoc(docRef, {
       revealed: false,
     })
+  }
+  /**
+   * Get Voting State
+   *
+   */
+  async function getVoteState() {
+    const docRef = doc(db, 'state', 'voting')
+    const state = await getDoc(docRef)
+    const obj = state.data()
+    if (obj === undefined) {
+      console.error('could not fetch voting state from db')
+      return
+    }
+    const value = Object.values(obj)
+    return value[0]
   }
   /**
    * Deletes the user from the database
@@ -203,6 +220,7 @@ export const useMainStore = defineStore('main', () => {
     toggleObserver,
     revealVotes,
     resetVotes,
+    getVoteState,
   }
 })
 

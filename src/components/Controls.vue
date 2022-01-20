@@ -3,6 +3,7 @@ import { onKeyStroke } from '@vueuse/core'
 import { useMainStore } from '~/store/main'
 
 const mainStore = useMainStore()
+
 const availableVotes = [0, 1, 2, 3, 5, 8, 13, 21]
 
 const activeItem = ref()
@@ -17,6 +18,9 @@ onKeyStroke('o', e => {
   // reset visuals
   activeItem.value = null
 })
+
+const loadData = mainStore.getVoteState().then(d => d)
+console.log(mainStore.getVoteState().then(d => d))
 </script>
 
 <template>
