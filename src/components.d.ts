@@ -9,7 +9,6 @@ declare module 'vue' {
     EstimateTable: typeof import('./components/EstimateTable.vue')['default']
     InputModal: typeof import('./components/InputModal.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
-    NumberSelector: typeof import('./components/NumberSelector.vue')['default']
     UserTables: typeof import('./components/UserTables.vue')['default']
   }
 }
