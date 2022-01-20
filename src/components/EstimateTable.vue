@@ -2,8 +2,10 @@
 import type { User } from '../types/User'
 import { useMainStore } from '~/store/main'
 
-const mainStore = useMainStore()
 const props = defineProps<{ users: User[] }>()
+
+const mainStore = useMainStore()
+// const voteState = await mainStore.getVoteState().then(voteState => voteState)
 </script>
 
 <template>

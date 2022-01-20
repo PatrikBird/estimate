@@ -104,11 +104,10 @@ export const useMainStore = defineStore('main', () => {
     const state = await getDoc(docRef)
     const obj = state.data()
     if (obj === undefined) {
-      console.error('could not fetch voting state from db')
+      console.error('could not fetch vote state from db')
       return
     }
-    const value = Object.values(obj)
-    return value[0]
+    return Object.values(obj).shift()
   }
   /**
    * Deletes the user from the database
