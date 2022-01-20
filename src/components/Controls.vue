@@ -18,9 +18,6 @@ onKeyStroke('o', e => {
   // reset visuals
   activeItem.value = null
 })
-
-const loadData = mainStore.getVoteState().then(d => d)
-console.log(mainStore.getVoteState().then(d => d))
 </script>
 
 <template>
