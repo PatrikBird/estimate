@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { onKeyStroke } from '@vueuse/core'
 import { useMainStore } from '~/store/main'
 
@@ -30,4 +30,4 @@ onKeyStroke('o', e => {
     @click="handleChosenVote(idx, num)">
     {{ num }}
   </button>
-</template>
+</template> -->
