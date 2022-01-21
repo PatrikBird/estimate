@@ -5,7 +5,7 @@ import { useMainStore } from '~/store/main'
 const props = defineProps<{ users: User[] }>()
 
 const mainStore = useMainStore()
-const voteState = toRef(mainStore.getVoteState(), 'revealed')
+const voteRevealed = toRef(mainStore.getVoteState(), 'revealed')
 </script>
 
 <template>
@@ -21,8 +21,9 @@ const voteState = toRef(mainStore.getVoteState(), 'revealed')
     <tbody>
       <tr v-for="{ id, username, vote } in props.users" :key="id">
         <th>{{ username }}</th>
-        <th v-if="voteState">{{ vote }}</th>
-        <th v-else>HIDE</th>
+        <th v-if="vote === null">NOT VOTED</th>
+        <th v-else-if="voteRevealed">{{ vote }}</th>
+        <th v-else>HIDDEN</th>
         <th>
           <button
             class="btn btn-outline btn-square btn-xs"
