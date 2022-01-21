@@ -25,8 +25,11 @@ function resetVoteHandler() {
   activeItem.value = null
 }
 
-const voteState = mainStore.getVoteState()
-const voteStateRef = toRef(voteState, 'revealed')
+function revealVoteHandler() {
+  mainStore.revealVotes()
+  // reset visuals
+  activeItem.value = null
+}
 </script>
 
 <template>
@@ -40,7 +43,6 @@ const voteStateRef = toRef(voteState, 'revealed')
   </button>
   <div class="row">
     <button class="btn btn-secondary m-2" @click="resetVoteHandler">Reset</button>
-    <button class="btn btn-primary m-2" @click="mainStore.revealVotes">Reveal</button>
+    <button class="btn btn-primary m-2" @click="revealVoteHandler">Reveal</button>
   </div>
-  <p v-if="voteStateRef">ITS TRUE - REVEAL!!!</p>
 </template>
