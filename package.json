@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.15.0",
+    "@iconify-json/akar-icons": "^1.0.8",
     "@tailwindcss/typography": "^0.5.0",
     "@types/node": "^17.0.8",
     "@vitejs/plugin-vue": "^2.0.0",
@@ -43,7 +44,7 @@
       "prettier"
     ],
     "rules": {
-      "no-console":"off"
+      "no-console": "off"
     }
   }
 }

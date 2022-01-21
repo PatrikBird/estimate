@@ -21,9 +21,9 @@ const voteRevealed = toRef(mainStore.getVoteState(), 'revealed')
     <tbody>
       <tr v-for="{ id, username, vote } in props.users" :key="id">
         <th>{{ username }}</th>
-        <th v-if="vote === null">NOT VOTED</th>
+        <th v-if="vote === null" class="text-yellow-700"><akar-icons:triangle-alert /></th>
         <th v-else-if="voteRevealed">{{ vote }}</th>
-        <th v-else>HIDDEN</th>
+        <th v-else class="text-green-800"><akar-icons:circle-check /></th>
         <th>
           <button
             class="btn btn-outline btn-square btn-xs"
