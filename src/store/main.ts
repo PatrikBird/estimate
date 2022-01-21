@@ -5,6 +5,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDocs,
   onSnapshot,
   updateDoc,
 } from 'firebase/firestore'
@@ -88,10 +89,16 @@ export const useMainStore = defineStore('main', () => {
    * Resets the votes of all voters
    *
    */
-  function resetVotes() {
+  async function resetVotes() {
     const docRef = doc(db, 'state', 'voting')
     updateDoc(docRef, {
       revealed: false,
+    })
+
+    const querySnapshot = await getDocs(collection(db, 'users'))
+    querySnapshot.forEach(userDoc => {
+      const docRef = doc(db, 'users', userDoc.id)
+      updateDoc(docRef, { vote: null })
     })
   }
   /**
