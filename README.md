@@ -8,7 +8,8 @@ powered by:
 
 ## TODO
 - [x] provide switch to observer/voter via shortcut/click
-- [ ] implement `reveal vote` and `reset vote`
+- [x] implement `reveal vote` and `reset vote`
+  - [ ] indicator that vote has been submitted
 - [ ] provide `vote result overview` after they have been revealed
 - [ ] vote for a break
 
