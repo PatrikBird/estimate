@@ -1,4 +1,4 @@
-import type { DocumentData } from "firebase/firestore"
+import type { DocumentData } from 'firebase/firestore'
 
 interface User {
   id: string
@@ -18,4 +18,12 @@ function mapDocumentToUser(arr: DocumentData[]): User[] {
   })
 }
 
-export { User, mapDocumentToUser }
+interface VoteState {
+  revealed: boolean
+}
+
+function mapDocumentToVoteState(obj: DocumentData): VoteState {
+  return { revealed: obj.revealed as boolean }
+}
+
+export { User, mapDocumentToUser, mapDocumentToVoteState, VoteState }

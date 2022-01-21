@@ -19,7 +19,14 @@ onKeyStroke('o', e => {
   activeItem.value = null
 })
 
-mainStore.getVoteState().then(v => console.log(v)) // TODO:
+function resetVoteHandler() {
+  mainStore.resetVotes()
+  // reset visuals
+  activeItem.value = null
+}
+
+const voteState = mainStore.getVoteState()
+const voteStateRef = toRef(voteState, 'revealed')
 </script>
 
 <template>
@@ -32,7 +39,8 @@ mainStore.getVoteState().then(v => console.log(v)) // TODO:
     {{ num }}
   </button>
   <div class="row">
-    <button class="btn btn-secondary m-2" @click="mainStore.resetVotes">Reset</button>
+    <button class="btn btn-secondary m-2" @click="resetVoteHandler">Reset</button>
     <button class="btn btn-primary m-2" @click="mainStore.revealVotes">Reveal</button>
   </div>
+  <p v-if="voteStateRef">ITS TRUE - REVEAL!!!</p>
 </template>

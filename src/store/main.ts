@@ -5,15 +5,14 @@ import {
   collection,
   deleteDoc,
   doc,
-  getDoc,
   onSnapshot,
   updateDoc,
 } from 'firebase/firestore'
 
 import type { Ref } from 'vue'
 import { db } from '~/firebase/config'
-import type { User } from '~/types/User'
-import { mapDocumentToUser } from '~/types/User'
+import type { User, VoteState } from '~/types/User'
+import { mapDocumentToUser, mapDocumentToVoteState } from '~/types/User'
 
 export const useMainStore = defineStore('main', () => {
   /**
@@ -96,18 +95,28 @@ export const useMainStore = defineStore('main', () => {
     })
   }
   /**
-   * Get Voting State
+   * Get voting state from database
    *
    */
-  async function getVoteState() {
+  function getVoteState(): VoteState {
+    const voteState: VoteState = reactive({ revealed: false })
+
     const docRef = doc(db, 'state', 'voting')
-    const state = await getDoc(docRef) // TODO: not reactive
-    const obj = state.data()
-    if (obj === undefined) {
-      console.error('could not fetch vote state from db')
-      return
-    }
-    return Object.values(obj).shift()
+    const unsub = onSnapshot(docRef, snapshot => {
+      const result: DocumentData | undefined = snapshot.data()
+      if (result === undefined) {
+        console.error('data() is undefined!')
+        return
+      }
+      // update value
+      voteState.revealed = mapDocumentToVoteState(result).revealed
+    })
+
+    watchEffect(onInvalidate => {
+      onInvalidate(() => unsub())
+    })
+
+    return voteState
   }
   /**
    * Deletes the user from the database
