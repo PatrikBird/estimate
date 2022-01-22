@@ -3,6 +3,7 @@ import { onKeyStroke } from '@vueuse/core'
 import { useMainStore } from '~/store/main'
 
 const mainStore = useMainStore()
+const voteRevealed = toRef(mainStore.getVoteState(), 'revealed')
 
 const availableVotes = [0, 1, 2, 3, 5, 8, 13, 21]
 
@@ -38,6 +39,7 @@ function revealVoteHandler() {
     :key="num"
     class="btn btn-primary m-2"
     :class="{ 'btn-accent': idx === activeItem }"
+    :disabled="voteRevealed"
     @click="handleChosenVote(idx, num)">
     {{ num }}
   </button>
