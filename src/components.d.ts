@@ -12,6 +12,7 @@ declare module 'vue' {
     InputModal: typeof import('./components/InputModal.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
     UserTables: typeof import('./components/UserTables.vue')['default']
+    VoteResult: typeof import('./components/VoteResult.vue')['default']
   }
 }
 

@@ -13,4 +13,5 @@ const observer = mainStore.getAllObervers()
   <EstimateTable :users="observer">
     <h1 class="my-4 prose lg:prose-xl">Observers</h1>
   </EstimateTable>
+  <VoteResult></VoteResult>
 </template>
