@@ -1,4 +1,4 @@
-<script setup lang="ts"></script>
+<!-- <script setup lang="ts"></script>
 
 <template>
   <div class="p-6 space-y-2 artboard">
@@ -15,4 +15,4 @@
     <progress class="progress" value="0" max="100"></progress>
     <progress class="progress" value="100" max="100"></progress>
   </div>
-</template>
+</template> -->
