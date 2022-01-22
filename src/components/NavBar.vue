@@ -6,10 +6,10 @@ const mainStore = useMainStore()
 <template>
   <div class="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
     <div class="px-2 mx-2 navbar-start">
-      <span class="text-lg font-bold">Estimate</span>
+      <span class="text-lg font-bold">Estimate - in development</span>
     </div>
     <div class="navbar-end mr-5">
-      <p class="mr-5">Press 'o' to toggle</p>
+      <p class="mr-5">Press 'o' to toggle status</p>
       <p>You: {{ mainStore.user.username }}</p>
     </div>
     <!-- <div class="hidden px-2 mx-2 navbar-center lg:flex">

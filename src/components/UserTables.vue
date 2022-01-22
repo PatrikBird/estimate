@@ -8,7 +8,7 @@ const observer = mainStore.getAllObervers()
 
 <template>
   <EstimateTable :users="voter">
-    <h1 class="my-4 prose lg:prose-xl">Users</h1>
+    <h1 class="my-4 prose lg:prose-xl">Voters</h1>
   </EstimateTable>
   <EstimateTable :users="observer">
     <h1 class="my-4 prose lg:prose-xl">Observers</h1>
