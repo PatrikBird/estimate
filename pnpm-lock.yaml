@@ -9,6 +9,7 @@ specifiers:
   '@vueuse/core': ^7.5.3
   '@vueuse/head': ^0.7.4
   autoprefixer: ^10.4.2
+  chart.js: ^3.7.0
   critters: ^0.0.16
   cross-env: ^7.0.3
   daisyui: ^1.22.1
@@ -25,16 +26,19 @@ specifiers:
   unplugin-vue-components: ^0.17.11
   vite: ^2.7.2
   vue: ^3.2.25
+  vue-chart-3: ^3.0.9
   vue-router: ^3.5.3
   vue-tsc: ^0.29.8
 
 dependencies:
   '@vueuse/core': 7.5.3_vue@3.2.26
   '@vueuse/head': 0.7.4_vue@3.2.26
+  chart.js: 3.7.0
   daisyui: 1.22.1
   firebase: 9.6.3
   pinia: 2.0.9_typescript@4.5.4+vue@3.2.26
   vue: 3.2.26
+  vue-chart-3: 3.0.9_chart.js@3.7.0+vue@3.2.26
   vue-router: 3.5.3
 
 devDependencies:
@@ -1028,7 +1032,7 @@ packages:
       '@volar/source-map': 0.29.8
       '@vue/compiler-core': 3.2.26
       '@vue/compiler-dom': 3.2.26
-      '@vue/shared': 3.2.26
+      '@vue/shared': 3.2.28
       upath: 2.0.1
     dev: true
 
@@ -1098,6 +1102,12 @@ packages:
     dependencies:
       '@vue/shared': 3.2.26
 
+  /@vue/reactivity/3.2.28:
+    resolution: {integrity: sha512-WamM5LGv7JIarW+EYAzYFqYonZXjTnOjNW0sBO93jRE9I1ReAwfH8NvQXkPA3JZ3fuF6SGDdG8Y9/+dKjd/1Gw==}
+    dependencies:
+      '@vue/shared': 3.2.28
+    dev: false
+
   /@vue/runtime-core/3.2.26:
     resolution: {integrity: sha512-BcYi7qZ9Nn+CJDJrHQ6Zsmxei2hDW0L6AB4vPvUQGBm2fZyC0GXd/4nVbyA2ubmuhctD5RbYY8L+5GUJszv9mQ==}
     dependencies:
@@ -1105,11 +1115,26 @@ packages:
       '@vue/shared': 3.2.26
     dev: false
 
+  /@vue/runtime-core/3.2.28:
+    resolution: {integrity: sha512-sVbBMFUt42JatTlXbdH6tVcLPw1eEOrrVQWI+j6/nJVzR852RURaT6DhdR0azdYscxq4xmmBctE0VQmlibBOFw==}
+    dependencies:
+      '@vue/reactivity': 3.2.28
+      '@vue/shared': 3.2.28
+    dev: false
+
   /@vue/runtime-dom/3.2.26:
     resolution: {integrity: sha512-dY56UIiZI+gjc4e8JQBwAifljyexfVCkIAu/WX8snh8vSOt/gMSEGwPRcl2UpYpBYeyExV8WCbgvwWRNt9cHhQ==}
     dependencies:
       '@vue/runtime-core': 3.2.26
       '@vue/shared': 3.2.26
+      csstype: 2.6.19
+    dev: false
+
+  /@vue/runtime-dom/3.2.28:
+    resolution: {integrity: sha512-Jg7cxZanEXXGu1QnZILFLnDrM+MIFN8VAullmMZiJEZziHvhygRMpi0ahNy/8OqGwtTze1JNhLdHRBO+q2hbmg==}
+    dependencies:
+      '@vue/runtime-core': 3.2.28
+      '@vue/shared': 3.2.28
       csstype: 2.6.19
     dev: false
 
@@ -1125,6 +1150,9 @@ packages:
 
   /@vue/shared/3.2.26:
     resolution: {integrity: sha512-vPV6Cq+NIWbH5pZu+V+2QHE9y1qfuTq49uNWw4f7FDEeZaDU2H2cx5jcUZOAKW7qTrUS4k6qZPbMy1x4N96nbA==}
+
+  /@vue/shared/3.2.28:
+    resolution: {integrity: sha512-eMQ8s9j8FpbGHlgUAaj/coaG3Q8YtMsoWL/RIHTsE3Ex7PUTyr7V91vB5HqWB5Sn8m4RXTHGO22/skoTUYvp0A==}
 
   /@vueuse/core/7.5.3_vue@3.2.26:
     resolution: {integrity: sha512-D9j5ymHFMFRXQqCp0yZJkf/bvBGiz0MrKUa364p+L8dMyd5zyq2K1JmHyvoBd4xbTFRfmQ1h878u6YE5LCkDVQ==}
@@ -1396,6 +1424,10 @@ packages:
       is-regex: 1.1.4
     dev: true
 
+  /chart.js/3.7.0:
+    resolution: {integrity: sha512-31gVuqqKp3lDIFmzpKIrBeum4OpZsQjSIAqlOpgjosHDJZlULtvwLEZKtEhIAZc7JMPaHlYMys40Qy9Mf+1AAg==}
+    dev: false
+
   /chokidar/3.5.2:
     resolution: {integrity: sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==}
     engines: {node: '>= 8.10.0'}
@@ -1530,6 +1562,10 @@ packages:
 
   /csstype/2.6.19:
     resolution: {integrity: sha512-ZVxXaNy28/k3kJg0Fou5MiYpp88j7H9hLZp8PDC3jV0WFjfH5E9xHb56L0W59cPbKbcHXeP4qyT8PrHp8t6LcQ==}
+    dev: false
+
+  /csstype/3.0.10:
+    resolution: {integrity: sha512-2u44ZG2OcNUO9HDp/Jl8C07x6pU/eTR3ncV91SiK3dhG9TWvRVsCoJw14Ckx5DgWkzGA3waZWO3d7pgqpUI/XA==}
     dev: false
 
   /daisyui/1.22.1:
@@ -2865,7 +2901,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /long/4.0.0:
     resolution: {integrity: sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA==}
@@ -2933,6 +2968,12 @@ packages:
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: true
+
+  /nanoid/3.1.31:
+    resolution: {integrity: sha512-ZivnJm0o9bb13p2Ot5CpgC2rQdzB9Uxm/mFZweqm5eMViqOJe3PV6LU2E30SiLgheesmcPrjquqraoolONSA0A==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+    dev: false
 
   /nanoid/3.1.32:
     resolution: {integrity: sha512-F8mf7R3iT9bvThBoW4tGXhXFHCctyCiUUPrWF8WaTqa3h96d9QybkSeba43XVOOE3oiLfkVDe4bT8MeGmkrTxw==}
@@ -4186,6 +4227,21 @@ packages:
       vscode-pug-languageservice: 0.29.8
       vscode-typescript-languageservice: 0.29.8
     dev: true
+
+  /vue-chart-3/3.0.9_chart.js@3.7.0+vue@3.2.26:
+    resolution: {integrity: sha512-RyVaOhSem0v4v645zAkdi1mgZjuD3KMQr11KrEZGFupoHzV2qn/sBpEDvplR9i57YnRxZ3KDnKqw/1rx2CkOZA==}
+    peerDependencies:
+      chart.js: '=> ^3.1.0'
+      vue: '>= 3'
+    dependencies:
+      '@vue/runtime-core': 3.2.28
+      '@vue/runtime-dom': 3.2.28
+      chart.js: 3.7.0
+      csstype: 3.0.10
+      lodash: 4.17.21
+      nanoid: 3.1.31
+      vue: 3.2.26
+    dev: false
 
   /vue-demi/0.12.1_vue@3.2.26:
     resolution: {integrity: sha512-QL3ny+wX8c6Xm1/EZylbgzdoDolye+VpCXRhI2hug9dJTP3OUJ3lmiKN3CsVV3mOJKwFi0nsstbgob0vG7aoIw==}

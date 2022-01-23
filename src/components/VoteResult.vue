@@ -1,18 +1,20 @@
-<!-- <script setup lang="ts"></script>
+<script setup lang="ts">
+import { BarChart } from 'vue-chart-3'
+import { Chart, registerables } from 'chart.js'
+
+Chart.register(...registerables)
+
+const testData = {
+  labels: ['Voter1', 'Voter2', 'Voter3', 'Voter4', 'Voter5'],
+  datasets: [
+    {
+      data: [4, 8, 13, 4, 8],
+      backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
+    },
+  ],
+}
+</script>
 
 <template>
-  <div class="p-6 space-y-2 artboard">
-    <div class="flex items-center">
-      <label class="pr-2" for="voter1">voter1</label>
-      <progress id="voter1" class="progress" value="21" max="100">21</progress>
-    </div>
-    <div class="flex items-center">
-      <label class="pr-2" for="voter2">voter2withverylongnameruinsit</label>
-      <progress id="voter2" class="progress" value="21" max="100">21</progress>
-    </div>
-    <progress class="progress" value="13" max="100"></progress>
-    <progress class="progress" value="8" max="100"></progress>
-    <progress class="progress" value="0" max="100"></progress>
-    <progress class="progress" value="100" max="100"></progress>
-  </div>
-</template> -->
+  <BarChart :chart-data="testData" />
+</template>
