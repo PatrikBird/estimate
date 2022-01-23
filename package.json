@@ -11,10 +11,12 @@
   "dependencies": {
     "@vueuse/core": "^7.5.3",
     "@vueuse/head": "^0.7.4",
+    "chart.js": "^3.7.0",
     "daisyui": "^1.22.1",
     "firebase": "^9.6.3",
     "pinia": "^2.0.9",
     "vue": "^3.2.25",
+    "vue-chart-3": "^3.0.9",
     "vue-router": "^3.5.3"
   },
   "devDependencies": {
