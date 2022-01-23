@@ -46,6 +46,6 @@ function revealVoteHandler() {
   <div class="row">
     <button class="btn btn-secondary m-2" @click="resetVoteHandler">Reset</button>
     <button class="btn btn-primary m-2" @click="revealVoteHandler">Reveal</button>
-    <p v-if="voteRevealed">Press reset to begin a new vote</p>
+    <p v-if="voteRevealed">Reset to begin a new vote</p>
   </div>
 </template>
