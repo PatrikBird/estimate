@@ -6,13 +6,15 @@ powered by:
 - Tailwind
 - Daisy UI
 
-## TODO
+## Roadmap
 - [x] provide switch to observer/voter via shortcut/click
 - [x] implement `reveal vote` and `reset vote`
-- [ ] provide `vote result overview` after they have been revealed
+- [ ] fix reactivity issue
+  - [ ] remove all related workarounds
+  - [ ] provide `vote result overview` after they have been revealed
 - [ ] vote for a break
 
-## Improvements
+## Minor improvements
 find ways to improve session management
 - [x] use sessionStorage instead of localStorage 
 - [x] if user toggles with 'o', reset visuals
