@@ -7,6 +7,7 @@ const mainStore = useMainStore()
   <div class="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
     <div class="px-2 mx-2 navbar-start">
       <span class="text-lg font-bold">Estimate - in development</span>
+      <a class="mx-5" href="https://github.com/PatrikBird/estimate" target="_blank"><akar-icons:github-fill /></a>
     </div>
     <div class="navbar-end mr-5">
       <p class="mr-5">Press 'o' to toggle status</p>

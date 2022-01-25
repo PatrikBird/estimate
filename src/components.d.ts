@@ -6,6 +6,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     'AkarIcons:circleCheck': typeof import('~icons/akar-icons/circle-check')['default']
     'AkarIcons:eyeOpen': typeof import('~icons/akar-icons/eye-open')['default']
+    'AkarIcons:githubFill': typeof import('~icons/akar-icons/github-fill')['default']
     'AkarIcons:triangleAlert': typeof import('~icons/akar-icons/triangle-alert')['default']
     Controls: typeof import('./components/Controls.vue')['default']
     DeleteButton: typeof import('./components/base/DeleteButton.vue')['default']
