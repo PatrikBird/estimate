@@ -24,5 +24,5 @@ const voteRevealed = mainStore.getVoteState()
       <h1 class="my-4 prose lg:prose-xl">Observers</h1>
     </EstimateTable>
   </div>
-  <VoteResult v-else></VoteResult>
+  <VoteResult v-else :users="voters"></VoteResult>
 </template>
