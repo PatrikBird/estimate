@@ -5,7 +5,7 @@ import { useMainStore } from '~/store/main'
 const props = defineProps<{ users: User[] }>()
 
 const mainStore = useMainStore()
-const voteRevealed = toRef(mainStore.getVoteState(), 'revealed')
+const voteRevealed = mainStore.getVoteState()
 </script>
 
 <template>

@@ -3,7 +3,7 @@ import { onKeyStroke } from '@vueuse/core'
 import { useMainStore } from '~/store/main'
 
 const mainStore = useMainStore()
-const voteRevealed = toRef(mainStore.getVoteState(), 'revealed')
+const voteRevealed = mainStore.getVoteState()
 
 const availableVotes = [0, 1, 2, 3, 5, 8, 13, 21]
 

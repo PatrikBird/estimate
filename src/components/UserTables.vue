@@ -5,7 +5,7 @@ const mainStore = useMainStore()
 const voter = mainStore.getAllVoters()
 const observer = mainStore.getAllObervers()
 
-const voteRevealed = toRef(mainStore.getVoteState(), 'revealed')
+const voteRevealed = mainStore.getVoteState()
 </script>
 
 <template>

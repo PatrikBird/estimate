@@ -105,7 +105,7 @@ export const useMainStore = defineStore('main', () => {
    * Get voting state from database
    *
    */
-  function getVoteState(): VoteState {
+  function getVoteState(): Ref<boolean> {
     const voteState: VoteState = reactive({ revealed: false })
 
     const docRef = doc(db, 'state', 'voting')
@@ -123,7 +123,7 @@ export const useMainStore = defineStore('main', () => {
       onInvalidate(() => unsub())
     })
 
-    return voteState
+    return toRef(voteState, 'revealed')
   }
   /**
    * Deletes the user from the database
