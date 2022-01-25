@@ -22,7 +22,7 @@ const chartData = {
   labels: labels.value,
   datasets: [
     {
-      data: votes.value as number[],
+      data: votes.value,
       backgroundColor: ['#33C4B0'],
     },
   ],
