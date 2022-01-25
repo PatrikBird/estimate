@@ -20,3 +20,4 @@ find ways to improve session management
 - [x] if user toggles with 'o', reset visuals
 - [ ] if user deletes other user, show input modal
 - [ ] darkmode toggle
+- [ ] show highest and lowest values in overview by separating them visually or pick the names and display them
