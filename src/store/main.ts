@@ -140,69 +140,11 @@ export const useMainStore = defineStore('main', () => {
     }
   }
   /**
-   * Gets all obervers from the database collection
-   *
-   */
-  function getAllObervers() {
-    const document: Ref<User[]> = ref([])
-
-    // collection reference
-    const colRef = collection(db, 'users')
-
-    const unsub = onSnapshot(colRef, snapshot => {
-      let results: DocumentData[] = []
-
-      snapshot.docs.forEach(doc => {
-        results.push({ ...doc.data(), id: doc.id })
-        results = results.filter(u => u.isObserver === true)
-      })
-
-      // update values
-      document.value = mapDocumentToUser(results)
-    })
-
-    watchEffect(onInvalidate => {
-      onInvalidate(() => unsub())
-    })
-
-    return document
-  }
-  /**
-   * Gets all voters from the database collection
-   *
-   */
-  function getAllVoters() {
-    const document: Ref<User[]> = ref([])
-
-    // collection reference
-    const colRef = collection(db, 'users')
-
-    const unsub = onSnapshot(colRef, snapshot => {
-      let results: DocumentData[] = []
-
-      snapshot.docs.forEach(doc => {
-        results.push({ ...doc.data(), id: doc.id })
-        results = results.filter(u => u.isObserver === false)
-      })
-
-      // update values
-      document.value = mapDocumentToUser(results)
-    })
-
-    watchEffect(onInvalidate => {
-      onInvalidate(() => unsub())
-    })
-
-    return document
-  }
-  /**
    * Gets all users from the database collection
    *
-   * TODO: find out why I can't access the return parameters value of the function.
-   *  this issue causes code duplication in the store: getAllObervers, getAllUsers.
    */
   function getAllUsers() {
-    const document: Ref<User[]> = ref([])
+    const documents: Ref<User[]> = ref([])
 
     // collection reference
     const colRef = collection(db, 'users')
@@ -215,14 +157,22 @@ export const useMainStore = defineStore('main', () => {
       })
 
       // update values
-      document.value = mapDocumentToUser(results)
+      documents.value = mapDocumentToUser(results)
     })
 
     watchEffect(onInvalidate => {
       onInvalidate(() => unsub())
     })
 
-    return document
+    watch(
+      documents,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      newVal => {
+        // return documents
+      },
+      { deep: true }
+    )
+    return documents
   }
   return {
     user,
@@ -230,8 +180,6 @@ export const useMainStore = defineStore('main', () => {
     updateVote,
     deleteUserFromDb,
     getAllUsers,
-    getAllObervers,
-    getAllVoters,
     toggleObserver,
     revealVotes,
     resetVotes,
