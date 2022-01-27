@@ -167,9 +167,7 @@ export const useMainStore = defineStore('main', () => {
     watch(
       documents,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      newVal => {
-        // return documents
-      },
+      val => {},
       { deep: true }
     )
     return documents

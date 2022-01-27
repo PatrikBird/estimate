@@ -14,7 +14,6 @@ function handleChosenVote(idx: number, vote: number) {
 }
 
 onKeyStroke('o', e => {
-  // e.preventDefault() TODO: test if this is needed
   mainStore.toggleObserver()
   // reset visuals
   activeItem.value = null
