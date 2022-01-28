@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { useMainStore } from '~/store/main'
 const mainStore = useMainStore()
+
+const availableVotes = ['0', '1', '2', '3', '5', '8', '13', '21', '?']
 </script>
 
 <template>
   <NavBar />
   <InputModal v-if="!mainStore.user.id" />
-  <div class="overflow-x-auto max-w-xl m-5">
-    <Controls />
+  <div class="overflow-x-auto max-w-xl m-5 mx-auto">
+    <Controls :available-votes="availableVotes" />
     <Tables />
   </div>
 </template>

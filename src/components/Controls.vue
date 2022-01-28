@@ -2,10 +2,10 @@
 import { onKeyStroke } from '@vueuse/core'
 import { useMainStore } from '~/store/main'
 
+const props = defineProps<{ availableVotes: string[] }>()
+
 const mainStore = useMainStore()
 const voteRevealed = mainStore.getVoteState()
-
-const availableVotes = ['0', '1', '2', '3', '5', '8', '13', '21', '?']
 
 const activeItem = ref()
 function handleChosenVote(idx: number, vote: string) {
@@ -34,7 +34,7 @@ function revealVoteHandler() {
 
 <template>
   <button
-    v-for="(vote, idx) in availableVotes"
+    v-for="(vote, idx) in props.availableVotes"
     :key="vote"
     class="btn btn-primary m-2"
     :class="{ 'btn-accent': idx === activeItem }"
