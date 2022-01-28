@@ -20,7 +20,8 @@ const voteRevealed = mainStore.getVoteState()
     </thead>
     <tbody>
       <tr v-for="{ id, username, vote, isObserver } in props.users" :key="id">
-        <th>{{ username }}</th>
+        <th v-if="username == mainStore.user.username" class="text-yellow-700">{{ username }}</th>
+        <th v-else>{{ username }}</th>
         <th v-if="vote === null && !isObserver" class="text-yellow-700"><akar-icons:triangle-alert /></th>
         <th v-else-if="voteRevealed && !isObserver">{{ vote }}</th>
         <th v-else-if="isObserver"><akar-icons:eye-open /></th>
