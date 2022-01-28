@@ -5,10 +5,10 @@ import { useMainStore } from '~/store/main'
 const mainStore = useMainStore()
 const voteRevealed = mainStore.getVoteState()
 
-const availableVotes = [0, 1, 2, 3, 5, 8, 13, 21]
+const availableVotes = ['0', '1', '2', '3', '5', '8', '13', '21', '?']
 
 const activeItem = ref()
-function handleChosenVote(idx: number, vote: number) {
+function handleChosenVote(idx: number, vote: string) {
   activeItem.value = idx
   mainStore.updateVote(mainStore.user.id, vote)
 }
@@ -34,13 +34,13 @@ function revealVoteHandler() {
 
 <template>
   <button
-    v-for="(num, idx) in availableVotes"
-    :key="num"
+    v-for="(vote, idx) in availableVotes"
+    :key="vote"
     class="btn btn-primary m-2"
     :class="{ 'btn-accent': idx === activeItem }"
     :disabled="voteRevealed"
-    @click="handleChosenVote(idx, num)">
-    {{ num }}
+    @click="handleChosenVote(idx, vote)">
+    {{ vote }}
   </button>
   <div class="row">
     <button class="btn btn-secondary m-2" @click="resetVoteHandler">Reset</button>

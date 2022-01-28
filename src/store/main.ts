@@ -50,7 +50,7 @@ export const useMainStore = defineStore('main', () => {
    * @param id - identifier of user to be updated
    * @param vote - entered vote by user
    */
-  function updateVote(id: string, vote: number) {
+  function updateVote(id: string, vote: string) {
     const docRef = doc(db, 'users', id)
     updateDoc(docRef, {
       vote,
