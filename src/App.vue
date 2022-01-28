@@ -8,7 +8,7 @@ const mainStore = useMainStore()
   <InputModal v-if="!mainStore.user.id" />
   <div class="overflow-x-auto max-w-xl m-5">
     <Controls />
-    <UserTables />
+    <Tables />
   </div>
 </template>
 
