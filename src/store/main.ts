@@ -12,8 +12,8 @@ import {
 
 import type { Ref } from 'vue'
 import { db } from '~/firebase/config'
-import type { User, VoteState } from '~/types/User'
-import { mapDocumentToUser, mapDocumentToVoteState } from '~/types/User'
+import type { User, VoteState } from '~/types'
+import { mapDocumentToUser, mapDocumentToVoteState } from '~/types'
 
 export const useMainStore = defineStore('main', () => {
   /**

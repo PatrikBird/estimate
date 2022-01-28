@@ -3,7 +3,7 @@ import type { DocumentData } from 'firebase/firestore'
 interface User {
   id: string
   username: string
-  vote: number | null
+  vote: string | null
   isObserver: boolean
 }
 

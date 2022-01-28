@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { User } from '../types/User'
+import type { User } from '~/types'
 import { useMainStore } from '~/store/main'
 
 const props = defineProps<{ users: User[] }>()
