@@ -12,6 +12,7 @@ const voters = computed(() => {
   return allUsers.value.filter(u => u.isObserver === false)
 })
 
+// @ts-expect-error: 6133
 const voteRevealed = mainStore.getVoteState()
 </script>
 

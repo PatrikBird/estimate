@@ -7,6 +7,7 @@ import type { User } from '~/types'
 
 const props = defineProps<{ users: User[] }>()
 
+// @ts-expect-error: 6133
 const reducedArray = computed(() => {
   return props.users.map(({ username, vote }) => ({
     username,
