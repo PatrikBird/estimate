@@ -10,23 +10,24 @@ powered by:
 
 ## Roadmap
 - [x] core functionality
-- [ ] implement vote `?`
-- [ ] t-shirt sizes as votes
+- [x] implement vote `?`
 - [ ] improve vote result presentation
   - [ ] group identical votes
   - [ ] show average
   - [ ] highlight min and max?
-- [ ] vote for a break
 - [ ] support multiple votes simultaneously
+- [ ] t-shirt sizes as votes
+- [ ] vote for a break
 
 ### Improvements
-- [ ] highlight current user in table
+- [x] highlight current user in table
 - [ ] logout button in navigation
 - [ ] reset vote button visuals after revealing votes
+- [ ] hide/disable votes for observers
 - [ ] UI
   - [ ] darkmode toggle
   - [ ] adjust colors, font
-  - [ ] center body
+  - [x] center body
 
 #### Known issues
 - [ ] if another user deletes you, there's no input modal showing up -> you have to re-open the browser tab or clear session storage
