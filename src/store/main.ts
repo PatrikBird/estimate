@@ -17,7 +17,7 @@ import { mapDocumentToUser, mapDocumentToVoteState } from '~/types'
 
 export const useMainStore = defineStore('main', () => {
   /**
-   * Current local user
+   * Current local user TODO: keep local state in sync with firebase
    */
   const user: User = reactive({
     id: useSessionStorage('id', ''),
