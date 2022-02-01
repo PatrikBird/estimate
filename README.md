@@ -24,7 +24,7 @@ powered by:
 
 ### Improvements
 - [x] highlight current user in table
-- [ ] logout button in navigation
+- [x] logout button in navigation
 - [ ] reset vote button visuals after revealing votes
 - [ ] hide/disable votes for observers
 - [ ] UI
