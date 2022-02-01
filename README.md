@@ -16,6 +16,9 @@ powered by:
   - [ ] show average
   - [ ] highlight min and max?
 - [ ] support multiple votes simultaneously
+  - [ ] landing page to init session
+  - [ ] generates id as collection
+  - [ ] encode id in route to enable sharing
 - [ ] t-shirt sizes as votes
 - [ ] vote for a break
 
