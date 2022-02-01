@@ -1,17 +1,28 @@
 <script setup lang="ts">
 import { useMainStore } from '~/store/main'
 const mainStore = useMainStore()
+
+const btnText = computed(() => (mainStore.user.isObserver ? 'Observer' : 'Voter'))
 </script>
 
 <template>
   <div class="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
     <div class="px-2 mx-2 navbar-start">
       <span class="text-lg font-bold">Estimate - in development</span>
-      <a class="mx-5" href="https://github.com/PatrikBird/estimate" target="_blank"><akar-icons:github-fill /></a>
+      <a class="mx-5" href="https://github.com/PatrikBird/estimate" target="_blank"
+        ><akar-icons:github-fill
+      /></a>
     </div>
     <div class="navbar-end mr-5">
-      <p class="mr-5">Press 'o' to toggle status</p>
       <p>You: {{ mainStore.user.username }}</p>
+      <button class="btn btn-outline ml-5" @click="mainStore.toggleObserver()">
+        {{ btnText }}
+      </button>
+      <button
+        class="btn btn-outline btn-secondary ml-5"
+        @click="mainStore.deleteUserFromDb(mainStore.user.id)">
+        Logout
+      </button>
     </div>
     <!-- <div class="hidden px-2 mx-2 navbar-center lg:flex">
       <div class="flex items-stretch justify-end">
