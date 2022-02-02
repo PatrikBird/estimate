@@ -1,17 +1,19 @@
 <script setup lang="ts">
-import { useMainStore } from '~/store/main'
-const mainStore = useMainStore()
+import Hero from './pages/Hero.vue';
+// import { useMainStore } from '~/store/main'
+// const mainStore = useMainStore()
 
-const availableVotes = ['0', '1', '2', '3', '5', '8', '13', '21', '?']
+// const availableVotes = ['0', '1', '2', '3', '5', '8', '13', '21', '?']
 </script>
 
 <template>
-  <NavBar />
+  <Hero></Hero>
+  <!-- <NavBar />
   <InputModal v-if="!mainStore.user.id" />
   <div class="overflow-x-auto max-w-xl m-5 mx-auto">
     <Controls :available-votes="availableVotes" />
     <Tables />
-  </div>
+  </div> -->
 </template>
 
 <style>
