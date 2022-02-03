@@ -106,7 +106,7 @@ export const useMainStore = defineStore('main', () => {
    *
    */
   function getVoteState(): Ref<boolean> {
-    const voteState: VoteState = reactive({ revealed: false })
+    const voteState: VoteState = reactive({ isRevealed: false })
 
     const docRef = doc(db, 'state', 'voting')
     const unsub = onSnapshot(docRef, snapshot => {
@@ -116,14 +116,14 @@ export const useMainStore = defineStore('main', () => {
         return
       }
       // update value
-      voteState.revealed = mapDocumentToVoteState(result).revealed
+      voteState.isRevealed = mapDocumentToVoteState(result).isRevealed
     })
 
     watchEffect(onInvalidate => {
       onInvalidate(() => unsub())
     })
 
-    return toRef(voteState, 'revealed')
+    return toRef(voteState, 'isRevealed')
   }
   /**
    * Deletes the user from the database

@@ -19,11 +19,11 @@ function mapDocumentToUser(arr: DocumentData[]): User[] {
 }
 
 interface VoteState {
-  revealed: boolean
+  isRevealed: boolean
 }
 
 function mapDocumentToVoteState(obj: DocumentData): VoteState {
-  return { revealed: obj.revealed as boolean }
+  return { isRevealed: obj.revealed as boolean }
 }
 
 export { User, mapDocumentToUser, mapDocumentToVoteState, VoteState }
