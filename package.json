@@ -15,7 +15,7 @@
     "firebase": "^9.6.3",
     "pinia": "^2.0.9",
     "vue": "^3.2.25",
-    "vue-router": "^3.5.3"
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.15.0",
