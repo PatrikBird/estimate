@@ -5,22 +5,24 @@ const mainStore = useMainStore()
 
 const enteredName = ref('')
 
-const formIsInvalid = ref(true)
+// const formIsInvalid = ref(true)
 function validateForm() {
   if (enteredName.value !== '') {
     mainStore.user.username = enteredName.value
-    formIsInvalid.value = false
+    // formIsInvalid.value = false
   }
 }
 
 const isTshirtMode = ref(false)
 
 const isObserver = ref(false)
-async function handleSubmit() { // TODO: async necessary?
+// TODO: async necessary?
+async function handleSubmit() {
   validateForm()
-  mainStore.addUserToDb(enteredName.value, isObserver.value)
+  // mainStore.addUserToDb(enteredName.value, isObserver.value)
   // add new collection to db
-
+  mainStore.createNewSession(enteredName.value, isObserver.value)
+  // router push to voting view
 }
 </script>
 
@@ -29,8 +31,8 @@ async function handleSubmit() { // TODO: async necessary?
     <div class="flex-col justify-center hero-content lg:flex-row">
       <div class="text-center lg:text-left">
         <h1 class="mb-5 text-5xl font-bold">Simple Story Estimation</h1>
-        <!-- <p class="mb-5">Create a new session and simply share the link with others.</p> -->
-        <p class="mb-5">We'll be back soon.</p>
+        <p class="mb-5">Create a new session and simply share the link with others.</p>
+        <!-- <p class="mb-5">We'll be back soon.</p> -->
       </div>
       <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
         <div class="card-body">
@@ -65,12 +67,10 @@ async function handleSubmit() { // TODO: async necessary?
               </label>
             </div>
             <div class="form-control mt-6">
-              <button class="btn btn-primary" disabled >
+              <!-- <button class="btn btn-primary" disabled>Start new Session</button> -->
+              <button class="btn btn-primary" :disabled="enteredName == ''">
                 Start new Session
               </button>
-              <!-- <button class="btn btn-primary" :disabled="enteredName == ''">
-                Start new Session
-              </button> -->
             </div>
           </form>
         </div>

@@ -1,5 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import type { DocumentData } from 'firebase/firestore'
+import { CollectionReference, DocumentData, setDoc } from 'firebase/firestore'
 import {
   addDoc,
   collection,
@@ -25,6 +25,37 @@ export const useMainStore = defineStore('main', () => {
     vote: null,
     isObserver: false,
   })
+  /**
+   * test
+   */
+  const collectionId: Ref<string> = ref('')
+
+  /**
+   * Creates a new session and updates the local state
+   *
+   * @param username - name of the user to be added
+   * @param isObserver - determines if user can vote or not
+   */
+  async function createNewSession(username: string, isObserver: boolean) {
+    const simpleID = Date.now().toString() // FIXME: error prone approach, used for simplicity
+    const colRef = collection(db, simpleID)
+
+    const userRef = await addDoc(colRef, {
+      username,
+      vote: null,
+      isObserver,
+    })
+
+    await setDoc(doc(db, colRef.id, 'voteState'), {
+      isRevealed: false,
+    })
+
+    collectionId.value = colRef.id
+    // update local user state
+    user.id = userRef.id
+    user.username = username
+    user.isObserver = isObserver
+  }
   /**
    * Adds the user to the database and updates the local state
    *
@@ -108,7 +139,7 @@ export const useMainStore = defineStore('main', () => {
   function getVoteState(): Ref<boolean> {
     const voteState: VoteState = reactive({ isRevealed: false })
 
-    const docRef = doc(db, 'state', 'voting')
+    const docRef = doc(db, 'state', 'voteState')
     const unsub = onSnapshot(docRef, snapshot => {
       const result: DocumentData | undefined = snapshot.data()
       if (result === undefined) {
@@ -174,6 +205,7 @@ export const useMainStore = defineStore('main', () => {
   }
   return {
     user,
+    createNewSession,
     addUserToDb,
     updateVote,
     deleteUserFromDb,
