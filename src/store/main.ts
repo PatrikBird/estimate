@@ -1,5 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { CollectionReference, DocumentData, setDoc } from 'firebase/firestore'
+import type { CollectionReference, DocumentData } from 'firebase/firestore'
 import {
   addDoc,
   collection,
@@ -7,6 +7,7 @@ import {
   doc,
   getDocs,
   onSnapshot,
+  setDoc,
   updateDoc,
 } from 'firebase/firestore'
 
@@ -26,7 +27,7 @@ export const useMainStore = defineStore('main', () => {
     isObserver: false,
   })
   /**
-   * test
+   * Stores the current session ID but JUST AFTER creation
    */
   const collectionId: Ref<string> = ref('')
 
@@ -37,33 +38,34 @@ export const useMainStore = defineStore('main', () => {
    * @param isObserver - determines if user can vote or not
    */
   async function createNewSession(username: string, isObserver: boolean) {
-    const simpleID = Date.now().toString() // FIXME: error prone approach, used for simplicity
+    const simpleID = Date.now().toString() // TODO: error prone approach, used for simplicity
     const colRef = collection(db, simpleID)
 
-    const userRef = await addDoc(colRef, {
-      username,
-      vote: null,
-      isObserver,
-    })
-
+    await addUserToDb(colRef, username, isObserver)
     await setDoc(doc(db, colRef.id, 'voteState'), {
       isRevealed: false,
     })
 
     collectionId.value = colRef.id
-    // update local user state
-    user.id = userRef.id
-    user.username = username
-    user.isObserver = isObserver
+    watch(
+      collectionId,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      val => {},
+      { deep: true }
+    )
   }
   /**
-   * Adds the user to the database and updates the local state
+   * Adds the user to the collection and updates the local state
    *
+   * @param colRef - collection reference
    * @param username - name of the user to be added
    * @param isObserver - determines if user can vote or not
    */
-  async function addUserToDb(username: string, isObserver: boolean) {
-    const colRef = collection(db, 'users')
+  async function addUserToDb(
+    colRef: CollectionReference<DocumentData>,
+    username: string,
+    isObserver: boolean
+  ) {
     const userRef = await addDoc(colRef, {
       username,
       vote: null,
@@ -133,13 +135,13 @@ export const useMainStore = defineStore('main', () => {
     })
   }
   /**
-   * Get voting state from database
-   *
+   * Get vote state from collection
+   * Returns true if votes have been revealed
    */
   function getVoteState(): Ref<boolean> {
     const voteState: VoteState = reactive({ isRevealed: false })
 
-    const docRef = doc(db, 'state', 'voteState')
+    const docRef = doc(db, collectionId.value, 'voteState')
     const unsub = onSnapshot(docRef, snapshot => {
       const result: DocumentData | undefined = snapshot.data()
       if (result === undefined) {
@@ -178,7 +180,7 @@ export const useMainStore = defineStore('main', () => {
     const documents: Ref<User[]> = ref([])
 
     // collection reference
-    const colRef = collection(db, 'users')
+    const colRef = collection(db, collectionId.value)
 
     const unsub = onSnapshot(colRef, snapshot => {
       const results: DocumentData[] = []
@@ -205,6 +207,7 @@ export const useMainStore = defineStore('main', () => {
   }
   return {
     user,
+    collectionId,
     createNewSession,
     addUserToDb,
     updateVote,

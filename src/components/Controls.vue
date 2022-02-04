@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { onKeyStroke } from '@vueuse/core'
+import type { Ref } from 'vue';
 import { useMainStore } from '~/store/main'
 
 const props = defineProps<{ availableVotes: string[] }>()
 
 const mainStore = useMainStore()
-const voteRevealed = mainStore.getVoteState()
 
 const activeItem = ref()
 function handleChosenVote(idx: number, vote: string) {
@@ -30,6 +30,11 @@ function revealVoteHandler() {
   // reset visuals
   activeItem.value = null
 }
+
+let voteRevealed: Ref<boolean> = ref(false)
+onMounted(() => {
+  voteRevealed = mainStore.getVoteState()
+})
 </script>
 
 <template>

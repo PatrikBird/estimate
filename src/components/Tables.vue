@@ -1,29 +1,30 @@
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import { useMainStore } from '~/store/main'
+import type { User } from '~/types'
 
 const mainStore = useMainStore()
+let allUsers: Ref<User[]> = ref([])
 
-const allUsers = mainStore.getAllUsers()
-const observers = computed(() => {
-  return allUsers.value.filter(u => u.isObserver === true)
+// const observers = computed(() => {
+//   return allUsers.value.filter(u => u.isObserver === true)
+// })
+
+// const voters = computed(() => {
+//   return allUsers.value.filter(u => u.isObserver === false)
+// })
+
+onMounted(() => {
+  allUsers = mainStore.getAllUsers()
+  console.log(allUsers.value)
 })
-
-const voters = computed(() => {
-  return allUsers.value.filter(u => u.isObserver === false)
-})
-
-// @ts-expect-error: 6133
-const voteRevealed = mainStore.getVoteState()
 </script>
 
-<template>
-  <!-- <div v-if="!voteRevealed"> -->
+<!-- <template>
   <EstimateTable :users="voters">
     <h1 class="my-4 prose lg:prose-xl">Voters</h1>
   </EstimateTable>
   <EstimateTable :users="observers">
     <h1 class="my-4 prose lg:prose-xl">Observers</h1>
   </EstimateTable>
-  <!-- </div> -->
-  <!-- <VoteResult v-else :users="voters"></VoteResult> -->
-</template>
+</template> -->
