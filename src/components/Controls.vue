@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onKeyStroke } from '@vueuse/core'
-import type { Ref } from 'vue';
 import { useMainStore } from '~/store/main'
 
 const props = defineProps<{ availableVotes: string[] }>()
@@ -31,10 +30,7 @@ function revealVoteHandler() {
   activeItem.value = null
 }
 
-let voteRevealed: Ref<boolean> = ref(false)
-onMounted(() => {
-  voteRevealed = mainStore.getVoteState()
-})
+const voteRevealed = mainStore.getVoteState()
 </script>
 
 <template>

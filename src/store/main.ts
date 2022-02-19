@@ -12,13 +12,15 @@ import {
 } from 'firebase/firestore'
 
 import type { Ref } from 'vue'
+// import { useRoute } from 'vue-router'
 import { db } from '~/firebase/config'
-import type { User, VoteState } from '~/types'
+import type { Session, User } from '~/types'
 import { mapDocumentToUser, mapDocumentToVoteState } from '~/types'
 
 export const useMainStore = defineStore('main', () => {
   /**
-   * Current local user TODO: keep local state in sync with firebase
+   * Current local user
+   * TODO: keep local state in sync with firebase
    */
   const user: User = reactive({
     id: useSessionStorage('id', ''),
@@ -26,10 +28,19 @@ export const useMainStore = defineStore('main', () => {
     vote: null,
     isObserver: false,
   })
+
   /**
-   * Stores the current session ID but JUST AFTER creation
+   * Stores the current session
+   * TODO: keep in sync with route
    */
-  const collectionId: Ref<string> = ref('')
+  // const route = useRoute()
+  const session: Session = reactive({
+    collectionId: '',
+    collRef: <CollectionReference<DocumentData>>{},
+    docRef: <DocumentData>{}, // TODO: use me
+    userRef: <DocumentData>{}, // TODO: use me
+    // isRevealed: false,
+  })
 
   /**
    * Creates a new session and updates the local state
@@ -38,35 +49,24 @@ export const useMainStore = defineStore('main', () => {
    * @param isObserver - determines if user can vote or not
    */
   async function createNewSession(username: string, isObserver: boolean) {
-    const simpleID = Date.now().toString() // TODO: error prone approach, used for simplicity
-    const colRef = collection(db, simpleID)
+    session.collectionId = Date.now().toString() // TODO: refactor simpleID
+    session.collRef = collection(db, session.collectionId)
 
-    await addUserToDb(colRef, username, isObserver)
-    await setDoc(doc(db, colRef.id, 'voteState'), {
+    await addUserToDb(username, isObserver)
+    await setDoc(doc(db, session.collectionId, 'voteState'), {
       isRevealed: false,
     })
-
-    collectionId.value = colRef.id
-    watch(
-      collectionId,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      val => {},
-      { deep: true }
-    )
   }
+
   /**
    * Adds the user to the collection and updates the local state
    *
-   * @param colRef - collection reference
    * @param username - name of the user to be added
    * @param isObserver - determines if user can vote or not
    */
-  async function addUserToDb(
-    colRef: CollectionReference<DocumentData>,
-    username: string,
-    isObserver: boolean
-  ) {
-    const userRef = await addDoc(colRef, {
+  async function addUserToDb(username: string, isObserver: boolean) {
+    const userRef = await addDoc(session.collRef, {
+      // TODO: add userRef to session?
       username,
       vote: null,
       isObserver,
@@ -84,7 +84,7 @@ export const useMainStore = defineStore('main', () => {
    * @param vote - entered vote by user
    */
   function updateVote(id: string, vote: string) {
-    const docRef = doc(db, 'users', id)
+    const docRef = doc(db, session.collectionId, id) // TODO: add docRef to session
     updateDoc(docRef, {
       vote,
     })
@@ -98,7 +98,7 @@ export const useMainStore = defineStore('main', () => {
    * @param id - identifier of user to be updated
    */
   function toggleObserver() {
-    const docRef = doc(db, 'users', user.id)
+    const docRef = doc(db, session.collectionId, user.id) // TODO: add docRef to session
     const isObserver = !user.isObserver
     updateDoc(docRef, {
       isObserver,
@@ -113,9 +113,9 @@ export const useMainStore = defineStore('main', () => {
    *
    */
   function revealVotes() {
-    const docRef = doc(db, 'state', 'voting')
+    const docRef = doc(db, session.collectionId, 'voteState') // TODO: add docRef to session
     updateDoc(docRef, {
-      revealed: true,
+      isRevealed: true,
     })
   }
   /**
@@ -123,40 +123,43 @@ export const useMainStore = defineStore('main', () => {
    *
    */
   async function resetVotes() {
-    const docRef = doc(db, 'state', 'voting')
+    const docRef = doc(db, session.collectionId, 'voteState') // TODO: add docRef to session
     updateDoc(docRef, {
-      revealed: false,
+      isRevealed: false,
     })
 
-    const querySnapshot = await getDocs(collection(db, 'users'))
+    const querySnapshot = await getDocs(collection(db, session.collectionId))
     querySnapshot.forEach(userDoc => {
-      const docRef = doc(db, 'users', userDoc.id)
+      if (userDoc.id === 'voteState') return
+      const docRef = doc(db, session.collectionId, userDoc.id)
       updateDoc(docRef, { vote: null })
     })
   }
+
   /**
    * Get vote state from collection
    * Returns true if votes have been revealed
    */
   function getVoteState(): Ref<boolean> {
-    const voteState: VoteState = reactive({ isRevealed: false })
+    const isVoteRevealed = ref(false)
 
-    const docRef = doc(db, collectionId.value, 'voteState')
+    const docRef = doc(db, session.collectionId, 'voteState')
     const unsub = onSnapshot(docRef, snapshot => {
       const result: DocumentData | undefined = snapshot.data()
       if (result === undefined) {
-        console.error('data() is undefined!')
+        console.error('data() is undefined - Could not fetch voteState')
         return
       }
       // update value
-      voteState.isRevealed = mapDocumentToVoteState(result).isRevealed
+      isVoteRevealed.value = mapDocumentToVoteState(result).isRevealed
+      // isVoteRevealed.value = mapDocumentToVoteState(result)
     })
 
     watchEffect(onInvalidate => {
       onInvalidate(() => unsub())
     })
 
-    return toRef(voteState, 'isRevealed')
+    return isVoteRevealed
   }
   /**
    * Deletes the user from the database
@@ -164,7 +167,7 @@ export const useMainStore = defineStore('main', () => {
    * @param id - identifier of user to be deleted
    */
   function deleteUserFromDb(id: string) {
-    const docRef = doc(db, 'users', id)
+    const docRef = doc(db, session.collectionId, id)
     deleteDoc(docRef)
 
     // clean up local state/storage
@@ -179,14 +182,13 @@ export const useMainStore = defineStore('main', () => {
   function getAllUsers() {
     const documents: Ref<User[]> = ref([])
 
-    // collection reference
-    const colRef = collection(db, collectionId.value)
-
-    const unsub = onSnapshot(colRef, snapshot => {
+    const unsub = onSnapshot(session.collRef, snapshot => {
       const results: DocumentData[] = []
 
       snapshot.docs.forEach(doc => {
-        results.push({ ...doc.data(), id: doc.id })
+        if (doc.id !== 'voteState') {
+          results.push({ ...doc.data(), id: doc.id })
+        }
       })
 
       // update values
@@ -207,8 +209,7 @@ export const useMainStore = defineStore('main', () => {
   }
   return {
     user,
-    collectionId,
-    createNewSession,
+    session,
     addUserToDb,
     updateVote,
     deleteUserFromDb,
@@ -217,6 +218,7 @@ export const useMainStore = defineStore('main', () => {
     revealVotes,
     resetVotes,
     getVoteState,
+    createNewSession,
   }
 })
 

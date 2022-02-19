@@ -1,4 +1,10 @@
-import type { DocumentData } from 'firebase/firestore'
+import type { CollectionReference, DocumentData } from 'firebase/firestore'
+
+interface Session {
+  collectionId: string
+  collRef: CollectionReference<DocumentData>
+  docRef: DocumentData,
+}
 
 interface User {
   id: string
@@ -23,7 +29,7 @@ interface VoteState {
 }
 
 function mapDocumentToVoteState(obj: DocumentData): VoteState {
-  return { isRevealed: obj.revealed as boolean }
+  return { isRevealed: obj.isRevealed as boolean }
 }
 
-export { User, mapDocumentToUser, mapDocumentToVoteState, VoteState }
+export { Session, User, mapDocumentToUser, mapDocumentToVoteState, VoteState }
