@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { useMainStore } from '~/store/main'
 
 const mainStore = useMainStore()
@@ -44,4 +44,4 @@ async function handleSubmit() {
       </div>
     </div>
   </div>
-</template>
+</template> -->

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import type { User } from '~/types'
 
 const props = defineProps<{ users: User[] }>()
@@ -20,4 +20,4 @@ const reducedArray = computed(() => {
 
 <template>
   <div></div>
-</template>
+</template> -->
