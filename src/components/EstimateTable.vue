@@ -35,7 +35,7 @@ const voteRevealed = mainStore.getVoteState()
         <th>
           <button
             class="btn btn-outline btn-square btn-xs"
-            @click="mainStore.deleteUserFromDb(id)">
+            @click="mainStore.deleteUserFromDb()">
             <DeleteButton />
           </button>
         </th>

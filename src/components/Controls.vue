@@ -9,7 +9,8 @@ const mainStore = useMainStore()
 const activeItem = ref()
 function handleChosenVote(idx: number, vote: string) {
   activeItem.value = idx
-  mainStore.updateVote(mainStore.user.id, vote)
+  mainStore.user.vote = vote
+  mainStore.updateVote()
 }
 
 onKeyStroke('o', e => {

@@ -20,7 +20,7 @@ const btnText = computed(() => (mainStore.user.isObserver ? 'Observer' : 'Voter'
       </button>
       <button
         class="btn btn-outline btn-secondary ml-5"
-        @click="mainStore.deleteUserFromDb(mainStore.user.id)">
+        @click="mainStore.deleteUserFromDb()">
         Logout
       </button>
     </div>

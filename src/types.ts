@@ -3,7 +3,8 @@ import type { CollectionReference, DocumentData } from 'firebase/firestore'
 interface Session {
   collectionId: string
   collRef: CollectionReference<DocumentData>
-  docRef: DocumentData,
+  // docRef: DocumentData,
+  userRef: DocumentData,
 }
 
 interface User {

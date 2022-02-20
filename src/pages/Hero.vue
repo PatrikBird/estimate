@@ -11,7 +11,8 @@ const isObserver = ref(false)
 
 async function handleSubmit() {
   mainStore.user.username = enteredName.value
-  await mainStore.createNewSession(enteredName.value, isObserver.value)
+  mainStore.user.isObserver = isObserver.value
+  await mainStore.createNewSession()
   router.push(`/${mainStore.session.collectionId}`)
 }
 </script>
