@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { useMainStore } from '~/store/main'
+
+const mainStore = useMainStore()
+
+onMounted(async () => {
+  if (!mainStore.session.collectionId) await mainStore.createNewSession()
+})
+</script>
+
 <template>
   <NavBar></NavBar>
   <div class="overflow-x-auto max-w-xl m-5 mx-auto">

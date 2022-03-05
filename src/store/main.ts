@@ -33,14 +33,24 @@ export const useMainStore = defineStore('main', () => {
    * Stores the current session
    * TODO: keep in sync with route
    */
-  const route = useRoute()
+  const route = ref(useRoute())
 
   const session: Session = reactive({
-    collectionId: route.path.substring(1) || '',
-    collRef: <CollectionReference<DocumentData>>{},
+    collectionId: route.value.path.substring(1) || '',
+    collRef: <CollectionReference<DocumentData>>{}, // FIXME: point always to collection(db, session.collectionId)
     // docRef: <DocumentData>{},
-    userRef: <DocumentData>{},
+    userRef: <DocumentData>{}, // FIXME: same here, see addUserToDb()
   })
+
+  // watch(
+  //   session,
+  //   val => {
+  //     console.log(val)
+  //   },
+  //   { deep: true }
+  // )
+
+  // console.log(session.collectionId)
 
   /**
    * Creates a new session
