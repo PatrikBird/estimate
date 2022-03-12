@@ -38,18 +38,6 @@ export const useMainStore = defineStore('main', () => {
   const voteDocRef = ref()
 
   const collectionRef = ref()
-  watch(collectionId, async newCollectionId => {
-    collectionRef.value = collection(db, newCollectionId)
-
-    await setDoc(doc(db, newCollectionId, 'voteState'), {
-      isRevealed: false,
-    })
-    await addUserToDb()
-    user.id = userRef.value.id
-    userDocRef.value = doc(db, collectionId.value, user.id) // FIXME: userDocRef.value is undefined on refresh as watcher is not executed!
-    voteDocRef.value = doc(db, collectionId.value, 'voteState') // FIXME: same as above
-    // TODO: initial run and then watcher?
-  })
 
   /**
    * Creates a new session
@@ -57,8 +45,30 @@ export const useMainStore = defineStore('main', () => {
    */
   async function createNewSession() {
     collectionId.value = Date.now().toString()
+    collectionRef.value = collection(db, collectionId.value)
+
+    await setDoc(doc(db, collectionId.value, 'voteState'), {
+      isRevealed: false,
+    })
+    voteDocRef.value = doc(db, collectionId.value, 'voteState')
+
+    await addUserToDb()
+    userDocRef.value = doc(db, collectionId.value, user.id)
+
+    createWatcher() // FIXME: is not called on refresh
   }
 
+  function createWatcher() {
+    watch(
+      collectionId,
+      async newCollectionId => {
+        collectionRef.value = collection(db, newCollectionId)
+        // - check if collection exists, if not: redirect to /
+        // - check if user+id combination is already present, otherwise addUserToDb()
+      },
+      { immediate: true }
+    )
+  }
   /**
    * Adds the user to the collection
    *
@@ -69,6 +79,7 @@ export const useMainStore = defineStore('main', () => {
       vote: null,
       isObserver: user.isObserver,
     })
+    user.id = userRef.value.id
   }
 
   /**
@@ -76,6 +87,9 @@ export const useMainStore = defineStore('main', () => {
    *
    */
   function updateVote() {
+    console.log(user.id)
+    console.log(collectionId.value)
+    console.log(userDocRef.value)
     updateDoc(userDocRef.value, {
       vote: user.vote,
     })
