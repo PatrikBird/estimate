@@ -5,6 +5,7 @@ const mainStore = useMainStore()
 </script>
 
 <template>
+  <!-- TODO: check if username + id from localStore are in collection, if not: show Overlay -->
   <Overlay v-if="!mainStore.user.username"></Overlay>
   <NavBar></NavBar>
   <div class="overflow-x-auto max-w-xl m-5 mx-auto">
