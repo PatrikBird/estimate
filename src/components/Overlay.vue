@@ -6,7 +6,7 @@ const mainStore = useMainStore()
 const enteredName = ref('')
 const isObserver = ref(false)
 
-async function handleSubmit() {
+async function handleJoinSession() {
   mainStore.user.username = enteredName.value
   mainStore.user.isObserver = isObserver.value
   await mainStore.addUserToDb()
@@ -22,7 +22,7 @@ async function handleSubmit() {
       </div>
       <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
         <div class="card-body">
-          <form @submit.prevent="handleSubmit">
+          <form @submit.prevent="handleJoinSession">
             <div class="form-control">
               <label class="label">
                 <span class="label-text">Name</span>
