@@ -5,12 +5,12 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   onSnapshot,
   setDoc,
   updateDoc,
 } from 'firebase/firestore'
-
 import type { Ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { db } from '~/firebase/config'
@@ -32,12 +32,28 @@ export const useMainStore = defineStore('main', () => {
   const route = useRoute()
 
   const collectionId = ref(route.params.collectionId as string)
+
   const userRef = ref()
 
   const userDocRef = ref()
   const voteDocRef = ref()
 
+  async function isUserInDB() {
+    const docSnap = await getDoc(doc(db, collectionId.value, user.id))
+    if (docSnap.exists()) {
+      console.log('user exists')
+      userDocRef.value = doc(db, collectionId.value, user.id)
+      voteDocRef.value = doc(db, collectionId.value, 'voteState') // TODO: dirty test
+    } else {
+      console.log('user does not exist')
+    }
+  }
+
   const collectionRef = ref()
+  if (collectionId.value) {
+    collectionRef.value = collection(db, collectionId.value)
+    isUserInDB()
+  }
 
   /**
    * Creates a new session
@@ -55,16 +71,17 @@ export const useMainStore = defineStore('main', () => {
     await addUserToDb()
     userDocRef.value = doc(db, collectionId.value, user.id)
 
-    createWatcher() // FIXME: is not called on refresh
+    createWatcher()
   }
 
   function createWatcher() {
     watch(
       collectionId,
       async newCollectionId => {
+        console.log('watcher runs')
+
         collectionRef.value = collection(db, newCollectionId)
-        // - check if collection exists, if not: redirect to /
-        // - check if user+id combination is already present, otherwise addUserToDb()
+        // TODO: check if user+id combination is already present, otherwise addUserToDb()
       },
       { immediate: true }
     )
@@ -87,9 +104,6 @@ export const useMainStore = defineStore('main', () => {
    *
    */
   function updateVote() {
-    console.log(user.id)
-    console.log(collectionId.value)
-    console.log(userDocRef.value)
     updateDoc(userDocRef.value, {
       vote: user.vote,
     })
@@ -172,8 +186,6 @@ export const useMainStore = defineStore('main', () => {
    */
   function getAllUsers() {
     const documents: Ref<User[]> = ref([])
-
-    console.log(collectionRef.value)
 
     const unsub = onSnapshot(
       collection(db, route.params.collectionId as string),
