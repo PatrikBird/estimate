@@ -52,6 +52,7 @@ async function handleSubmit() {
                 <input
                   v-model="isTshirtMode"
                   type="checkbox"
+                  disabled
                   class="toggle toggle-primary" />
                 <span class="label-text">T-Shirt Sizes</span>
               </label>
