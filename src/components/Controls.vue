@@ -19,19 +19,10 @@ onKeyStroke('o', e => {
   activeItem.value = null
 })
 
-function resetVoteHandler() {
-  mainStore.resetVotes()
-  // reset visuals
-  activeItem.value = null
-}
-
-function revealVoteHandler() {
-  mainStore.revealVotes()
-  // reset visuals
-  activeItem.value = null
-}
-
 const voteRevealed = mainStore.getVoteState()
+watch(voteRevealed, () => {
+  activeItem.value = null
+})
 </script>
 
 <template>
@@ -45,6 +36,8 @@ const voteRevealed = mainStore.getVoteState()
     {{ vote }}
   </button>
   <div class="row">
+    <button class="btn btn-secondary m-2" @click="mainStore.resetVotes">Reset</button>
+    <button class="btn btn-primary m-2" @click="mainStore.revealVotes">Reveal</button>
     <p v-visible="voteRevealed">Reset to begin a new vote</p>
   </div>
 </template>

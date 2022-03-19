@@ -20,7 +20,6 @@ import { mapDocumentToUser, mapDocumentToVoteState } from '~/types'
 export const useMainStore = defineStore('main', () => {
   /**
    * Current local user
-   * TODO: keep local state in sync with firebase
    */
   const user: User = reactive({
     id: useLocalStorage('id', ''),
@@ -38,28 +37,13 @@ export const useMainStore = defineStore('main', () => {
   const userDocRef = ref()
   const voteDocRef = ref()
 
-  // function retrieveUser() {
-  //   if (!user.id) {
-  //     console.log('no user in local store!')
-  //     console.log('show overlay to addUserToDb()')
-  //   } else {
-  //     console.log('user in local store found, but is it also in db?')
-  //     console.log('check isUserInDB() - true: update local store; false: addUserToDb()')
-  //   }
-  // }
-
   async function isUserInDB() {
-    // console.log(collectionId.value)
-    // console.log(user.id) // is empty on new browser session
-
     const docSnap = await getDoc(doc(db, collectionId.value, user.id))
     if (docSnap.exists()) {
-      // console.log('user exists')
       userDocRef.value = doc(db, collectionId.value, user.id)
       voteDocRef.value = doc(db, collectionId.value, 'voteState') // TODO: dirty test
       return true
     } else {
-      // console.log('user does not exist')
       return false
     }
   }
@@ -67,7 +51,6 @@ export const useMainStore = defineStore('main', () => {
   const collectionRef = ref()
   if (collectionId.value) {
     collectionRef.value = collection(db, collectionId.value)
-    // retrieveUser()
     isUserInDB()
   }
 
@@ -94,7 +77,6 @@ export const useMainStore = defineStore('main', () => {
     watch(
       collectionId,
       async newCollectionId => {
-        // console.log('watcher runs')
         collectionRef.value = collection(db, newCollectionId)
       },
       { immediate: true }
@@ -175,7 +157,6 @@ export const useMainStore = defineStore('main', () => {
       }
       // update value
       isVoteRevealed.value = mapDocumentToVoteState(result).isRevealed
-      // isVoteRevealed.value = mapDocumentToVoteState(result)
     })
 
     watchEffect(onInvalidate => {
@@ -222,12 +203,7 @@ export const useMainStore = defineStore('main', () => {
       onInvalidate(() => unsub())
     })
 
-    watch(
-      documents,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      val => {},
-      { deep: true }
-    )
+    watch(documents, () => {}, { deep: true })
     return documents
   }
   return {
