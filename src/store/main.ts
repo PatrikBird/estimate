@@ -126,7 +126,7 @@ export const useMainStore = defineStore('main', () => {
   }
   /**
    * Resets the votes of all voters
-   *
+   * TODO: reset visuals if function was executed!
    */
   async function resetVotes() {
     updateDoc(voteDocRef.value, {
