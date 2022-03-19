@@ -6,6 +6,10 @@ import './styles/index.css'
 
 const app = createApp(App)
 
+app.directive('visible', (el, binding) => {
+	el.style.visibility = binding.value ? 'visible' : 'hidden';
+})
+
 app.use(createPinia())
 app.use(router)
 
