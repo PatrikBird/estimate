@@ -15,7 +15,7 @@ const voteRevealed = mainStore.getVoteState()
       <tr>
         <th>Name</th>
         <th>Status</th>
-        <th>Del</th>
+        <!-- <th>Del</th> -->
       </tr>
     </thead>
     <tbody>
@@ -32,13 +32,13 @@ const voteRevealed = mainStore.getVoteState()
           <akar-icons:circle-check />
         </th>
         <th v-else>{{ vote }}</th>
-        <th>
+        <!-- <th>
           <button
             class="btn btn-outline btn-square btn-xs"
             @click="mainStore.deleteUserFromDb()">
             <DeleteButton />
           </button>
-        </th>
+        </th> -->
       </tr>
     </tbody>
   </table>
