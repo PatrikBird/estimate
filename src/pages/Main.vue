@@ -2,11 +2,15 @@
 import { useMainStore } from '~/store/main'
 
 const mainStore = useMainStore()
+const showOverlay = computed(() => {
+  if (!mainStore.user.id || !mainStore.user.username) return true
+  if (!mainStore.isUserInDB()) return true
+  return false
+})
 </script>
 
 <template>
-  <!-- TODO: check if username + id from localStore are in collection, if not: show Overlay -->
-  <Overlay v-if="!mainStore.user.username"></Overlay>
+  <Overlay v-if="showOverlay"></Overlay>
   <NavBar></NavBar>
   <div class="overflow-x-auto max-w-xl m-5 mx-auto">
     <Controls
