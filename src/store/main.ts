@@ -38,20 +38,36 @@ export const useMainStore = defineStore('main', () => {
   const userDocRef = ref()
   const voteDocRef = ref()
 
+  // function retrieveUser() {
+  //   if (!user.id) {
+  //     console.log('no user in local store!')
+  //     console.log('show overlay to addUserToDb()')
+  //   } else {
+  //     console.log('user in local store found, but is it also in db?')
+  //     console.log('check isUserInDB() - true: update local store; false: addUserToDb()')
+  //   }
+  // }
+
   async function isUserInDB() {
+    // console.log(collectionId.value)
+    // console.log(user.id) // is empty on new browser session
+
     const docSnap = await getDoc(doc(db, collectionId.value, user.id))
     if (docSnap.exists()) {
-      console.log('user exists')
+      // console.log('user exists')
       userDocRef.value = doc(db, collectionId.value, user.id)
       voteDocRef.value = doc(db, collectionId.value, 'voteState') // TODO: dirty test
+      return true
     } else {
-      console.log('user does not exist')
+      // console.log('user does not exist')
+      return false
     }
   }
 
   const collectionRef = ref()
   if (collectionId.value) {
     collectionRef.value = collection(db, collectionId.value)
+    // retrieveUser()
     isUserInDB()
   }
 
@@ -78,10 +94,8 @@ export const useMainStore = defineStore('main', () => {
     watch(
       collectionId,
       async newCollectionId => {
-        console.log('watcher runs')
-
+        // console.log('watcher runs')
         collectionRef.value = collection(db, newCollectionId)
-        // TODO: check if user+id combination is already present, otherwise addUserToDb()
       },
       { immediate: true }
     )
@@ -217,6 +231,7 @@ export const useMainStore = defineStore('main', () => {
     return documents
   }
   return {
+    isUserInDB,
     collectionId,
     collectionRef,
     user,
