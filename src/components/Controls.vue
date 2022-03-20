@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onKeyStroke } from '@vueuse/core'
 import { useMainStore } from '~/store/main'
 
 const props = defineProps<{ availableVotes: string[] }>()
@@ -13,11 +12,11 @@ function handleChosenVote(idx: number, vote: string) {
   mainStore.updateVote()
 }
 
-onKeyStroke('o', e => {
-  mainStore.toggleObserver()
-  // reset visuals
-  activeItem.value = null
-})
+// onKeyStroke('o', e => { TODO: currently bugged, not so good anyway
+//   mainStore.toggleObserver()
+//   // reset visuals
+//   activeItem.value = null
+// })
 
 const voteRevealed = mainStore.getVoteState()
 watch(voteRevealed, () => {
