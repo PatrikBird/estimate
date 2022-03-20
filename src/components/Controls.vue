@@ -12,6 +12,12 @@ function handleChosenVote(idx: number, vote: string) {
   mainStore.updateVote()
 }
 
+function handleResetVote() {
+  activeItem.value = null
+  mainStore.user.vote = null
+  mainStore.resetVotes()
+}
+
 // onKeyStroke('o', e => { TODO: currently bugged, not so good anyway
 //   mainStore.toggleObserver()
 //   // reset visuals
@@ -35,7 +41,7 @@ watch(voteRevealed, () => {
     {{ vote }}
   </button>
   <div class="row">
-    <button class="btn btn-secondary m-2" @click="mainStore.resetVotes">Reset</button>
+    <button class="btn btn-secondary m-2" @click="handleResetVote">Reset</button>
     <button class="btn btn-primary m-2" @click="mainStore.revealVotes">Reveal</button>
     <p v-visible="voteRevealed">Reset to begin a new vote</p>
   </div>
