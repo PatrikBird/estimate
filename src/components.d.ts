@@ -10,6 +10,7 @@ declare module 'vue' {
     'AkarIcons:triangleAlert': typeof import('~icons/akar-icons/triangle-alert')['default']
     Controls: typeof import('./components/Controls.vue')['default']
     DeleteButton: typeof import('./components/base/DeleteButton.vue')['default']
+    ErrorAlert: typeof import('./components/base/ErrorAlert.vue')['default']
     EstimateTable: typeof import('./components/EstimateTable.vue')['default']
     InputModal: typeof import('./components/InputModal.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
