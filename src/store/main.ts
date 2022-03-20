@@ -16,6 +16,7 @@ import { useRoute } from 'vue-router'
 import { db } from '~/firebase/config'
 import type { User } from '~/types'
 import { mapDocumentToUser, mapDocumentToVoteState } from '~/types'
+import router from '~/router'
 
 export const useMainStore = defineStore('main', () => {
   /**
@@ -168,7 +169,9 @@ export const useMainStore = defineStore('main', () => {
     const unsub = onSnapshot(docRef, snapshot => {
       const result: DocumentData | undefined = snapshot.data()
       if (result === undefined) {
-        console.error('data() is undefined - Could not fetch voteState')
+        // TODO: forward to home and show error
+        console.error('Session not found! Wrong link?')
+        router.push('/')
         return
       }
       // update value
