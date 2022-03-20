@@ -15,30 +15,22 @@ const voteRevealed = mainStore.getVoteState()
       <tr>
         <th>Name</th>
         <th>Status</th>
-        <!-- <th>Del</th> -->
       </tr>
     </thead>
     <tbody>
       <tr v-for="{ id, username, vote, isObserver } in props.users" :key="id">
-        <th v-if="username == mainStore.user.username" class="text-yellow-700">
+        <th v-if="username == mainStore.user.username" class="text-primary">
           {{ username }}
         </th>
         <th v-else>{{ username }}</th>
-        <th v-if="vote === null && !isObserver" class="text-yellow-700">
+        <th v-if="vote === null && !isObserver" class="text-secondary">
           <akar-icons:triangle-alert />
         </th>
         <th v-else-if="isObserver"><akar-icons:eye-open /></th>
-        <th v-else-if="!voteRevealed && !isObserver" class="text-green-800">
+        <th v-else-if="!voteRevealed && !isObserver" class="text-accent">
           <akar-icons:circle-check />
         </th>
         <th v-else>{{ vote }}</th>
-        <!-- <th>
-          <button
-            class="btn btn-outline btn-square btn-xs"
-            @click="mainStore.deleteUserFromDb()">
-            <DeleteButton />
-          </button>
-        </th> -->
       </tr>
     </tbody>
   </table>
