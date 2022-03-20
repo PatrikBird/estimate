@@ -142,6 +142,22 @@ export const useMainStore = defineStore('main', () => {
   }
 
   /**
+   * Deletes all users from the session
+   */
+  async function deleteAllUsersFromSession() {
+    updateDoc(voteDocRef.value, {
+      isRevealed: false,
+    })
+
+    const querySnapshot = await getDocs(collection(db, collectionId.value))
+    querySnapshot.forEach(userDoc => {
+      if (userDoc.id === 'voteState') return
+      const docRef = doc(db, collectionId.value, userDoc.id)
+      deleteDoc(docRef)
+    })
+  }
+
+  /**
    * Get vote state from collection
    * Returns true if votes have been revealed
    */
@@ -220,6 +236,7 @@ export const useMainStore = defineStore('main', () => {
     resetVotes,
     getVoteState,
     createNewSession,
+    deleteAllUsersFromSession
   }
 })
 

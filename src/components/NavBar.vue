@@ -14,13 +14,16 @@ const btnText = computed(() => (mainStore.user.isObserver ? 'Observer' : 'Voter'
       /></a>
     </div>
     <div class="navbar-end mr-5">
-      <p>You: {{ mainStore.user.username }}</p>
-      <button class="btn btn-outline ml-5" @click="mainStore.toggleObserver()">
+            <button class="btn btn-info btn-outline ml-5" @click="mainStore.toggleObserver">
         {{ btnText }}
       </button>
+      <!-- <p>You: {{ mainStore.user.username }}</p> -->
+      <button class="btn btn-secondary btn-outline ml-5" @click="mainStore.deleteAllUsersFromSession">
+        Kick all
+      </button>
       <button
-        class="btn btn-outline btn-secondary ml-5"
-        @click="mainStore.deleteUserFromDb()">
+        class="btn btn-accent btn-outline ml-5"
+        @click="mainStore.deleteUserFromDb">
         Logout
       </button>
     </div>
