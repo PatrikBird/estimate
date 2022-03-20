@@ -9,7 +9,7 @@ const voteRevealed = mainStore.getVoteState()
 </script>
 
 <template>
-  <slot></slot>
+  <slot />
   <table class="table w-full">
     <thead>
       <tr>

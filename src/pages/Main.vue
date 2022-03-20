@@ -10,8 +10,8 @@ const showOverlay = computed(() => {
 </script>
 
 <template>
-  <Overlay v-if="showOverlay"></Overlay>
-  <NavBar></NavBar>
+  <Overlay v-if="showOverlay" />
+  <NavBar />
   <div class="overflow-x-auto max-w-xl m-5 mx-auto">
     <Controls
       :available-votes="[
@@ -27,6 +27,6 @@ const showOverlay = computed(() => {
         '100',
         '?',
       ]"></Controls>
-    <Tables></Tables>
+    <Tables />
   </div>
 </template>
