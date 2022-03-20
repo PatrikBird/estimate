@@ -12,7 +12,6 @@ declare module 'vue' {
     DeleteButton: typeof import('./components/base/DeleteButton.vue')['default']
     ErrorAlert: typeof import('./components/base/ErrorAlert.vue')['default']
     EstimateTable: typeof import('./components/EstimateTable.vue')['default']
-    InputModal: typeof import('./components/InputModal.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
     Overlay: typeof import('./components/Overlay.vue')['default']
     Tables: typeof import('./components/Tables.vue')['default']
