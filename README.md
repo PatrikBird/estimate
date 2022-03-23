@@ -11,14 +11,14 @@ powered by:
 ## Roadmap
 - [x] core functionality
 - [x] implement vote `?`
+- [x] support multiple votes simultaneously
+  - [x] landing page to init session
+  - [x] generates id as collection
+  - [x] encode id in route to enable sharing
 - [ ] improve vote result presentation
   - [ ] group identical votes
   - [ ] show average
   - [ ] highlight min and max?
-- [ ] support multiple votes simultaneously
-  - [ ] landing page to init session
-  - [ ] generates id as collection
-  - [ ] encode id in route to enable sharing
 - [ ] t-shirt sizes as votes
 - [ ] vote for a break
 
@@ -28,9 +28,6 @@ powered by:
 - [ ] reset vote button visuals after revealing votes
 - [ ] hide/disable votes for observers
 - [ ] UI
+  - [x] center body
   - [ ] darkmode toggle
   - [ ] adjust colors, font
-  - [x] center body
-
-#### Known issues
-- [ ] if another user deletes you, there's no input modal showing up -> you have to re-open the browser tab or clear session storage
