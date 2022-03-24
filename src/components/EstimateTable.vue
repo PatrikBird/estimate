@@ -4,6 +4,8 @@ import { useMainStore } from '~/store/main'
 
 const props = defineProps<{ users: User[] }>()
 
+const allVotes = computed(() => props.users.map(i => i.vote))
+
 const mainStore = useMainStore()
 const voteRevealed = mainStore.getVoteState()
 </script>
@@ -34,4 +36,5 @@ const voteRevealed = mainStore.getVoteState()
       </tr>
     </tbody>
   </table>
+  <vote-average v-if="voteRevealed" :votes="allVotes"></vote-average>
 </template>
