@@ -18,12 +18,6 @@ function handleResetVote() {
   mainStore.resetVotes()
 }
 
-// onKeyStroke('o', e => { TODO: currently bugged, not so good anyway
-//   mainStore.toggleObserver()
-//   // reset visuals
-//   activeItem.value = null
-// })
-
 const voteRevealed = mainStore.getVoteState()
 watch(voteRevealed, () => {
   activeItem.value = null
