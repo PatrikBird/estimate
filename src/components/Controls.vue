@@ -36,7 +36,7 @@ watch(voteRevealed, () => {
     :key="vote"
     class="btn btn-primary m-2"
     :class="{ 'btn-accent': idx === activeItem }"
-    :disabled="voteRevealed"
+    :disabled="voteRevealed || mainStore.user.isObserver"
     @click="handleChosenVote(idx, vote)">
     {{ vote }}
   </button>
