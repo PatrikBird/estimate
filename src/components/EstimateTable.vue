@@ -4,15 +4,13 @@ import { useMainStore } from '~/store/main'
 
 const props = defineProps<{ users: User[] }>()
 
-const allVotes = computed(() => props.users.map(i => i.vote))
-
 const mainStore = useMainStore()
 const voteRevealed = mainStore.getVoteState()
 </script>
 
 <template>
   <slot />
-  <table class="table w-full">
+  <table class="table compact w-full">
     <thead>
       <tr>
         <th>Name</th>
@@ -20,7 +18,7 @@ const voteRevealed = mainStore.getVoteState()
       </tr>
     </thead>
     <tbody>
-      <tr v-for="{ id, username, vote, isObserver } in props.users" :key="id">
+      <tr v-for="{ id, username, vote, isObserver } in props.users" :key="id" class="active">
         <th v-if="username == mainStore.user.username" class="text-primary">
           {{ username }}
         </th>
@@ -36,5 +34,4 @@ const voteRevealed = mainStore.getVoteState()
       </tr>
     </tbody>
   </table>
-  <vote-average v-if="voteRevealed" :votes="allVotes"></vote-average>
 </template>
