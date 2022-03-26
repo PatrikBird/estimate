@@ -21,8 +21,8 @@ async function handleSubmit() {
   <div class="hero min-h-screen bg-base-200">
     <div class="flex-col justify-center hero-content lg:flex-row">
       <div class="text-center lg:text-left">
-        <h1 class="mb-5 text-5xl font-bold">Simple Story Estimation</h1>
-        <p class="mb-5">Create a new session and simply share the link with others.</p>
+        <h1 class="mb-5 text-5xl font-bold">Story Estimation</h1>
+        <p class="mb-5">Create a new session and share the link with others.</p>
       </div>
       <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
         <div class="card-body">
