@@ -28,7 +28,7 @@ watch(voteRevealed, () => {
   <button
     v-for="(vote, idx) in props.availableVotes"
     :key="vote"
-    class="btn btn-primary m-2"
+    class="btn m-1"
     :class="{ 'btn-accent': idx === activeItem }"
     :disabled="voteRevealed || mainStore.user.isObserver"
     @click="handleChosenVote(idx, vote)">
