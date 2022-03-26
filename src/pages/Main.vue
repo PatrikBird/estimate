@@ -7,26 +7,17 @@ const showOverlay = computed(() => {
   if (!mainStore.isUserInDB()) return true
   return false
 })
+
+const availableVotes = ['0', '1', '2', '3', '5', '8', '13', '20', '40', '100', '?']
+provide('availableVotes', availableVotes)
+
 </script>
 
 <template>
   <Overlay v-if="showOverlay" />
   <NavBar />
   <div class="overflow-x-auto max-w-xl m-5 mx-auto">
-    <Controls
-      :available-votes="[
-        '0',
-        '1',
-        '2',
-        '3',
-        '5',
-        '8',
-        '13',
-        '20',
-        '40',
-        '100',
-        '?',
-      ]"></Controls>
+    <Controls :available-votes="availableVotes"></Controls>
     <Tables />
   </div>
 </template>

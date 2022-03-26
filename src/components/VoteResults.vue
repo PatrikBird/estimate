@@ -9,6 +9,19 @@ const averageVote = computed(() => {
   return (votes.reduce((acc, u) => acc + +u.vote!, 0) / votes.length).toFixed(1)
 })
 
+const availableVotes: string[] = inject('availableVotes')!
+const availableVotesNum = computed(() => availableVotes.map(v => +v))
+
+const closestAvailableVote = computed(() => {
+  const votes = availableVotesNum.value
+  const average = +averageVote.value!
+  if (average === null) return null
+  const closest = votes.reduce((acc, v) =>
+    Math.abs(v - average) < Math.abs(acc - average) ? v : acc
+  )
+  return closest.toString()
+})
+
 const sortedVoters = computed(() => {
   return [...props.voters].sort((a, b) => {
     if (a.vote === null && b.vote === null) return 0
@@ -32,7 +45,7 @@ const sortedVoters = computed(() => {
           :value="averageVote ?? 0"
           max="100"></progress>
         <label for="progress-bar" class="progress-label absolute text-center">
-          {{ averageVote }}
+          {{ averageVote }} => {{ closestAvailableVote }}
         </label>
       </div>
     </div>
