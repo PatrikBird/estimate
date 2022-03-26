@@ -16,8 +16,8 @@ powered by:
   - [x] generates id as collection
   - [x] encode id in route to enable sharing
 - [ ] improve vote result presentation
-  - [ ] group identical votes
-  - [ ] show average
+  - [x] group identical votes
+  - [x] show average
   - [ ] highlight min and max?
 - [ ] t-shirt sizes as votes
 - [ ] vote for a break
@@ -25,8 +25,8 @@ powered by:
 ### Improvements
 - [x] highlight current user in table
 - [x] logout button in navigation
+- [x] hide/disable votes for observers
 - [ ] reset vote button visuals after revealing votes
-- [ ] hide/disable votes for observers
 - [ ] UI
   - [x] center body
   - [ ] darkmode toggle
