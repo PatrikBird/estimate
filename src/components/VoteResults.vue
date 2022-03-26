@@ -6,7 +6,7 @@ const props = defineProps<{ voters: User[] }>()
 const averageVote = computed(() => {
   const votes = props.voters.filter(u => u.vote !== null && u.vote !== '?')
   if (votes.length === 0) return null
-  return votes.reduce((acc, u) => acc + +u.vote!, 0) / votes.length
+  return (votes.reduce((acc, u) => acc + +u.vote!, 0) / votes.length).toFixed(1)
 })
 
 const sortedVoters = computed(() => {
@@ -20,7 +20,24 @@ const sortedVoters = computed(() => {
 </script>
 
 <template>
-  <p class="my-4">The average is: {{ averageVote }}</p>
+  <div class="grid grid-cols-12 gap-2 my-8">
+    <div class="col-span-3">
+      <div class="text-center">Average</div>
+    </div>
+    <div class="col-span-8">
+      <div class="relative">
+        <progress
+          id="progress-bar"
+          class="progress progress-accent h-6 text-center align-sub"
+          :value="averageVote ?? 0"
+          max="100"></progress>
+        <label for="progress-bar" class="progress-label absolute text-center">
+          {{ averageVote }}
+        </label>
+      </div>
+    </div>
+  </div>
+
   <progress-bar
     v-for="{ id, username, vote } in sortedVoters"
     :key="id"
@@ -28,3 +45,13 @@ const sortedVoters = computed(() => {
     :vote="vote">
   </progress-bar>
 </template>
+
+<style scoped>
+.progress-label {
+  margin: 0;
+  left: 0;
+  right: 0;
+  top: 45%;
+  transform: translateY(-50%);
+}
+</style>
