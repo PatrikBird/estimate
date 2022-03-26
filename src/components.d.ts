@@ -14,9 +14,9 @@ declare module 'vue' {
     EstimateTable: typeof import('./components/EstimateTable.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
     Overlay: typeof import('./components/Overlay.vue')['default']
+    ProgressBar: typeof import('./components/ProgressBar.vue')['default']
     Tables: typeof import('./components/Tables.vue')['default']
-    VoteAverage: typeof import('./components/VoteAverage.vue')['default']
-    VoteResult: typeof import('./components/VoteResult.vue')['default']
+    VoteResults: typeof import('./components/VoteResults.vue')['default']
   }
 }
 
