@@ -12,17 +12,18 @@ const btnText = computed(() => (mainStore.user.isObserver ? 'Observer' : 'Voter'
       <a class="mx-5" href="https://github.com/PatrikBird/estimate" target="_blank"
         ><akar-icons:github-fill
       /></a>
-    </div>
-    <div class="navbar-end mr-5">
-            <button class="btn btn-info btn-outline ml-5" @click="mainStore.toggleObserver">
-        {{ btnText }}
-      </button>
-      <!-- <p>You: {{ mainStore.user.username }}</p> -->
-      <button class="btn btn-secondary btn-outline ml-5" @click="mainStore.deleteAllUsersFromSession">
+      <button
+        class="btn btn-secondary btn-outline ml-5"
+        @click="mainStore.deleteAllUsersFromSession">
         Kick all
       </button>
+    </div>
+    <div class="navbar-end mr-5">
+      <button class="btn btn-info btn-outline ml-5" @click="mainStore.toggleObserver">
+        {{ btnText }}
+      </button>
       <button
-        class="btn btn-accent btn-outline ml-5"
+        class="btn btn-primary btn-outline ml-5"
         @click="mainStore.deleteUserFromDb">
         Logout
       </button>
