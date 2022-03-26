@@ -14,7 +14,6 @@ const voters = computed(() => {
   return allUsers.value.filter(u => u.isObserver === false)
 })
 
-const allVotes = computed(() => voters.value.map(i => i.vote))
 const voteRevealed = mainStore.getVoteState()
 </script>
 
@@ -28,6 +27,6 @@ const voteRevealed = mainStore.getVoteState()
     </EstimateTable>
   </div>
   <div v-else>
-    <vote-average :votes="allVotes"></vote-average>
+    <vote-results :voters="voters"></vote-results>
   </div>
 </template>
