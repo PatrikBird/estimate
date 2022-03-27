@@ -15,10 +15,10 @@ async function handleJoinSession() {
 
 <template>
   <div class="hero min-h-screen bg-base-200">
-    <div class="flex-col justify-center hero-content lg:flex-row">
-      <div class="text-center lg:text-left">
+    <div class="flex-col justify-center hero-content">
+      <div class="text-center">
         <h1 class="mb-5 text-5xl font-bold">Join a session</h1>
-        <p class="mb-5">Insert your name to continue</p>
+        <p class="mb-5">Insert your name to continue.</p>
       </div>
       <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
         <div class="card-body">
