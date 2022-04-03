@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{ name: string; vote: string | null }>()
+const props = defineProps<{ name: string; vote: string | null; maxVote: number }>()
 const val = computed(() => (props.vote === '?' ? '100' : props.vote))
 </script>
 
@@ -15,10 +15,9 @@ const val = computed(() => (props.vote === '?' ? '100' : props.vote))
           class="progress progress-primary h-6 text-center align-sub"
           :class="{ 'progress-secondary': props.vote === '?' }"
           :value="val ?? 0"
-          max="100"></progress>
-        <label for="progress-bar" class="progress-label absolute text-center">
-          {{ props.vote }}</label
-        >
+          :max="props.maxVote"
+        ></progress>
+        <label for="progress-bar" class="progress-label absolute text-center">{{ props.vote }}</label>
       </div>
     </div>
   </div>

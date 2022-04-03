@@ -3,10 +3,12 @@ import type { User } from '~/types'
 
 const props = defineProps<{ voters: User[] }>()
 
+const votes = computed(() => props.voters.filter(u => u.vote !== null && u.vote !== '?'))
+const maxVote = computed(() => votes.value.reduce((max, v) => Math.max(max, +v.vote!), 0))
+
 const averageVote = computed(() => {
-  const votes = props.voters.filter(u => u.vote !== null && u.vote !== '?')
-  if (votes.length === 0) return null
-  return (votes.reduce((acc, u) => acc + +u.vote!, 0) / votes.length).toFixed(1)
+  if (votes.value.length === 0) return null
+  return (votes.value.reduce((acc, u) => acc + +u.vote!, 0) / votes.value.length).toFixed(1)
 })
 
 const availableVotes: string[] = inject('availableVotes')!
@@ -43,20 +45,26 @@ const sortedVoters = computed(() => {
           id="progress-bar"
           class="progress progress-accent h-6 text-center align-sub"
           :value="averageVote ?? 0"
-          max="100"></progress>
-        <label for="progress-bar" class="progress-label absolute text-center">
-          {{ averageVote }} => {{ closestAvailableVote }}
-        </label>
+          max="100"
+        ></progress>
+        <label
+          for="progress-bar"
+          class="progress-label absolute text-center"
+        >{{ averageVote }} => {{ closestAvailableVote }}</label>
       </div>
     </div>
   </div>
+
+  <!-- TODO: class accent, label -->
+  <!-- <progress-bar name="Average" :vote="averageVote"></progress-bar> -->
 
   <progress-bar
     v-for="{ id, username, vote } in sortedVoters"
     :key="id"
     :name="username"
-    :vote="vote">
-  </progress-bar>
+    :vote="vote"
+    :maxVote="maxVote"
+  ></progress-bar>
 </template>
 
 <style scoped>
