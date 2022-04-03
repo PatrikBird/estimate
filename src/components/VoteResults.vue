@@ -35,28 +35,12 @@ const sortedVoters = computed(() => {
 </script>
 
 <template>
-  <div class="grid grid-cols-12 gap-2 my-8">
-    <div class="col-span-3">
-      <div class="text-center">Average</div>
-    </div>
-    <div class="col-span-8">
-      <div class="relative">
-        <progress
-          id="progress-bar"
-          class="progress progress-accent h-6 text-center align-sub"
-          :value="averageVote ?? 0"
-          max="100"
-        ></progress>
-        <label
-          for="progress-bar"
-          class="progress-label absolute text-center"
-        >{{ averageVote }} => {{ closestAvailableVote }}</label>
-      </div>
-    </div>
-  </div>
-
-  <!-- TODO: class accent, label -->
-  <!-- <progress-bar name="Average" :vote="averageVote"></progress-bar> -->
+  <progress-bar
+    class="my-8"
+    name="Average"
+    :vote="averageVote"
+    :bar-style-class="'progress-accent'"
+  >{{ averageVote }} => {{ closestAvailableVote }}</progress-bar>
 
   <progress-bar
     v-for="{ id, username, vote } in sortedVoters"
@@ -64,7 +48,7 @@ const sortedVoters = computed(() => {
     :name="username"
     :vote="vote"
     :maxVote="maxVote"
-  ></progress-bar>
+  >{{ vote }}</progress-bar>
 </template>
 
 <style scoped>

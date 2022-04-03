@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const props = defineProps<{ name: string; vote: string | null; maxVote: number }>()
+const props = withDefaults(defineProps<{ name: string; vote: string | null; maxVote: number, barStyleClass: string }>(), {
+  maxVote: 100,
+  barStyleClass: 'progress-primary',
+})
 const val = computed(() => (props.vote === '?' ? '100' : props.vote))
 </script>
 
@@ -12,12 +15,14 @@ const val = computed(() => (props.vote === '?' ? '100' : props.vote))
       <div class="relative">
         <progress
           id="progress-bar"
-          class="progress progress-primary h-6 text-center align-sub"
-          :class="{ 'progress-secondary': props.vote === '?' }"
+          class="progress h-6 text-center align-sub"
+          :class="{ 'progress-secondary': props.vote === '?' }, props.barStyleClass"
           :value="val ?? 0"
           :max="props.maxVote"
         ></progress>
-        <label for="progress-bar" class="progress-label absolute text-center">{{ props.vote }}</label>
+        <label for="progress-bar" class="progress-label absolute text-center">
+          <slot />
+        </label>
       </div>
     </div>
   </div>
