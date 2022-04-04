@@ -40,14 +40,14 @@ const sortedVoters = computed(() => {
     name="Average"
     :vote="averageVote"
     :bar-style-class="'progress-accent'"
-  >{{ averageVote }} => {{ closestAvailableVote }}</progress-bar>
+  >{{ averageVote }} &#x2192; {{ closestAvailableVote }}</progress-bar>
 
   <progress-bar
     v-for="{ id, username, vote } in sortedVoters"
     :key="id"
     :name="username"
     :vote="vote"
-    :maxVote="maxVote"
+    :max-vote="maxVote"
   >{{ vote }}</progress-bar>
 </template>
 
