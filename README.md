@@ -21,13 +21,15 @@ powered by:
   - [ ] highlight min and max?
 - [ ] t-shirt sizes as votes
 - [ ] vote for a break
+- [x] scale progress bars
+- [ ] link URL as reference
 
 ### Improvements
 - [x] highlight current user in table
 - [x] logout button in navigation
 - [x] hide/disable votes for observers
-- [ ] reset vote button visuals after revealing votes
-- [ ] UI
-  - [x] center body
-  - [ ] darkmode toggle
-  - [ ] adjust colors, font
+- [x] reset vote button visuals after revealing votes
+- [x] center body
+- [x] adjust colors, font
+- [ ] prevent space or special chars as name
+- [ ] darkmode toggle
