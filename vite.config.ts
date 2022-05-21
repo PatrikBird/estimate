@@ -52,4 +52,14 @@ export default defineConfig({
       strict: true,
     },
   },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    reporters: 'dot',
+    deps: {
+      inline: ['@vue', '@vueuse'],
+    },
+    // setupFiles: './vitestSetup.ts',
+  },
+
 });
