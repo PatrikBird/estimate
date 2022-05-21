@@ -8,7 +8,9 @@ const maxVote = computed(() => votes.value.reduce((max, v) => Math.max(max, +v.v
 
 const averageVote = computed(() => {
   if (votes.value.length === 0) return null
-  return (votes.value.reduce((acc, u) => acc + +u.vote!, 0) / votes.value.length).toFixed(1)
+  return (votes.value.reduce((acc, u) => acc + +u.vote!, 0) / votes.value.length).toFixed(
+    1
+  )
 })
 
 const availableVotes: string[] = inject('availableVotes')!
@@ -40,7 +42,8 @@ const sortedVoters = computed(() => {
     name="Average"
     :vote="averageVote"
     :bar-style-class="'progress-accent'"
-  >{{ averageVote }} &#x2192; {{ closestAvailableVote }}</progress-bar>
+    >{{ averageVote }} &#x2192; {{ closestAvailableVote }}</progress-bar
+  >
 
   <progress-bar
     v-for="{ id, username, vote } in sortedVoters"
@@ -48,7 +51,8 @@ const sortedVoters = computed(() => {
     :name="username"
     :vote="vote"
     :max-vote="maxVote"
-  >{{ vote }}</progress-bar>
+    >{{ vote }}</progress-bar
+  >
 </template>
 
 <style scoped>
