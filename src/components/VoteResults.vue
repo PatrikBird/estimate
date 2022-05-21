@@ -38,6 +38,7 @@ const sortedVoters = computed(() => {
 
 <template>
   <progress-bar
+    data-test="avg-progress-bar"
     class="my-8"
     name="Average"
     :vote="averageVote"
