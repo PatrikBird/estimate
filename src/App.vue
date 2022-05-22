@@ -1,8 +1,3 @@
-<script setup lang="ts">
-// import { useMainStore } from '~/store/main'
-// const mainStore = useMainStore()
-</script>
-
 <template>
   <router-view></router-view>
 </template>
@@ -15,6 +10,5 @@
   text-align: center;
   color: #000;
   padding-bottom: 5%;
-  /* background-color: #aaa; */
 }
 </style>
