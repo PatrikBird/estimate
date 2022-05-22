@@ -27,12 +27,15 @@ const closestAvailableVote = computed(() => {
 })
 
 const sortedVoters = computed(() => {
-  return [...props.voters].sort((a, b) => {
-    if (a.vote === null && b.vote === null) return 0
+  const voters = props.voters.slice()
+  voters.sort((a, b) => {
     if (a.vote === null) return -1
     if (b.vote === null) return 1
+    if (a.vote === '?') return 1
+    if (b.vote === '?') return -1
     return +a.vote! - +b.vote!
   })
+  return voters
 })
 </script>
 
