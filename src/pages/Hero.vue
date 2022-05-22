@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { useNameValidator } from '~/composables/nameValidator'
 import { useMainStore } from '~/store/main'
 
 const mainStore = useMainStore()
 const router = useRouter()
 
 const enteredName = ref('')
+const nameIsValid = useNameValidator(enteredName)
+
 const isTshirtMode = ref(false)
 const isObserver = ref(false)
 
@@ -29,15 +32,25 @@ async function handleSubmit() {
           <form @submit.prevent="handleSubmit">
             <div class="form-control">
               <label class="label">
-                <span class="label-text">Name</span>
+                <span
+                  class="label-text"
+                  :class="{ 'text-red-500': !nameIsValid && enteredName }"
+                  >Name</span
+                >
               </label>
               <input
                 v-model="enteredName"
                 type="text"
                 placeholder="Your name"
                 class="input input-bordered"
+                :class="{ 'border-red-500': !nameIsValid && enteredName }"
                 autofocus />
             </div>
+            <p
+              v-visible="!nameIsValid && enteredName"
+              class="label-text text-red-500 mt-2 text-left">
+              Input contains invalid characters or is too long!
+            </p>
             <div class="form-control">
               <label class="cursor-pointer label mt-2">
                 <span class="label-text">Voter</span>
@@ -58,7 +71,7 @@ async function handleSubmit() {
               </label>
             </div>
             <div class="form-control mt-6">
-              <button class="btn btn-primary" :disabled="enteredName == ''">
+              <button class="btn btn-primary" :disabled="!nameIsValid">
                 Start new Session
               </button>
             </div>
