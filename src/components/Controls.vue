@@ -37,6 +37,6 @@ watch(voteRevealed, () => {
   <div class="row">
     <button class="btn btn-secondary m-2" @click="handleResetVote">Reset</button>
     <button class="btn btn-primary m-2" @click="mainStore.revealVotes">Reveal</button>
-    <p v-visible="voteRevealed">Reset to begin a new vote</p>
+    <p v-visible="voteRevealed" class="font-bold">Reset to begin a new vote</p>
   </div>
 </template>

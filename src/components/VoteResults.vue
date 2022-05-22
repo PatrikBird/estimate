@@ -37,14 +37,10 @@ const sortedVoters = computed(() => {
 </script>
 
 <template>
-  <progress-bar
-    data-test="avg-progress-bar"
-    class="my-8"
-    name="Average"
-    :vote="averageVote"
-    :bar-style-class="'progress-accent'"
-    >{{ averageVote }} &#x2192; {{ closestAvailableVote }}</progress-bar
-  >
+  <div class="alert shadow-sm my-8 justify-center md:space-x-2">
+    <tabler:math-avg />
+    <p class="font-bold">{{ averageVote }} &#x2192; {{ closestAvailableVote }}</p>
+  </div>
 
   <progress-bar
     v-for="{ id, username, vote } in sortedVoters"

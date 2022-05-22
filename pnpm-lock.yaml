@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@antfu/eslint-config': ^0.15.0
   '@iconify-json/akar-icons': ^1.1.2
+  '@iconify-json/tabler': ^1.1.13
   '@tailwindcss/typography': ^0.5.2
   '@types/node': ^17.0.23
   '@vitejs/plugin-vue': ^2.3.1
@@ -43,6 +44,7 @@ dependencies:
 devDependencies:
   '@antfu/eslint-config': 0.15.0_utdtartgf6fqqgkivzeynh76la
   '@iconify-json/akar-icons': 1.1.5
+  '@iconify-json/tabler': 1.1.13
   '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.24
   '@types/node': 17.0.35
   '@vitejs/plugin-vue': 2.3.3_vite@2.9.9+vue@3.2.35
@@ -741,6 +743,12 @@ packages:
 
   /@iconify-json/akar-icons/1.1.5:
     resolution: {integrity: sha512-/lfL7G3HyWrpC+GKvVGtEg5mPCOYXcSdawql+43MfpCswPeTXgzUWCxfcKb+dWSMbo/9mPn12Y20PGtW1SBD4w==}
+    dependencies:
+      '@iconify/types': 1.1.0
+    dev: true
+
+  /@iconify-json/tabler/1.1.13:
+    resolution: {integrity: sha512-YcZmZrpOOYPGc1Y0ZSeUUSCwLbQvibLC7WsxHapOyjZAfB1hHJJc8IddnvQYsGCn5+0FAq6GM3ssyt4Yco16UQ==}
     dependencies:
       '@iconify/types': 1.1.0
     dev: true

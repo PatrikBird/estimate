@@ -15,6 +15,7 @@ declare module 'vue' {
     NavBar: typeof import('./components/NavBar.vue')['default']
     Overlay: typeof import('./components/Overlay.vue')['default']
     ProgressBar: typeof import('./components/ProgressBar.vue')['default']
+    'Tabler:mathAvg': typeof import('~icons/tabler/math-avg')['default']
     Tables: typeof import('./components/Tables.vue')['default']
     VoteResults: typeof import('./components/VoteResults.vue')['default']
   }
