@@ -16,6 +16,11 @@ describe('useNameValidator', () => {
     expect(validator.value).toBe(true)
   })
 
+  it('returns true when the name contains öäü', () => {
+    const validator = useNameValidator('öäüß 123')
+    expect(validator.value).toBe(true)
+  })
+
   it('returns true when the name contains a minus', () => {
     const validator = useNameValidator('some-name')
     expect(validator.value).toBe(true)
