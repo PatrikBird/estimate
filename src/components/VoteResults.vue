@@ -50,9 +50,7 @@ const sortedVoters = computed(() => {
     :key="id"
     :name="username"
     :vote="vote"
-    :max-vote="maxVote"
-    >{{ vote }}</progress-bar
-  >
+    :max-vote="maxVote" />
 </template>
 
 <style scoped>
