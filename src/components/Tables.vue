@@ -19,12 +19,8 @@ const voteRevealed = mainStore.getVoteState()
 
 <template>
   <div v-if="!voteRevealed">
-    <EstimateTable :users="voters">
-      <h1 class="my-4 prose lg:prose-xl">Voters</h1>
-    </EstimateTable>
-    <EstimateTable :users="observers">
-      <h1 class="my-4 prose lg:prose-xl">Observers</h1>
-    </EstimateTable>
+    <EstimateTable :users="voters">Voters</EstimateTable>
+    <EstimateTable :users="observers">Observers</EstimateTable>
   </div>
   <div v-else>
     <vote-results :voters="voters"></vote-results>

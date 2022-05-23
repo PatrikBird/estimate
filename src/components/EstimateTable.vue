@@ -9,7 +9,9 @@ const voteRevealed = mainStore.getVoteState()
 </script>
 
 <template>
-  <slot />
+  <h1 class="my-4 prose lg:prose-xl">
+    <slot />
+  </h1>
   <table class="table table-compact table-fixed w-full">
     <thead>
       <tr>
