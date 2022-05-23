@@ -19,7 +19,7 @@ const val = computed(() =>
           :value="val ?? 0"
           :max="props.maxVote"></progress>
         <label for="progress-bar" class="progress-label absolute text-center">
-          {{ props.vote }}
+          {{ props.vote === null ? 'not voted' : props.vote }}
         </label>
       </div>
     </div>
