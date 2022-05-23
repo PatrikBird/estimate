@@ -3,7 +3,9 @@ import type { User } from '~/types'
 
 const props = defineProps<{ voters: User[] }>()
 
-const votes = computed(() => props.voters.filter(u => u.vote !== null && u.vote !== '?'))
+const votes = computed(() =>
+  props.voters.filter(u => u.vote !== null && u.vote !== '?' && u.vote !== 'break')
+)
 const maxVote = computed(() => votes.value.reduce((max, v) => Math.max(max, +v.vote!), 0))
 
 const averageVote = computed(() => {
@@ -17,10 +19,10 @@ const availableVotes: string[] = inject('availableVotes')!
 const availableVotesNum = computed(() => availableVotes.map(v => +v))
 
 const closestAvailableVote = computed(() => {
-  const votes = availableVotesNum.value
+  const availableVotes = availableVotesNum.value
   const average = +averageVote.value!
   if (average === null) return null
-  const closest = votes.reduce((acc, v) =>
+  const closest = availableVotes.reduce((acc, v) =>
     Math.abs(v - average) < Math.abs(acc - average) ? v : acc
   )
   return closest.toString()
@@ -33,6 +35,8 @@ const sortedVoters = computed(() => {
     if (b.vote === null) return 1
     if (a.vote === '?') return 1
     if (b.vote === '?') return -1
+    if (a.vote === 'break') return 1
+    if (b.vote === 'break') return -1
     return +a.vote! - +b.vote!
   })
   return voters
@@ -40,17 +44,18 @@ const sortedVoters = computed(() => {
 </script>
 
 <template>
-  <div class="alert shadow-sm my-8 justify-center md:space-x-2">
-    <tabler:math-avg />
-    <p class="font-bold">{{ averageVote }} &#x2192; {{ closestAvailableVote }}</p>
+  <div>
+    <div class="alert shadow-sm my-8 justify-center md:space-x-2">
+      <tabler:math-avg />
+      <p class="font-bold">{{ averageVote }} &#x2192; {{ closestAvailableVote }}</p>
+    </div>
+    <progress-bar
+      v-for="{ id, username, vote } in sortedVoters"
+      :key="id"
+      :name="username"
+      :vote="vote"
+      :max-vote="maxVote" />
   </div>
-
-  <progress-bar
-    v-for="{ id, username, vote } in sortedVoters"
-    :key="id"
-    :name="username"
-    :vote="vote"
-    :max-vote="maxVote" />
 </template>
 
 <style scoped>

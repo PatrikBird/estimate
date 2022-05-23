@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const props = defineProps<{ name: string; vote: string | null; maxVote: number }>()
-const val = computed(() => (props.vote === '?' ? '100' : props.vote))
+const val = computed(() =>
+  props.vote === '?' || props.vote === 'break' ? '100' : props.vote
+)
 </script>
 
 <template>
@@ -13,7 +15,7 @@ const val = computed(() => (props.vote === '?' ? '100' : props.vote))
         <progress
           id="progress-bar"
           class="progress h-6 text-center align-sub progress-primary"
-          :class="{ 'progress-secondary': props.vote === '?' }"
+          :class="{ 'progress-secondary': props.vote === '?' || props.vote === 'break' }"
           :value="val ?? 0"
           :max="props.maxVote"></progress>
         <label for="progress-bar" class="progress-label absolute text-center">
