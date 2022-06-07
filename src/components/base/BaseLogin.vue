@@ -13,7 +13,7 @@ const emits = defineEmits<{
 </script>
 
 <template>
-  <div class="hero min-h-screen bg-base-200">
+  <div class="hero min-h-screen bg-base-200 prose max-w-none">
     <div class="flex-col justify-center hero-content">
       <div class="text-center">
         <h1 class="mb-5 text-5xl font-bold">
