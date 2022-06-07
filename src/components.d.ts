@@ -7,6 +7,8 @@ declare module 'vue' {
     'AkarIcons:circleCheck': typeof import('~icons/akar-icons/circle-check')['default']
     'AkarIcons:eyeOpen': typeof import('~icons/akar-icons/eye-open')['default']
     'AkarIcons:githubFill': typeof import('~icons/akar-icons/github-fill')['default']
+    'AkarIcons:moon': typeof import('~icons/akar-icons/moon')['default']
+    'AkarIcons:sun': typeof import('~icons/akar-icons/sun')['default']
     'AkarIcons:triangleAlert': typeof import('~icons/akar-icons/triangle-alert')['default']
     AverageValue: typeof import('./components/AverageValue.vue')['default']
     BaseLogin: typeof import('./components/base/BaseLogin.vue')['default']

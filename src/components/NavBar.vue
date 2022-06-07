@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { toggleDark, isDark } from '~/composables/dark'
 import { useMainStore } from '~/store/main'
 const mainStore = useMainStore()
 
@@ -8,7 +9,7 @@ const btnText = computed(() => (mainStore.user.isObserver ? 'Observer' : 'Voter'
 <template>
   <div class="navbar mb-2 shadow-lg bg-neutral text-neutral-content">
     <div class="px-2 mx-2 navbar-start">
-      <span class="text-lg font-bold">Estimate - in development</span>
+      <span class="text-lg font-bold">Estimate</span>
       <a class="mx-5" href="https://github.com/PatrikBird/estimate" target="_blank"
         ><akar-icons:github-fill
       /></a>
@@ -19,6 +20,14 @@ const btnText = computed(() => (mainStore.user.isObserver ? 'Observer' : 'Voter'
       </button>
     </div>
     <div class="navbar-end mr-5">
+      <button title="Toggle theme" class="mx-5" @click="toggleDark()">
+        <span v-if="isDark">
+          <akar-icons:moon />
+        </span>
+        <span v-else>
+          <akar-icons:sun />
+        </span>
+      </button>
       <button class="btn btn-info btn-outline ml-5" @click="mainStore.toggleObserver">
         {{ btnText }}
       </button>

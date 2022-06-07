@@ -12,7 +12,7 @@ const voteRevealed = mainStore.getVoteState()
   <h1 class="my-4 prose lg:prose-xl">
     <slot />
   </h1>
-  <table class="table table-compact table-fixed w-full">
+  <table class="table table-compact table-fixed w-full prose">
     <thead>
       <tr>
         <th>Name</th>

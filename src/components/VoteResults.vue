@@ -27,7 +27,7 @@ const sortedVoters = computed(() => {
 </script>
 
 <template>
-  <div>
+  <div class="prose">
     <average-value :voters="validVoters" />
     <progress-bar
       v-for="{ id, username, vote } in sortedVoters"
