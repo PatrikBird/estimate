@@ -28,10 +28,10 @@ jobs:
       - name: Build
         run: pnpm build
       # deploy site to netlify using secrets created on repository
-      - uses: netlify/actions/cli@master
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        with:
-          args: deploy --dir=dist --prod
-          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
+      # - uses: netlify/actions/cli@master
+      #   env:
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      #   with:
+      #     args: deploy --dir=dist --prod
+      #     secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
