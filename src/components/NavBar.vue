@@ -28,7 +28,7 @@ const btnText = computed(() => (mainStore.user.isObserver ? 'Observer' : 'Voter'
           <akar-icons:sun />
         </span>
       </button>
-      <button class="btn btn-info btn-outline ml-5" @click="mainStore.toggleObserver">
+      <button data-test="toggleObserverBtn" class="btn btn-info btn-outline ml-5" @click="mainStore.toggleObserver">
         {{ btnText }}
       </button>
       <button
