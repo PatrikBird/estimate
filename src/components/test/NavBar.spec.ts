@@ -38,18 +38,27 @@ describe('NavBar.vue', () => {
     expect(btn.text()).toBe('Voter')
   })
 
-    // WHEN
-    const { wrapper, store } = factory()
-    store.user = store.user = {
-      id: '123456789',
-      username: 'peter lustig',
-      vote: null,
-      isObserver: false,
-    }
+  it('user can change state to observer or voter by clicking a button', async () => {
+    // GIVEN
+    const { wrapper, store } = factory({
+      stubActions: false,
+      initialState: {
+        user: {
+          id: '123456789',
+          username: 'peter lustig',
+          vote: null,
+          isObserver: false,
+        },
+      },
+    })
     const btn = wrapper.find('[data-test="toggleObserverBtn"]')
+
+    // WHEN
+    await btn.trigger('click')
 
     // THEN
     expect(wrapper.find('[data-test="toggleObserverBtn"]')).toBeTruthy()
-    expect(btn.text()).toBe('Voter')
+    expect(store.user.isObserver).toBe(true)
+    expect(btn.text()).toBe('Observer')
   })
 })
