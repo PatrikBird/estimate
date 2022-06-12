@@ -16,7 +16,7 @@ import { useRoute } from 'vue-router'
 import { db } from '~/firebase/config'
 import type { User } from '~/types'
 import { mapDocumentToUser, mapDocumentToVoteState } from '~/types'
-import router from '~/router'
+import { router } from '~/router'
 
 export const useMainStore = defineStore('main', () => {
   /**
@@ -239,7 +239,7 @@ export const useMainStore = defineStore('main', () => {
     resetVotes,
     getVoteState,
     createNewSession,
-    deleteAllUsersFromSession
+    deleteAllUsersFromSession,
   }
 })
 
