@@ -17,6 +17,8 @@ const firebaseConfig = {
 initializeApp(firebaseConfig)
 const db = getFirestore()
 
-connectFirestoreEmulator(db, 'localhost', 8080)
+if (window.location.hostname.includes('localhost')) {
+  connectFirestoreEmulator(db, 'localhost', 8080)
+}
 
 export { db }
