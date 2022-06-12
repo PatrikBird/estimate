@@ -1,15 +1,15 @@
-import path from "path";
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import Icons from "unplugin-icons/vite";
-import IconsResolver from "unplugin-icons/resolver";
-import AutoImport from "unplugin-auto-import/vite";
-import Components from "unplugin-vue-components/vite";
+import { resolve } from 'path'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
 
 export default defineConfig({
   resolve: {
     alias: {
-      "~/": `${path.resolve(__dirname, "src")}/`,
+      '~/': `${resolve(__dirname, 'src')}/`,
     },
   },
   plugins: [
@@ -17,18 +17,18 @@ export default defineConfig({
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: [
-        "vue",
-        "vue-router",
-        "vue-i18n",
-        "@vueuse/head",
-        "@vueuse/core",
-        "vitest",
+        'vue',
+        'vue-router',
+        'vue-i18n',
+        '@vueuse/head',
+        '@vueuse/core',
+        'vitest',
       ],
-      dts: "src/auto-imports.d.ts",
+      dts: 'src/auto-imports.d.ts',
     }),
     // https://github.com/antfu/unplugin-vue-components
     Components({
-      extensions: ["vue"],
+      extensions: ['vue'],
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/],
       // custom resolvers
@@ -36,11 +36,11 @@ export default defineConfig({
         // auto import icons
         // https://github.com/antfu/unplugin-icons
         IconsResolver({
-          componentPrefix: "",
+          componentPrefix: '',
           // enabledCollections: ['carbon']
         }),
       ],
-      dts: "src/components.d.ts",
+      dts: 'src/components.d.ts',
     }),
     // https://github.com/antfu/unplugin-icons
     Icons({
@@ -59,7 +59,6 @@ export default defineConfig({
     deps: {
       inline: ['@vue', '@vueuse'],
     },
-    // setupFiles: './vitestSetup.ts',
+    setupFiles: [resolve(__dirname, 'test/setup.ts')],
   },
-
-});
+})
