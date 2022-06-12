@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --open",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint \"**/*.{vue,ts,js}\"",
     "typecheck": "vue-tsc --noEmit",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:cov": "vitest run --coverage"
+    "test:run": "vitest run"
   },
   "dependencies": {
     "@vueuse/core": "^7.7.1",

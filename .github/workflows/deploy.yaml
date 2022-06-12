@@ -21,7 +21,12 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      # - run: npm ci # install dependencies
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Unit tests
+        run: pnpm test:run
+      - name: Build
+        run: pnpm build
       # - run: npm run build --if-present # build the project
       # - run: npm run test:unit # run the tests
       # deploy site to netlify using secrets created on repository
