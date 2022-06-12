@@ -40,7 +40,7 @@ const emits = defineEmits<{
                 :class="{ 'border-red-500': invalidInput }"
                 autofocus />
             </div>
-            <p v-visible="invalidInput" class="label-text text-red-500 mt-2 text-left">
+            <p v-visible="invalidInput" class="label-text text-red-500 mt-2 mb-0 text-left">
               Input contains invalid characters or is too long!
             </p>
             <div class="form-control">
