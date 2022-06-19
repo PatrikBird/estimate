@@ -1,0 +1,15 @@
+#!/opt/homebrew/bin/zsh
+
+myArray=(1649444749491
+1649835383582
+1649835524629
+1649836532651
+1649837325383
+1649838686095
+1649866861749
+1650393189830)
+
+for str in ${myArray[@]}; do
+  echo $str
+  firebase firestore:delete -r -f $str
+done
