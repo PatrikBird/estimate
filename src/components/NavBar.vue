@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { toggleDark, isDark } from '~/composables/dark'
+import { isDark, toggleDark } from '~/composables/dark'
 import { useMainStore } from '~/store/main'
 const mainStore = useMainStore()
 
