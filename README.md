@@ -1,7 +1,23 @@
 # Estimate
 Story estimation made simple.
 
-powered by: 
+## How to setup development environment
+### Prerequisites
+- [firebase-cli >=11.1](https://firebase.google.com/docs/cli) 
+- [node >=18.4](https://nodejs.org/en/)
+- [pnpm >= 7.3](https://pnpm.io/installation)
+
+Start local backend emulation with:
+```
+firebase emulators:start
+```
+Install and start Vue App:
+```
+pnpm install
+pnpm dev
+```
+Done. A browser window will open automatically. See scripts in [package.json](package.json) for further commands.
+### Estimate is powered by: 
 - [Vue](https://vuejs.org/)
 - [Vite](https://vitejs.dev/)
 - [Pinia](https://pinia.vuejs.org/)
