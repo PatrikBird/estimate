@@ -8,6 +8,7 @@ import {
   getDoc,
   getDocs,
   onSnapshot,
+  serverTimestamp,
   setDoc,
   updateDoc,
 } from 'firebase/firestore'
@@ -123,6 +124,7 @@ export const useMainStore = defineStore('main', () => {
   function revealVotes() {
     updateDoc(voteDocRef.value, {
       isRevealed: true,
+      lastVoteRevealedOn: serverTimestamp(),
     })
   }
   /**
@@ -132,6 +134,7 @@ export const useMainStore = defineStore('main', () => {
   async function resetVotes() {
     updateDoc(voteDocRef.value, {
       isRevealed: false,
+      lastVoteResetOn: serverTimestamp(),
     })
 
     const querySnapshot = await getDocs(collection(db, collectionId.value))
