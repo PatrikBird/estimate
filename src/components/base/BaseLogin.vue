@@ -3,6 +3,7 @@ import { useNameValidator } from '~/composables/nameValidator'
 
 const isObserver = ref(false)
 
+// TODO: restore name from localStorage using useLocalStorage()
 const enteredName = ref('')
 const nameIsValid = useNameValidator(enteredName)
 const invalidInput = computed(() => !nameIsValid.value && enteredName.value)
