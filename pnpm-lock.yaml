@@ -20,6 +20,7 @@ specifiers:
   firebase: ^9.9.1
   jsdom: ^19.0.0
   pinia: ^2.0.16
+  pnpm: ^7.6.0
   postcss: ^8.4.14
   prettier: ^2.7.1
   tailwindcss: ^3.1.6
@@ -57,6 +58,7 @@ devDependencies:
   eslint: 8.20.0
   eslint-config-prettier: 8.5.0_eslint@8.20.0
   jsdom: 19.0.0
+  pnpm: 7.6.0
   postcss: 8.4.14
   prettier: 2.7.1
   tailwindcss: 3.1.6
@@ -3679,6 +3681,12 @@ packages:
   /pluralize/8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
+    dev: true
+
+  /pnpm/7.6.0:
+    resolution: {integrity: sha512-pCFZ4OSM3M7JUHShnmk4Hlt9A8QDxLx+i+9kkK4g60YuYhhhD3oqBfWrHax0/XMDvr7GwK0fqFjA8iD8HlZ8Kw==}
+    engines: {node: '>=14.6'}
+    hasBin: true
     dev: true
 
   /postcss-import/14.1.0_postcss@8.4.14:
