@@ -1,5 +1,13 @@
 {
-  "yaml.schemas": {
-    "https://json.schemastore.org/github-workflow.json": "file:///home/pvogel/repos/github/estimate/.github/workflows/deploy.yaml"
-  }
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "files.associations": {
+    "*.css": "postcss"
+  },
+  "editor.formatOnSave": false,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.formatOnPaste": true,
+  "emmet.excludeLanguages": [],
+  "eslint.format.enable": true
 }
