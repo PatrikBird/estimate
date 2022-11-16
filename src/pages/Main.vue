@@ -4,8 +4,9 @@ import { useMainStore } from '~/store/main'
 const mainStore = useMainStore()
 
 const showOverlay = computed(() => {
-  if (!mainStore.user.id || !mainStore.user.username) return true
-  if (!mainStore.isUserInDB()) return true
+  if (!mainStore.user.id || !mainStore.user.username) {
+    return true
+  }
   return false
 })
 

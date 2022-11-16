@@ -2,16 +2,15 @@
 import { useNameValidator } from '~/composables/nameValidator'
 import { useMainStore } from '~/store/main';
 
+const emits = defineEmits<{
+  (e: 'onFormSubmit', enteredName: string, isObserver: boolean): void
+}>()
 const mainStore = useMainStore()
 const isObserver = toRef(mainStore.user, 'isObserver')
 const enteredName = toRef(mainStore.user, 'username')
 
 const nameIsValid = useNameValidator(enteredName)
 const invalidInput = computed(() => !nameIsValid.value && enteredName.value)
-
-const emits = defineEmits<{
-  (e: 'onFormSubmit', enteredName: string, isObserver: boolean): void
-}>()
 </script>
 
 <template>

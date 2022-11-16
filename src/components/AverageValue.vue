@@ -10,7 +10,10 @@ const votes = computed(() =>
 )
 
 const averageVote = computed(() => {
-  if (votes.value.length === 0) return null
+  if (votes.value.length === 0) {
+  return null
+}
+    
   return (votes.value.reduce((sum, v) => sum + v, 0) / votes.value.length).toFixed(1)
 })
 
@@ -20,7 +23,9 @@ const availableVotesNum = computed(() => availableVotes.map(v => +v))
 const closestAvailableVote = computed(() => {
   const availableVotes = availableVotesNum.value
   const average = +averageVote.value!
-  if (average === null) return null
+  if (average === null) {
+    return null
+  }
   const closest = availableVotes.reduce((acc, v) =>
     Math.abs(v - average) < Math.abs(acc - average) ? v : acc
   )

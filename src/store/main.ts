@@ -147,7 +147,9 @@ export const useMainStore = defineStore('main', () => {
 
     const querySnapshot = await getDocs(collection(db, collectionId.value))
     querySnapshot.forEach(userDoc => {
-      if (userDoc.id === 'voteState') return
+      if (userDoc.id === 'voteState') {
+        return
+      }
       const docRef = doc(db, collectionId.value, userDoc.id)
       updateDoc(docRef, { vote: null })
     })
@@ -163,7 +165,9 @@ export const useMainStore = defineStore('main', () => {
 
     const querySnapshot = await getDocs(collection(db, collectionId.value))
     querySnapshot.forEach(userDoc => {
-      if (userDoc.id === 'voteState') return
+      if (userDoc.id === 'voteState') {
+        return
+      }
       const docRef = doc(db, collectionId.value, userDoc.id)
       deleteDoc(docRef)
     })

@@ -1,3 +1,4 @@
+<!-- eslint-disable antfu/if-newline -->
 <script setup lang="ts">
 import type { User } from '~/types'
 
