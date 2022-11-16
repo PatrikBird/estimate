@@ -5,6 +5,7 @@ import { useMainStore } from '~/store/main'
 const mainStore = useMainStore()
 const router = useRouter()
 
+// The following code is not ready yet
 // const isCustomVote = ref(false)
 
 async function onFormSubmit(enteredName: string, isObserver: boolean) {
@@ -19,7 +20,8 @@ async function onFormSubmit(enteredName: string, isObserver: boolean) {
   <BaseLogin @on-form-submit="onFormSubmit">
     <template #headline>Story Estimation</template>
     <template #subheadline>Start a new session and share the link with others.</template>
-    <!-- <template #options>
+    <!-- The following code is not ready yet
+      <template #options>
       <label class="cursor-pointer label mt-2">
         <span class="label-text">Numbers</span>
         <input v-model="isCustomVote" type="checkbox" class="toggle toggle-primary" />
