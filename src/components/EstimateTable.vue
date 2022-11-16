@@ -21,7 +21,7 @@ const voteRevealed = mainStore.getVoteState()
     </thead>
     <tbody>
       <tr v-for="{ id, username, vote, isObserver } in props.users" :key="id">
-        <th v-if="username == mainStore.user.username" class="text-info">
+        <th v-if="id === mainStore.user.id" class="text-info">
           {{ username }}
         </th>
         <th v-else>{{ username }}</th>
