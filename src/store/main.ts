@@ -39,13 +39,17 @@ export const useMainStore = defineStore('main', () => {
   const userDocRef = ref()
   const voteDocRef = ref()
 
+  // func is dirty and gets called twice on refresh but also mutates the state!
   async function isUserInDB() {
     const docSnap = await getDoc(doc(db, collectionId.value, user.id))
     if (docSnap.exists()) {
+      console.log(docSnap.exists())
       userDocRef.value = doc(db, collectionId.value, user.id)
       voteDocRef.value = doc(db, collectionId.value, 'voteState') // TODO: dirty test
+      console.log('User IS in DB')
       return true
     } else {
+      console.log('User is NOT in DB')
       return false
     }
   }
