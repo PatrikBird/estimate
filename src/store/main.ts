@@ -84,6 +84,7 @@ export const useMainStore = defineStore('main', () => {
       { immediate: true }
     )
   }
+
   /**
    * Adds the user to the collection
    *
@@ -106,6 +107,7 @@ export const useMainStore = defineStore('main', () => {
       vote: user.vote,
     })
   }
+
   /**
    * Toggle user to observer/voter
    *
@@ -117,6 +119,7 @@ export const useMainStore = defineStore('main', () => {
       vote: null,
     })
   }
+
   /**
    * Reveals the votes of all voters
    *
@@ -127,6 +130,7 @@ export const useMainStore = defineStore('main', () => {
       lastVoteRevealedOn: serverTimestamp(),
     })
   }
+
   /**
    * Resets the votes of all voters
    * TODO: reset visuals if function was executed!
