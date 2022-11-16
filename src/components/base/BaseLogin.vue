@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { useNameValidator } from '~/composables/nameValidator'
+import { useMainStore } from '~/store/main';
 
-const isObserver = ref(false)
+const mainStore = useMainStore()
+const isObserver = toRef(mainStore.user, 'isObserver')
+const enteredName = toRef(mainStore.user, 'username')
 
-// TODO: restore name from localStorage using useLocalStorage()
-const enteredName = ref('')
 const nameIsValid = useNameValidator(enteredName)
 const invalidInput = computed(() => !nameIsValid.value && enteredName.value)
 

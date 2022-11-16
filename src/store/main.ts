@@ -27,7 +27,7 @@ export const useMainStore = defineStore('main', () => {
     id: useLocalStorage('id', ''),
     username: useLocalStorage('username', ''),
     vote: null,
-    isObserver: false,
+    isObserver: useLocalStorage('isObserver', Boolean),
   })
 
   const route = useRoute()
@@ -232,6 +232,7 @@ export const useMainStore = defineStore('main', () => {
     watch(documents, () => {}, { deep: true })
     return documents
   }
+
   return {
     isUserInDB,
     collectionId,
