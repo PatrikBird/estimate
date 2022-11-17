@@ -26,38 +26,49 @@ export const useMainStore = defineStore('main', () => {
   const user: User = reactive({
     id: useLocalStorage('id', ''),
     username: useLocalStorage('username', ''),
-    vote: null,
+    vote: useLocalStorage('vote', null),
     isObserver: useLocalStorage('isObserver', Boolean),
   })
 
+  console.log('greetings from the store!')
+  console.log(`current user has the id in localStore: ${user.id}`)
+
   const route = useRoute()
-
   const collectionId = ref(route.params.collectionId as string)
-
-  const userRef = ref()
 
   const userDocRef = ref()
   const voteDocRef = ref()
 
-  // func is dirty and gets called twice on refresh but also mutates the state!
-  async function isUserInDB() {
+  const isUserDa = computed(async () => {
     const docSnap = await getDoc(doc(db, collectionId.value, user.id))
-    if (docSnap.exists()) {
-      console.log(docSnap.exists())
-      userDocRef.value = doc(db, collectionId.value, user.id)
-      voteDocRef.value = doc(db, collectionId.value, 'voteState') // TODO: dirty test
-      console.log('User IS in DB')
-      return true
-    } else {
-      console.log('User is NOT in DB')
-      return false
-    }
-  }
+    return docSnap.exists()
+  })
 
   const collectionRef = ref()
+  const userId = toRef(user, 'id')
   if (collectionId.value) {
-    collectionRef.value = collection(db, collectionId.value)
-    isUserInDB()
+    console.log(`collectionId is set: ${collectionId.value}`)
+    watch(
+      collectionId,
+      async (newCollectionId) => {
+        if (newCollectionId) {
+          console.log(`collectionId changed: ${newCollectionId}`)
+          collectionRef.value = collection(db, newCollectionId)
+        }
+      },
+      { immediate: true },
+    )
+    watch(
+      userId,
+      async (newUserId) => {
+        console.log(`user.id changed: ${newUserId}`)
+        if (newUserId) {
+          userDocRef.value = doc(db, collectionId.value, newUserId)
+          voteDocRef.value = doc(db, collectionId.value, 'voteState')
+        }
+      },
+      { immediate: true },
+    )
   }
 
   /**
@@ -75,18 +86,6 @@ export const useMainStore = defineStore('main', () => {
 
     await addUserToDb()
     userDocRef.value = doc(db, collectionId.value, user.id)
-
-    createWatcher()
-  }
-
-  function createWatcher() {
-    watch(
-      collectionId,
-      async newCollectionId => {
-        collectionRef.value = collection(db, newCollectionId)
-      },
-      { immediate: true }
-    )
   }
 
   /**
@@ -94,12 +93,13 @@ export const useMainStore = defineStore('main', () => {
    *
    */
   async function addUserToDb() {
-    userRef.value = await addDoc(collectionRef.value, {
+    console.log('addUserToDb')
+    const userRef = await addDoc(collectionRef.value, {
       username: user.username,
       vote: null,
       isObserver: user.isObserver,
     })
-    user.id = userRef.value.id
+    user.id = userRef.id
   }
 
   /**
@@ -146,10 +146,10 @@ export const useMainStore = defineStore('main', () => {
     })
 
     const querySnapshot = await getDocs(collection(db, collectionId.value))
-    querySnapshot.forEach(userDoc => {
-      if (userDoc.id === 'voteState') {
+    querySnapshot.forEach((userDoc) => {
+      if (userDoc.id === 'voteState')
         return
-      }
+
       const docRef = doc(db, collectionId.value, userDoc.id)
       updateDoc(docRef, { vote: null })
     })
@@ -164,10 +164,10 @@ export const useMainStore = defineStore('main', () => {
     })
 
     const querySnapshot = await getDocs(collection(db, collectionId.value))
-    querySnapshot.forEach(userDoc => {
-      if (userDoc.id === 'voteState') {
+    querySnapshot.forEach((userDoc) => {
+      if (userDoc.id === 'voteState')
         return
-      }
+
       const docRef = doc(db, collectionId.value, userDoc.id)
       deleteDoc(docRef)
     })
@@ -181,7 +181,7 @@ export const useMainStore = defineStore('main', () => {
     const isVoteRevealed = ref(false)
 
     const docRef = doc(db, collectionId.value, 'voteState')
-    const unsub = onSnapshot(docRef, snapshot => {
+    const unsub = onSnapshot(docRef, (snapshot) => {
       const result: DocumentData | undefined = snapshot.data()
       if (result === undefined) {
         // TODO: forward to home and show error
@@ -193,7 +193,7 @@ export const useMainStore = defineStore('main', () => {
       isVoteRevealed.value = mapDocumentToVoteState(result).isRevealed
     })
 
-    watchEffect(onInvalidate => {
+    watchEffect((onInvalidate) => {
       onInvalidate(() => unsub())
     })
 
@@ -221,19 +221,18 @@ export const useMainStore = defineStore('main', () => {
       (snapshot: { docs: any[] }) => {
         const results: DocumentData[] = []
 
-        snapshot.docs.forEach(doc => {
-          if (doc.id !== 'voteState') {
+        snapshot.docs.forEach((doc) => {
+          if (doc.id !== 'voteState')
             results.push({ ...doc.data(), id: doc.id })
-          }
         })
 
         // update values
         documents.value = mapDocumentToUser(results)
         user.id = documents.value.find(doc => doc.username === user.username)?.id || ''
-      }
+      },
     )
 
-    watchEffect(onInvalidate => {
+    watchEffect((onInvalidate) => {
       onInvalidate(() => unsub())
     })
 
@@ -242,7 +241,7 @@ export const useMainStore = defineStore('main', () => {
   }
 
   return {
-    isUserInDB,
+    isUserDa,
     collectionId,
     collectionRef,
     user,
