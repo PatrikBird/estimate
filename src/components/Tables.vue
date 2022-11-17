@@ -19,10 +19,14 @@ const voteRevealed = mainStore.getVoteState()
 
 <template>
   <div v-if="!voteRevealed">
-    <EstimateTable :users="voters">Voters</EstimateTable>
-    <EstimateTable :users="observers">Observers</EstimateTable>
+    <EstimateTable :users="voters">
+      Voters
+    </EstimateTable>
+    <EstimateTable :users="observers">
+      Observers
+    </EstimateTable>
   </div>
   <div v-else>
-    <vote-results :voters="voters"></vote-results>
+    <vote-results :voters="voters" />
   </div>
 </template>

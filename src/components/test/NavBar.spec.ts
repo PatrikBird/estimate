@@ -1,5 +1,5 @@
 import { createMemoryHistory, createRouter } from 'vue-router'
-import type { TestingOptions } from '@pinia/testing';
+import type { TestingOptions } from '@pinia/testing'
 import { createTestingPinia } from '@pinia/testing'
 import { shallowMount } from '@vue/test-utils'
 import NavBar from '../NavBar.vue'

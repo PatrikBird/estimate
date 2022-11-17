@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useNameValidator } from '~/composables/nameValidator'
-import { useMainStore } from '~/store/main';
+import { useMainStore } from '~/store/main'
 
 const emits = defineEmits<{
   (e: 'onFormSubmit', enteredName: string, isObserver: boolean): void
@@ -29,9 +29,7 @@ const invalidInput = computed(() => !nameIsValid.value && enteredName.value)
           <form @submit.prevent="emits('onFormSubmit', enteredName, isObserver)">
             <div class="form-control">
               <label class="label">
-                <span class="label-text" :class="{ 'text-red-500': invalidInput }"
-                  >Name</span
-                >
+                <span class="label-text" :class="{ 'text-red-500': invalidInput }">Name</span>
               </label>
               <input
                 v-model="enteredName"
@@ -39,7 +37,8 @@ const invalidInput = computed(() => !nameIsValid.value && enteredName.value)
                 placeholder="Your name"
                 class="input input-bordered"
                 :class="{ 'border-red-500': invalidInput }"
-                autofocus />
+                autofocus
+              >
             </div>
             <p v-visible="invalidInput" class="label-text text-red-500 mt-2 mb-0 text-left">
               Input contains invalid characters or is too long!
@@ -50,7 +49,8 @@ const invalidInput = computed(() => !nameIsValid.value && enteredName.value)
                 <input
                   v-model="isObserver"
                   type="checkbox"
-                  class="toggle toggle-primary" />
+                  class="toggle toggle-primary"
+                >
                 <span class="label-text">Observer</span>
               </label>
               <slot name="options" />

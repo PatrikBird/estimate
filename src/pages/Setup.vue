@@ -18,8 +18,12 @@ async function onFormSubmit(enteredName: string, isObserver: boolean) {
 
 <template>
   <BaseLogin @on-form-submit="onFormSubmit">
-    <template #headline>Story Estimation</template>
-    <template #subheadline>Start a new session and share the link with others.</template>
+    <template #headline>
+      Story Estimation
+    </template>
+    <template #subheadline>
+      Start a new session and share the link with others.
+    </template>
     <!-- The following code is not ready yet
       <template #options>
       <label class="cursor-pointer label mt-2">
@@ -28,6 +32,8 @@ async function onFormSubmit(enteredName: string, isObserver: boolean) {
         <span class="label-text">Shirt sizes</span>
       </label>
     </template> -->
-    <template #submitButtonText>Start new Session</template>
+    <template #submitButtonText>
+      Start new Session
+    </template>
   </BaseLogin>
 </template>

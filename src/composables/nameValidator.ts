@@ -1,4 +1,4 @@
-import type { Ref } from 'vue';
+import type { Ref } from 'vue'
 import { computed } from 'vue'
 
 export function useNameValidator(enteredName: Ref<string> | string) {

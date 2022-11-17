@@ -12,8 +12,14 @@ async function onFormSubmit(enteredName: string, isObserver: boolean) {
 
 <template>
   <BaseLogin @on-form-submit="onFormSubmit">
-    <template #headline>Join a Session</template>
-    <template #subheadline>Insert your name to continue.</template>
-    <template #submitButtonText>Join Session</template>
+    <template #headline>
+      Join a Session
+    </template>
+    <template #subheadline>
+      Insert your name to continue.
+    </template>
+    <template #submitButtonText>
+      Join Session
+    </template>
   </BaseLogin>
 </template>

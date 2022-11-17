@@ -8,7 +8,7 @@ interface User {
 }
 
 function mapDocumentToUser(arr: DocumentData[]): User[] {
-  return arr.map(doc => {
+  return arr.map((doc) => {
     return {
       id: doc.id,
       username: doc.username,

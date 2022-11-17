@@ -31,12 +31,19 @@ watch(voteRevealed, () => {
     class="btn m-1 px-3"
     :class="{ 'btn-primary': idx === activeItem }"
     :disabled="voteRevealed || mainStore.user.isObserver"
-    @click="handleChosenVote(idx, vote)">
+    @click="handleChosenVote(idx, vote)"
+  >
     {{ vote }}
   </button>
   <div class="row">
-    <button class="btn btn-secondary m-2" @click="handleResetVote">Reset</button>
-    <button class="btn btn-primary m-2" @click="mainStore.revealVotes">Reveal</button>
-    <p v-visible="voteRevealed" class="font-bold prose">Reset to begin a new vote</p>
+    <button class="btn btn-secondary m-2" @click="handleResetVote">
+      Reset
+    </button>
+    <button class="btn btn-primary m-2" @click="mainStore.revealVotes">
+      Reveal
+    </button>
+    <p v-visible="voteRevealed" class="font-bold prose">
+      Reset to begin a new vote
+    </p>
   </div>
 </template>

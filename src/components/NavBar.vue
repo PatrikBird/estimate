@@ -10,12 +10,11 @@ const btnText = computed(() => (mainStore.user.isObserver ? 'Observer' : 'Voter'
   <div class="navbar mb-2 shadow-lg bg-neutral text-neutral-content">
     <div class="px-2 mx-2 navbar-start">
       <span class="text-lg font-bold">Estimate</span>
-      <a class="mx-5" href="https://github.com/PatrikBird/estimate" target="_blank"
-        ><akar-icons:github-fill
-      /></a>
+      <a class="mx-5" href="https://github.com/PatrikBird/estimate" target="_blank"><akar-icons:github-fill /></a>
       <button
         class="btn btn-secondary btn-outline ml-5"
-        @click="mainStore.deleteAllUsersFromSession">
+        @click="mainStore.deleteAllUsersFromSession"
+      >
         Kick all
       </button>
     </div>
@@ -31,12 +30,14 @@ const btnText = computed(() => (mainStore.user.isObserver ? 'Observer' : 'Voter'
       <button
         data-test="toggleObserverBtn"
         class="btn btn-info btn-outline ml-5"
-        @click="mainStore.toggleObserver">
+        @click="mainStore.toggleObserver"
+      >
         {{ btnText }}
       </button>
       <button
         class="btn btn-primary btn-outline ml-5"
-        @click="mainStore.deleteUserFromDb">
+        @click="mainStore.deleteUserFromDb"
+      >
         Logout
       </button>
     </div>
