@@ -11,6 +11,11 @@ const enteredName = toRef(mainStore.user, 'username')
 
 const nameIsValid = useNameValidator(enteredName)
 const invalidInput = computed(() => !nameIsValid.value && enteredName.value)
+
+const isLoading = ref(false)
+function setIsLoadingTrue() {
+  isLoading.value = true
+}
 </script>
 
 <template>
@@ -56,7 +61,12 @@ const invalidInput = computed(() => !nameIsValid.value && enteredName.value)
               <slot name="options" />
             </div>
             <div class="form-control mt-6">
-              <button class="btn btn-primary" :disabled="!nameIsValid">
+              <button
+                class="btn btn-primary"
+                :class="{ loading: isLoading, disabled: isLoading }"
+                :disabled="!nameIsValid"
+                @click="setIsLoadingTrue"
+              >
                 <slot name="submitButtonText" />
               </button>
             </div>
