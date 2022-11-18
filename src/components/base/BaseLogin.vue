@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import { useNameValidator } from '~/composables/nameValidator'
-
-const isObserver = ref(false)
-
-// TODO: restore name from localStorage using useLocalStorage()
-const enteredName = ref('')
-const nameIsValid = useNameValidator(enteredName)
-const invalidInput = computed(() => !nameIsValid.value && enteredName.value)
+import { useMainStore } from '~/store/main'
 
 const emits = defineEmits<{
   (e: 'onFormSubmit', enteredName: string, isObserver: boolean): void
 }>()
+const mainStore = useMainStore()
+const isObserver = toRef(mainStore.user, 'isObserver')
+const enteredName = toRef(mainStore.user, 'username')
+
+const nameIsValid = useNameValidator(enteredName)
+const invalidInput = computed(() => !nameIsValid.value && enteredName.value)
+
+const isLoading = ref(false)
+function setIsLoadingTrue() {
+  isLoading.value = true
+}
 </script>
 
 <template>
@@ -29,9 +34,7 @@ const emits = defineEmits<{
           <form @submit.prevent="emits('onFormSubmit', enteredName, isObserver)">
             <div class="form-control">
               <label class="label">
-                <span class="label-text" :class="{ 'text-red-500': invalidInput }"
-                  >Name</span
-                >
+                <span class="label-text" :class="{ 'text-red-500': invalidInput }">Name</span>
               </label>
               <input
                 v-model="enteredName"
@@ -39,7 +42,8 @@ const emits = defineEmits<{
                 placeholder="Your name"
                 class="input input-bordered"
                 :class="{ 'border-red-500': invalidInput }"
-                autofocus />
+                autofocus
+              >
             </div>
             <p v-visible="invalidInput" class="label-text text-red-500 mt-2 mb-0 text-left">
               Input contains invalid characters or is too long!
@@ -50,13 +54,19 @@ const emits = defineEmits<{
                 <input
                   v-model="isObserver"
                   type="checkbox"
-                  class="toggle toggle-primary" />
+                  class="toggle toggle-primary"
+                >
                 <span class="label-text">Observer</span>
               </label>
               <slot name="options" />
             </div>
             <div class="form-control mt-6">
-              <button class="btn btn-primary" :disabled="!nameIsValid">
+              <button
+                class="btn btn-primary"
+                :class="{ loading: isLoading, disabled: isLoading }"
+                :disabled="!nameIsValid"
+                @click="setIsLoadingTrue"
+              >
                 <slot name="submitButtonText" />
               </button>
             </div>

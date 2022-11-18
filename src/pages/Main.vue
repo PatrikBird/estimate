@@ -2,9 +2,14 @@
 import { useMainStore } from '~/store/main'
 
 const mainStore = useMainStore()
+
 const showOverlay = computed(() => {
-  if (!mainStore.user.id || !mainStore.user.username) return true
-  if (!mainStore.isUserInDB()) return true
+  if (!mainStore.user.id || !mainStore.user.username)
+    return true
+
+  if (!mainStore.isUserDa)
+    return true
+
   return false
 })
 
@@ -32,7 +37,7 @@ provide('availableVotes', availableVotes)
   <div v-else>
     <NavBar />
     <div class="overflow-x-auto max-w-xl m-5 mx-auto">
-      <Controls :available-votes="availableVotes"></Controls>
+      <Controls :available-votes="availableVotes" />
       <Tables />
     </div>
   </div>

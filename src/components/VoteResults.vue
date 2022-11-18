@@ -1,14 +1,15 @@
+<!-- eslint-disable antfu/if-newline -->
 <script setup lang="ts">
 import type { User } from '~/types'
 
 const props = defineProps<{ voters: User[] }>()
 
 const validVoters = computed(() =>
-  props.voters.filter(u => u.vote !== null && u.vote !== '?' && u.vote !== 'break')
+  props.voters.filter(u => u.vote !== null && u.vote !== '?' && u.vote !== 'break'),
 )
 
 const maxVote = computed(() =>
-  validVoters.value.reduce((max, v) => Math.max(max, +v.vote!), 0)
+  validVoters.value.reduce((max, v) => Math.max(max, +v.vote!), 0),
 )
 
 const sortedVoters = computed(() => {
@@ -34,7 +35,8 @@ const sortedVoters = computed(() => {
       :key="id"
       :name="username"
       :vote="vote"
-      :max-vote="maxVote" />
+      :max-vote="maxVote"
+    />
   </div>
 </template>
 

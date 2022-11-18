@@ -1,9 +1,10 @@
-import { createRouter, createMemoryHistory } from 'vue-router'
-import { routes } from '~/router'
-import { useMainStore } from '~/store/main'
-import { createTestingPinia, TestingOptions } from '@pinia/testing'
+import { createMemoryHistory, createRouter } from 'vue-router'
+import type { TestingOptions } from '@pinia/testing'
+import { createTestingPinia } from '@pinia/testing'
 import { shallowMount } from '@vue/test-utils'
 import NavBar from '../NavBar.vue'
+import { useMainStore } from '~/store/main'
+import { routes } from '~/router'
 
 function factory(options?: TestingOptions) {
   const router = createRouter({ routes, history: createMemoryHistory() })
