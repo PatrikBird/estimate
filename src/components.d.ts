@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     BaseLogin: typeof import('./components/base/BaseLogin.vue')['default']
     Controls: typeof import('./components/Controls.vue')['default']
     DeleteButton: typeof import('./components/base/DeleteButton.vue')['default']
+    DeprecationAlert: typeof import('./components/DeprecationAlert.vue')['default']
     ErrorAlert: typeof import('./components/base/ErrorAlert.vue')['default']
     EstimateTable: typeof import('./components/EstimateTable.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
