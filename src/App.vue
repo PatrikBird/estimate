@@ -1,4 +1,5 @@
 <template>
+  <deprecation-alert />
   <router-view></router-view>
 </template>
 
