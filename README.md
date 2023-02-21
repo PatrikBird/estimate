@@ -1,4 +1,6 @@
-# Estimate
+# Deprecated and replaced by https://github.com/PatrikBird/esti 
+
+## Estimate
 Story estimation made simple.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/314752a8-7663-4ba7-8782-b646d6a439d6/deploy-status)](https://app.netlify.com/sites/esti/deploys)
