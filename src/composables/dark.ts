@@ -1,4 +1,4 @@
-import { useDark, useToggle, usePreferredDark } from '@vueuse/core'
+import { useDark, usePreferredDark, useToggle } from '@vueuse/core'
 
 export const isDark = useDark({
   selector: 'html',
